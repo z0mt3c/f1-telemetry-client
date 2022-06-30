@@ -115,7 +115,7 @@ describe('F1TelemetryClient', () => {
   describe('2018 format', () => {
     describe('parsePacketHeader', () => {
       // tslint:disable-next-line:no-any
-      let parsedPacketHeader: Parser.Parsed<any>;
+      let parsedPacketHeader: any;
 
       beforeAll(() => {
         const buffer = Buffer.from(PACKET_HEADER_BUFFER_2018);
@@ -251,7 +251,7 @@ describe('F1TelemetryClient', () => {
   describe('2019 format', () => {
     describe('parsePacketHeader', () => {
       // tslint:disable-next-line:no-any
-      let parsedPacketHeader: Parser.Parsed<any>;
+      let parsedPacketHeader: any;
 
       beforeAll(() => {
         const buffer = Buffer.from(PACKET_HEADER_BUFFER_2019);
@@ -387,7 +387,7 @@ describe('F1TelemetryClient', () => {
   describe('2020 format', () => {
     describe('parsePacketHeader', () => {
       // tslint:disable-next-line:no-any
-      let parsedPacketHeader: Parser.Parsed<any>;
+      let parsedPacketHeader: any;
 
       beforeAll(() => {
         const buffer = Buffer.from(PACKET_HEADER_BUFFER_2020);
@@ -555,7 +555,7 @@ describe('F1TelemetryClient', () => {
   describe('2021 format', () => {
     describe('parsePacketHeader', () => {
       // tslint:disable-next-line:no-any
-      let parsedPacketHeader: Parser.Parsed<any>;
+      let parsedPacketHeader: any;
 
       beforeAll(() => {
         const buffer = Buffer.from(PACKET_HEADER_BUFFER_2021);
