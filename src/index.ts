@@ -145,8 +145,6 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Buffer} message
    */
   handleMessage(message: Buffer) {
-    this.emit('raw', message);
-
     if (this.forwardAddresses) {
       // bridge message
       this.bridgeMessage(message);
@@ -160,7 +158,9 @@ class F1TelemetryClient extends EventEmitter {
     }
 
     // emit parsed message
-    this.emit(parsedMessage.packetID, parsedMessage.packetData.data);
+    this.emit(
+        parsedMessage.packetID,
+        {...parsedMessage.packetData.data, raw: message});
   }
 
   /**
