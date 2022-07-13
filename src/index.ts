@@ -158,9 +158,7 @@ class F1TelemetryClient extends EventEmitter {
     }
 
     // emit parsed message
-    this.emit(
-        parsedMessage.packetID,
-        {...parsedMessage.packetData.data, raw: message});
+    this.emit(parsedMessage.packetID, parsedMessage.packetData.data);
   }
 
   /**
