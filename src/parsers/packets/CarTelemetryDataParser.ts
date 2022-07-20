@@ -31,13 +31,15 @@ export class CarTelemetryDataParser extends F1Parser {
         })
         .array('m_tyresSurfaceTemperature', {
           length: 4,
-          type: packetFormat === 2020 || packetFormat === 2021 || packetFormat === 2022 ?
+          type: packetFormat === 2020 || packetFormat === 2021 ||
+                  packetFormat === 2022 ?
               new Parser().uint8('') :
               new Parser().uint16le(''),
         })
         .array('m_tyresInnerTemperature', {
           length: 4,
-          type: packetFormat === 2020 || packetFormat === 2021 || packetFormat === 2022 ?
+          type: packetFormat === 2020 || packetFormat === 2021 ||
+                  packetFormat === 2022 ?
               new Parser().uint8('') :
               new Parser().uint16le(''),
         })

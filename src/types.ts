@@ -14,9 +14,10 @@ export interface Address {
 
 export interface ParsedMessage {
   packetID: string;
-  packetData:|PacketSessionHistoryDataParser|PacketSessionDataParser|PacketMotionDataParser|
-      PacketLapDataParser|PacketEventDataParser|PacketParticipantsDataParser|
-      PacketCarSetupDataParser|PacketCarTelemetryDataParser|
-      PacketCarStatusDataParser|PacketCarDamageDataParser|PacketFinalClassificationDataParser|
+  packetData:|PacketSessionHistoryDataParser|PacketSessionDataParser|
+      PacketMotionDataParser|PacketLapDataParser|PacketEventDataParser|
+      PacketParticipantsDataParser|PacketCarSetupDataParser|
+      PacketCarTelemetryDataParser|PacketCarStatusDataParser|
+      PacketCarDamageDataParser|PacketFinalClassificationDataParser|
       PacketLobbyInfoDataParser|null;
 }

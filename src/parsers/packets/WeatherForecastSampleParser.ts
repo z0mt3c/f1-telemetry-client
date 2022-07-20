@@ -12,13 +12,13 @@ export class WeatherForecastSampleParser extends F1Parser {
 
     if (packetFormat === 2020) {
       this.int8('m_airTemperature');
-    };
+    }
 
     if (packetFormat === 2021 || packetFormat === 2022) {
       this.int8('m_trackTemperatureChange')
           .int8('m_airTemperature')
           .int8('m_airTemperatureChange')
-          .uint8('m_rainPercentage')
-    };
+          .uint8('m_rainPercentage');
+    }
   }
 }

@@ -24,7 +24,10 @@ export class PacketParticipantsDataParser extends F1Parser {
     }
 
     this.array('m_participants', {
-      length: packetFormat === 2020 || packetFormat === 2021 ? 22 : 20,
+      length: packetFormat === 2020 || packetFormat === 2021 ||
+              packetFormat === 2022 ?
+          22 :
+          20,
       type: new ParticipantDataParser(packetFormat),
     });
 

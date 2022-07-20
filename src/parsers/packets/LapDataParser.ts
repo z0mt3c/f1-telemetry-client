@@ -12,7 +12,8 @@ export class LapDataParser extends F1Parser {
       this.floatle('m_lastLapTime').floatle('m_currentLapTime');
     }
 
-    if (packetFormat === 2020 || packetFormat === 2021 || packetFormat === 2022) {
+    if (packetFormat === 2020 || packetFormat === 2021 ||
+        packetFormat === 2022) {
       this.uint16le('m_sector1TimeInMS').uint16le('m_sector2TimeInMS');
     }
 

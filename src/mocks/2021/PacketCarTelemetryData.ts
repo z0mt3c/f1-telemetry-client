@@ -88,7 +88,7 @@ export const PACKET_CAR_TELEMETRY_DATA_BUFFER_2021 = [
   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
-  0,   0,   0,   0,   0,   0,   0,   0,   0,   255, 255, 0,
+  0,   0,   0,   0,   0,   0,   0,   0,   0,   255, 255, 0
 ];
 
 export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
@@ -101,7 +101,7 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
     m_sessionTime: 2393.729736328125,
     m_frameIdentifier: 47853,
     m_playerCarIndex: 19,
-    m_secondaryPlayerCarIndex: 255,
+    m_secondaryPlayerCarIndex: 255
   },
   m_carTelemetryData: [
     {
@@ -120,12 +120,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [79, 79, 80, 80],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 0, 0, 0],
+      m_surfaceType: [0, 0, 0, 0]
     },
     {
       m_speed: 287,
@@ -143,12 +141,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [84, 85, 82, 84],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 0, 0, 0],
+      m_surfaceType: [0, 0, 0, 0]
     },
     {
       m_speed: 0,
@@ -166,12 +162,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [80, 79, 81, 81],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 0, 0, 0],
+      m_surfaceType: [0, 0, 0, 0]
     },
     {
       m_speed: 0,
@@ -189,12 +183,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [80, 80, 80, 80],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 0, 0, 0],
+      m_surfaceType: [0, 0, 0, 0]
     },
     {
       m_speed: 139,
@@ -212,12 +204,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [84, 84, 85, 84],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [1, 0, 7, 0],
+      m_surfaceType: [1, 0, 7, 0]
     },
     {
       m_speed: 0,
@@ -235,12 +225,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [77, 77, 78, 78],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 0, 0, 0],
+      m_surfaceType: [0, 0, 0, 0]
     },
     {
       m_speed: 244,
@@ -258,12 +246,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [86, 85, 85, 84],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 0, 0, 0],
+      m_surfaceType: [0, 0, 0, 0]
     },
     {
       m_speed: 312,
@@ -281,12 +267,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [84, 84, 82, 83],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 0, 0, 0],
+      m_surfaceType: [0, 0, 0, 0]
     },
     {
       m_speed: 82,
@@ -304,12 +288,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [83, 85, 82, 83],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 1, 0, 0],
+      m_surfaceType: [0, 1, 0, 0]
     },
     {
       m_speed: 0,
@@ -327,12 +309,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [82, 82, 83, 83],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 0, 0, 0],
+      m_surfaceType: [0, 0, 0, 0]
     },
     {
       m_speed: 278,
@@ -350,12 +330,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [86, 83, 84, 82],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 0, 0, 0],
+      m_surfaceType: [0, 0, 0, 0]
     },
     {
       m_speed: 222,
@@ -373,12 +351,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [88, 84, 86, 84],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 0, 0, 0],
+      m_surfaceType: [0, 0, 0, 0]
     },
     {
       m_speed: 221,
@@ -396,12 +372,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [82, 84, 81, 82],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 0, 0, 0],
+      m_surfaceType: [0, 0, 0, 0]
     },
     {
       m_speed: 287,
@@ -419,12 +393,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [82, 84, 81, 82],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 1, 0, 1],
+      m_surfaceType: [0, 1, 0, 1]
     },
     {
       m_speed: 0,
@@ -442,12 +414,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [76, 76, 77, 77],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 0, 0, 0],
+      m_surfaceType: [0, 0, 0, 0]
     },
     {
       m_speed: 0,
@@ -465,12 +435,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [76, 76, 77, 77],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 0, 0, 0],
+      m_surfaceType: [0, 0, 0, 0]
     },
     {
       m_speed: 295,
@@ -488,12 +456,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [82, 83, 80, 81],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 0, 0, 0],
+      m_surfaceType: [0, 0, 0, 0]
     },
     {
       m_speed: 238,
@@ -511,12 +477,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [85, 84, 84, 82],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 0, 0, 0],
+      m_surfaceType: [0, 0, 0, 0]
     },
     {
       m_speed: 0,
@@ -534,12 +498,10 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [81, 81, 82, 82],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 0, 0, 0],
+      m_surfaceType: [0, 0, 0, 0]
     },
     {
       m_speed: 0,
@@ -557,12 +519,49 @@ export const PACKET_CAR_TELEMETRY_DATA_PARSED_2021 = {
       m_tyresInnerTemperature: [85, 85, 90, 90],
       m_engineTemperature: 90,
       m_tyresPressure: [
-        23.100000381469727,
-        23.100000381469727,
-        22.200000762939453,
-        22.200000762939453,
+        23.100000381469727, 23.100000381469727, 22.200000762939453,
+        22.200000762939453
       ],
-      m_surfaceType: [0, 0, 0, 0],
+      m_surfaceType: [0, 0, 0, 0]
     },
+    {
+      m_brake: 0,
+      m_brakesTemperature: [0, 0, 0, 0],
+      m_clutch: 0,
+      m_drs: 0,
+      m_engineRPM: 0,
+      m_engineTemperature: 0,
+      m_gear: 0,
+      m_revLightsBitValue: 0,
+      m_revLightsPercent: 0,
+      m_speed: 0,
+      m_steer: 0,
+      m_surfaceType: [0, 0, 0, 0],
+      m_throttle: 0,
+      m_tyresInnerTemperature: [0, 0, 0, 0],
+      m_tyresPressure: [0, 0, 0, 0],
+      m_tyresSurfaceTemperature: [0, 0, 0, 0]
+    },
+    {
+      m_brake: 0,
+      m_brakesTemperature: [0, 0, 0, 0],
+      m_clutch: 0,
+      m_drs: 0,
+      m_engineRPM: 0,
+      m_engineTemperature: 0,
+      m_gear: 0,
+      m_revLightsBitValue: 0,
+      m_revLightsPercent: 0,
+      m_speed: 0,
+      m_steer: 0,
+      m_surfaceType: [0, 0, 0, 0],
+      m_throttle: 0,
+      m_tyresInnerTemperature: [0, 0, 0, 0],
+      m_tyresPressure: [0, 0, 0, 0],
+      m_tyresSurfaceTemperature: [0, 0, 0, 0]
+    }
   ],
+  m_mfdPanelIndex: 255,
+  m_mfdPanelIndexSecondaryPlayer: 255,
+  m_suggestedGear: 0,
 };

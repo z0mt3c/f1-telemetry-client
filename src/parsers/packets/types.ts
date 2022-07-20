@@ -98,9 +98,9 @@ export interface BrakeDamage {
 }
 
 export interface CarDamageData {
-  m_tyresWear: TyreWear[],
-  m_tyresDamage: TyreDamage,
-  m_brakesDamage: BrakeDamage[],
+  m_tyresWear: TyreWear[];
+  m_tyresDamage: TyreDamage;
+  m_brakesDamage: BrakeDamage[];
   m_frontLeftWingDamage: number;
   m_frontRightWingDamage: number;
   m_rearWingDamage: number;

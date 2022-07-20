@@ -77,7 +77,7 @@ export const PACKET_PARTICIPANTS_DATA_BUFFER_2021 = [
   0,   0,   255, 255, 255, 0,  0,   255, 0,   0,   0,   0,   0,   0,   0,  0,
   0,   0,   0,   0,   0,   0,  0,   0,   0,   0,   0,   0,   0,   0,   0,  0,
   0,   0,   0,   0,   0,   0,  0,   0,   0,   0,   0,   0,   0,   0,   0,  0,
-  0,   0,   0,   0,   0,   0,  0,   0,   0,
+  0,   0,   0,   0,   0,   0,  0,   0,   0
 ];
 
 export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
@@ -90,7 +90,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
     m_sessionTime: 2391.764892578125,
     m_frameIdentifier: 47815,
     m_playerCarIndex: 19,
-    m_secondaryPlayerCarIndex: 255,
+    m_secondaryPlayerCarIndex: 255
   },
   m_numActiveCars: 20,
   m_participants: [
@@ -103,7 +103,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 55,
       m_nationality: 77,
       m_name: 'SAINZ',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 1,
@@ -114,7 +114,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 11,
       m_nationality: 52,
       m_name: 'PEREZ',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 1,
@@ -125,7 +125,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 7,
       m_nationality: 27,
       m_name: 'RÄIKKÖNEN',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 1,
@@ -136,7 +136,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 5,
       m_nationality: 29,
       m_name: 'VETTEL',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 1,
@@ -147,7 +147,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 31,
       m_nationality: 28,
       m_name: 'OCON',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 1,
@@ -158,7 +158,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 9,
       m_nationality: 0,
       m_name: 'MAZEPIN',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 1,
@@ -169,7 +169,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 14,
       m_nationality: 77,
       m_name: 'ALONSO',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 1,
@@ -180,7 +180,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 16,
       m_nationality: 53,
       m_name: 'LECLERC',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 1,
@@ -191,7 +191,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 22,
       m_nationality: 43,
       m_name: 'TSUNODA',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 1,
@@ -202,7 +202,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 33,
       m_nationality: 22,
       m_name: 'VERSTAPPEN',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 1,
@@ -213,7 +213,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 77,
       m_nationality: 27,
       m_name: 'BOTTAS',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 1,
@@ -224,7 +224,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 4,
       m_nationality: 10,
       m_name: 'NORRIS',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 1,
@@ -235,7 +235,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 10,
       m_nationality: 28,
       m_name: 'GASLY',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 1,
@@ -246,7 +246,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 18,
       m_nationality: 13,
       m_name: 'STROLL',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 1,
@@ -257,7 +257,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 6,
       m_nationality: 13,
       m_name: 'LATIFI',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 1,
@@ -268,7 +268,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 47,
       m_nationality: 29,
       m_name: 'SCHUMACHER',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 1,
@@ -279,7 +279,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 99,
       m_nationality: 41,
       m_name: 'GIOVINAZZI',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 1,
@@ -290,7 +290,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 63,
       m_nationality: 10,
       m_name: 'RUSSELL',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 1,
@@ -301,7 +301,7 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 3,
       m_nationality: 3,
       m_name: 'RICCIARDO',
-      m_yourTelemetry: 1,
+      m_yourTelemetry: 1
     },
     {
       m_aiControlled: 0,
@@ -312,7 +312,29 @@ export const PACKET_PARTICIPANTS_DATA_PARSED_2021 = {
       m_raceNumber: 44,
       m_nationality: 10,
       m_name: 'HAMILTON',
-      m_yourTelemetry: 0,
+      m_yourTelemetry: 0
     },
-  ],
+    {
+      m_aiControlled: 0,
+      m_driverId: 255,
+      m_myTeam: 0,
+      m_name: '',
+      m_nationality: 255,
+      m_networkId: 255,
+      m_raceNumber: 0,
+      m_teamId: 255,
+      m_yourTelemetry: 0
+    },
+    {
+      m_aiControlled: 0,
+      m_driverId: 255,
+      m_myTeam: 0,
+      m_name: '',
+      m_nationality: 255,
+      m_networkId: 255,
+      m_raceNumber: 0,
+      m_teamId: 255,
+      m_yourTelemetry: 0
+    }
+  ]
 };
