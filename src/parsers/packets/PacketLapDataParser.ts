@@ -21,7 +21,7 @@ export class PacketLapDataParser extends F1Parser {
           type: new LapDataParser(packetFormat),
         });
 
-    if (packetFormat === 2022) {
+    if (packetFormat === 2022 || packetFormat === 2023) {
       this.uint8('m_timeTrialPBCarIdx').uint8('m_timeTrialRivalCarIdx');
     }
 

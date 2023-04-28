@@ -9,6 +9,7 @@ import * as constantsTypes from './constants/types';
 import {PacketCarDamageDataParser, PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser, PacketEventDataParser, PacketFinalClassificationDataParser, PacketFormatParser, PacketHeaderParser, PacketLapDataParser, PacketLobbyInfoDataParser, PacketMotionDataParser, PacketParticipantsDataParser, PacketSessionDataParser, PacketSessionHistoryDataParser,} from './parsers/packets';
 import * as packetTypes from './parsers/packets/types';
 import {Address, Options, ParsedMessage} from './types';
+import { PacketTyreSetsDataParser } from './parsers/packets/PacketTyreSetsDataParser'
 
 const DEFAULT_PORT = 20777;
 const FORWARD_ADDRESSES = undefined;
@@ -134,6 +135,9 @@ class F1TelemetryClient extends EventEmitter {
 
       case PACKETS.sessionHistory:
         return PacketSessionHistoryDataParser;
+
+      case PACKETS.tyreSets:
+        return PacketTyreSetsDataParser;
 
       default:
         return null;

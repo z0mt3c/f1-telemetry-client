@@ -19,7 +19,7 @@ export class PacketParticipantsDataParser extends F1Parser {
     }
 
     if (packetFormat === 2019 || packetFormat === 2020 ||
-        packetFormat === 2021 || packetFormat === 2022) {
+        packetFormat === 2021 || packetFormat === 2022 || packetFormat === 2023) {
       this.uint8('m_numActiveCars');
     }
 

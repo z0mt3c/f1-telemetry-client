@@ -29,7 +29,7 @@ export class PacketCarTelemetryDataParser extends F1Parser {
           .int8('m_suggestedGear');
     }
 
-    if (packetFormat === 2021 || packetFormat === 2022) {
+    if (packetFormat === 2021 || packetFormat === 2022 || packetFormat === 2023) {
       this.uint8('m_mfdPanelIndex')
           .uint8('m_mfdPanelIndexSecondaryPlayer')
           .int8('m_suggestedGear');

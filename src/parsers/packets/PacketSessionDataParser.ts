@@ -28,7 +28,7 @@ export class PacketSessionDataParser extends F1Parser {
     }
 
     if (packetFormat === 2019 || packetFormat === 2020 ||
-        packetFormat === 2021 || packetFormat === 2022) {
+        packetFormat === 2021 || packetFormat === 2022 || packetFormat === 2023) {
       this.uint8('m_formula');
     }
 
@@ -45,7 +45,7 @@ export class PacketSessionDataParser extends F1Parser {
         .uint8('m_networkGame');
 
     if (packetFormat === 2020 || packetFormat === 2021 ||
-        packetFormat === 2022) {
+        packetFormat === 2022 || packetFormat === 2023) {
       this.uint8('m_numWeatherForecastSamples');
     }
 
@@ -56,7 +56,7 @@ export class PacketSessionDataParser extends F1Parser {
       });
     }
 
-    if (packetFormat === 2021 || packetFormat === 2022) {
+    if (packetFormat === 2021 || packetFormat === 2022 || packetFormat === 2023) {
       this.array('m_weatherForecastSamples', {
             type: new WeatherForecastSampleParser(packetFormat),
             length: 56,
@@ -80,11 +80,21 @@ export class PacketSessionDataParser extends F1Parser {
           .uint8('m_dynamicRacingLineType');
     }
 
-    if (packetFormat === 2022) {
+    if (packetFormat === 2022 || packetFormat === 2023) {
       this.uint8('m_gameMode')
           .uint8('m_ruleSet')
           .uint32le('m_timeOfDay')
           .uint8('m_sessionLength');
+    }
+
+    if (packetFormat === 2023) {
+      this.uint8('m_speedUnitsLeadPlayer')
+          .uint8('m_temperatureUnitsLeadPlayer')
+          .uint8('m_speedUnitsSecondaryPlayer')
+          .uint8('m_temperatureUnitsSecondaryPlayer')
+          .uint8('m_numSafetyCarPeriods')
+          .uint8('m_numVirtualSafetyCarPeriods')
+          .uint8('tbc')
     }
 
     this.data = this.fromBuffer(buffer);

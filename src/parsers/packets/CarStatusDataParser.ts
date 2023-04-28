@@ -14,7 +14,7 @@ export class CarStatusDataParser extends F1Parser {
         .floatle('m_fuelCapacity');
 
     if (packetFormat === 2019 || packetFormat === 2020 ||
-        packetFormat === 2021 || packetFormat === 2022) {
+        packetFormat === 2021 || packetFormat === 2022 || packetFormat === 2023) {
       this.floatle('m_fuelRemainingLaps');
     }
 
@@ -24,7 +24,7 @@ export class CarStatusDataParser extends F1Parser {
         .uint8('m_drsAllowed');
 
     if (packetFormat === 2020 || packetFormat === 2021 ||
-        packetFormat === 2022) {
+        packetFormat === 2022 || packetFormat === 2023) {
       this.uint16le('m_drsActivationDistance');
     }
 
@@ -36,14 +36,14 @@ export class CarStatusDataParser extends F1Parser {
     }
 
     if (packetFormat === 2019 || packetFormat === 2020 ||
-        packetFormat === 2021 || packetFormat === 2022) {
+        packetFormat === 2021 || packetFormat === 2022 || packetFormat === 2023) {
       this.uint8('m_actualTyreCompound').uint8('m_visualTyreCompound');
     } else {
       this.uint8('m_tyreCompound');
     }
 
     if (packetFormat === 2020 || packetFormat === 2021 ||
-        packetFormat === 2022) {
+        packetFormat === 2022 || packetFormat === 2023) {
       this.uint8('m_tyresAgeLaps');
     }
 
@@ -66,10 +66,15 @@ export class CarStatusDataParser extends F1Parser {
     }
 
     if (packetFormat === 2019 || packetFormat === 2020 ||
-        packetFormat === 2021 || packetFormat === 2022) {
+        packetFormat === 2021 || packetFormat === 2022 || packetFormat === 2023) {
       this.uint8('m_vehicleFiaFlags');
     } else {
       this.uint8('m_exhaustDamage').int8('m_vehicleFiaFlags');
+    }
+
+    if (packetFormat === 2023) {
+    this.floatle('m_enginePowerICE')
+        .floatle('m_enginePowerMGUK')
     }
 
     this.floatle('m_ersStoreEnergy')
@@ -78,7 +83,7 @@ export class CarStatusDataParser extends F1Parser {
         .floatle('m_ersHarvestedThisLapMGUH')
         .floatle('m_ersDeployedThisLap');
 
-    if (packetFormat === 2021 || packetFormat === 2022) {
+    if (packetFormat === 2021 || packetFormat === 2022 || packetFormat === 2023) {
       this.int8('m_networkPaused');
     }
   }

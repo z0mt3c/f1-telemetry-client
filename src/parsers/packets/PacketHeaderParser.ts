@@ -10,8 +10,12 @@ export class PacketHeaderParser extends F1Parser {
       this.uint8('m_packetVersion').uint8('m_packetId');
     }
 
+    if (packetFormat === 2023) {
+      this.uint8('m_gameYear')
+    }
+
     if (packetFormat === 2019 || packetFormat === 2020 ||
-        packetFormat === 2021 || packetFormat === 2022) {
+        packetFormat === 2021 || packetFormat === 2022 || packetFormat === 2023) {
       this.uint8('m_gameMajorVersion')
           .uint8('m_gameMinorVersion')
           .uint8('m_packetVersion')
@@ -25,11 +29,16 @@ export class PacketHeaderParser extends F1Parser {
     }
 
     this.floatle('m_sessionTime')
-        .uint32('m_frameIdentifier')
-        .uint8('m_playerCarIndex');
+        .uint32('m_frameIdentifier');
+
+    if (packetFormat === 2023) {
+      this.uint32('m_overallFrameIdentifier');
+    }
+
+    this.uint8('m_playerCarIndex');
 
     if (packetFormat === 2020 || packetFormat === 2021 ||
-        packetFormat === 2022) {
+        packetFormat === 2022 || packetFormat === 2023) {
       this.uint8('m_secondaryPlayerCarIndex');
     }
   }

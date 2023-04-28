@@ -6,14 +6,30 @@ export class LapDataParser extends F1Parser {
 
     this.endianess('little');
 
-    if (packetFormat === 2021 || packetFormat === 2022) {
-      this.uint32le('m_lastLapTimeInMS').uint32le('m_currentLapTimeInMS');
+    if (packetFormat === 2021 || packetFormat === 2022 || packetFormat === 2023) {
+      this.uint32le('m_lastLapTimeInMS')
+          .uint32le('m_currentLapTimeInMS');
     } else {
-      this.floatle('m_lastLapTime').floatle('m_currentLapTime');
+      this.floatle('m_lastLapTime')
+          .floatle('m_currentLapTime');
     }
 
-    if (packetFormat === 2020 || packetFormat === 2021 || packetFormat === 2022) {
-      this.uint16le('m_sector1TimeInMS').uint16le('m_sector2TimeInMS');
+    if ([2020, 2021, 2022, 2023].includes(packetFormat)) {
+      this.uint16le('m_sector1TimeInMS')
+    }
+
+    if (packetFormat === 2023) {
+      this.uint8('m_sector1TimeMinutes')
+    }
+
+    if ([2020, 2021, 2022, 2023].includes(packetFormat)) {
+      this.uint16le('m_sector2TimeInMS');
+    }
+
+    if (packetFormat === 2023) {
+      this.uint8('m_sector2TimeMinutes')
+        .uint16le('m_deltaToCarInFrontInMS')
+        .uint16le('m_deltaToRaceLeaderInMS')
     }
 
     if (packetFormat === 2018 || packetFormat === 2019 ||
@@ -45,23 +61,28 @@ export class LapDataParser extends F1Parser {
         .uint8('m_currentLapNum')
         .uint8('m_pitStatus');
 
-    if (packetFormat === 2021 || packetFormat === 2022) {
+    if (packetFormat === 2021 || packetFormat === 2022 || packetFormat === 2023) {
       this.uint8('m_numPitStops');
     }
 
     this.uint8('m_sector').uint8('m_currentLapInvalid').uint8('m_penalties');
 
-    if (packetFormat === 2021 || packetFormat === 2022) {
+    if (packetFormat === 2021 || packetFormat === 2022 || packetFormat === 2023) {
       this.uint8('m_warnings')
           .uint8('m_numUnservedDriveThroughPens')
           .uint8('m_numUnservedStopGoPens');
+    }
+
+    if (packetFormat === 2023) {
+      this.uint8('m_totalWarnings')
+          .uint8('m_cornerCuttingWarnings')
     }
 
     this.uint8('m_gridPosition')
         .uint8('m_driverStatus')
         .uint8('m_resultStatus');
 
-    if (packetFormat === 2021 || packetFormat === 2022) {
+    if (packetFormat === 2021 || packetFormat === 2022 || packetFormat === 2023) {
       this.uint8('m_pitLaneTimerActive')
           .uint16le('m_pitLaneTimeInLaneInMS')
           .uint16le('m_pitStopTimerInMS')
