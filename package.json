@@ -1,6 +1,6 @@
 {
-  "name": "@racehub-io/f1-telemetry-client",
-  "version": "0.2.10",
+  "name": "@z0mt3c/f1-telemetry-client",
+  "version": "0.3.0-beta.0",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "files": [
@@ -12,7 +12,7 @@
     "url": "https://github.com/racehub-io/f1-telemetry-client.git"
   },
   "dependencies": {
-    "binary-parser": "^1.5.0",
+    "binary-parser": "^2.2.1",
     "struct": "^0.0.12"
   },
   "devDependencies": {

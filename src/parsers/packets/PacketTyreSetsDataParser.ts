@@ -1,10 +1,10 @@
 import {F1Parser} from '../F1Parser';
-import {CarStatusDataParser} from './CarStatusDataParser';
 import {PacketHeaderParser} from './PacketHeaderParser';
-import {PacketCarStatusData} from './types';
+import {PacketTyreSetsData} from './types';
+import {TyreSetDataParser} from './TyreSetDataParser'
 
-export class PacketCarStatusDataParser extends F1Parser {
-  data: PacketCarStatusData;
+export class PacketTyreSetsDataParser extends F1Parser {
+  data: PacketTyreSetsData;
 
   constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super();
@@ -13,9 +13,10 @@ export class PacketCarStatusDataParser extends F1Parser {
         .nest('m_header', {
           type: new PacketHeaderParser(packetFormat, bigintEnabled),
         })
-        .array('m_carStatusData', {
-          length: packetFormat >= 2020 ? 22 : 20,
-          type: new CarStatusDataParser(packetFormat),
+        .uint8('m_carIdx')
+        .array('m_tyreSetData', {
+          length: 20,
+          type: new TyreSetDataParser(),
         });
 
     this.data = this.fromBuffer(buffer);

@@ -26,7 +26,7 @@ export class CarDamageDataParser extends F1Parser {
         .uint8('m_sidepodDamage')
         .uint8('m_drsFault');
 
-    if (packetFormat === 2022) {
+    if (packetFormat === 2022 || packetFormat === 2023) {
       this.uint8('m_ersFault');
     }
 
@@ -39,7 +39,7 @@ export class CarDamageDataParser extends F1Parser {
         .uint8('m_engineMGUKWear')
         .uint8('m_engineTCWear');
 
-    if (packetFormat === 2022) {
+    if (packetFormat === 2022 || packetFormat === 2023) {
       this.uint8('m_engineBlown').uint8('m_engineSeized');
     }
   }

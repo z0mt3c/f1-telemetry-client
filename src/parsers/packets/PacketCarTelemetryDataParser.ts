@@ -14,7 +14,7 @@ export class PacketCarTelemetryDataParser extends F1Parser {
           type: new PacketHeaderParser(packetFormat, bigintEnabled),
         })
         .array('m_carTelemetryData', {
-          length: packetFormat === 2020 || packetFormat === 2021 || packetFormat === 2022 ? 22 : 20,
+          length: [2020, 2021, 2022, 2023].includes(packetFormat) ? 22 : 20,
           type: new CarTelemetryDataParser(packetFormat),
         });
 
@@ -29,7 +29,7 @@ export class PacketCarTelemetryDataParser extends F1Parser {
           .int8('m_suggestedGear');
     }
 
-    if (packetFormat === 2021 || packetFormat === 2022) {
+    if (packetFormat === 2021 || packetFormat === 2022 || packetFormat === 2023) {
       this.uint8('m_mfdPanelIndex')
           .uint8('m_mfdPanelIndexSecondaryPlayer')
           .int8('m_suggestedGear');
