@@ -59,7 +59,7 @@ class F1TelemetryClient extends EventEmitter {
     const packetID = Object.keys(constants.PACKETS)[m_packetId];
 
     // emit parsed message
-    return {packetData, packetID};
+    return {packetData, packetID, message};
   }
 
   /**
@@ -163,6 +163,7 @@ class F1TelemetryClient extends EventEmitter {
 
     // emit parsed message
     this.emit(parsedMessage.packetID, parsedMessage.packetData.data);
+    this.emit('raw', parsedMessage);
   }
 
   /**

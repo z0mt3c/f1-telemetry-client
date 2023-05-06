@@ -20,4 +20,6 @@ export interface ParsedMessage {
       PacketCarSetupDataParser|PacketCarTelemetryDataParser|
       PacketCarStatusDataParser|PacketCarDamageDataParser|PacketFinalClassificationDataParser|
       PacketLobbyInfoDataParser|PacketTyreSetsDataParser|null;
+
+  message?: Buffer
 }

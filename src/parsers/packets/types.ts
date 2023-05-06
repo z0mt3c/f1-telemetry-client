@@ -266,7 +266,9 @@ export interface PacketCarTelemetryData {
 
 export interface PacketHeader {
   m_packetFormat: number;
-  m_gameYear?: number;
+  m_gameYear: number;
+  m_gameMajorVersion: number;
+  m_gameMinorVersion: number;
   m_packetVersion: number;
   m_packetId: number;
   m_sessionUID: bigint;
@@ -274,7 +276,7 @@ export interface PacketHeader {
   m_frameIdentifier: number;
   m_overallFrameIdentifier?: number;
   m_playerCarIndex: number;
-  m_surfaceType: number[];
+  m_secondaryPlayerCarIndex: number;
 }
 
 export interface CarTelemetryData {
@@ -292,6 +294,7 @@ export interface CarTelemetryData {
   m_drs: number;
   m_revLightsPercent: number;
   m_engineTemperature: number;
+  m_surfaceType: number[];
 }
 
 export interface ParticipantData {
