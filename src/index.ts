@@ -10,6 +10,7 @@ import {PacketCarDamageDataParser, PacketCarSetupDataParser, PacketCarStatusData
 import * as packetTypes from './parsers/packets/types';
 import {Address, Options, ParsedMessage} from './types';
 import { PacketTyreSetsDataParser } from './parsers/packets/PacketTyreSetsDataParser'
+import { PacketMotionExDataParser } from './parsers/packets/PacketMotionExDataParser'
 
 const DEFAULT_PORT = 20777;
 const FORWARD_ADDRESSES = undefined;
@@ -138,6 +139,9 @@ class F1TelemetryClient extends EventEmitter {
 
       case PACKETS.tyreSets:
         return PacketTyreSetsDataParser;
+
+      case PACKETS.motionEx:
+        return PacketMotionExDataParser;
 
       default:
         return null;

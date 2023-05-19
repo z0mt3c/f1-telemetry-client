@@ -1,16 +1,11 @@
 export interface PacketMotionData {
   m_header: PacketHeader;
   m_carMotionData: MotionData[];
-
   m_suspensionPosition?: number[];
   m_suspensionVelocity?: number[];
   m_suspensionAcceleration?: number[];
   m_wheelSpeed?: number[];
-  m_wheelSlipRatio?: number[];
-  m_wheelSlipAngle?: number[];
-  m_wheelLatForce?: number[];
-  m_wheelLongForce?: number[];
-  m_heightOfCOGAboveGround?: number;
+  m_wheelSlip?: number[];
   m_localVelocityX?: number;
   m_localVelocityY?: number;
   m_localVelocityZ?: number;
@@ -42,6 +37,29 @@ export interface MotionData {
   m_yaw: number;
   m_pitch: number;
   m_roll: number;
+}
+
+export interface PacketMotionExData {
+  m_header: PacketHeader;
+  m_suspensionPosition: number[];
+  m_suspensionVelocity: number[];
+  m_suspensionAcceleration: number[];
+  m_wheelSpeed: number[];
+  m_wheelSlipRatio: number[];
+  m_wheelSlipAngle: number[];
+  m_wheelLatForce: number[];
+  m_wheelLongForce: number[];
+  m_heightOfCOGAboveGround: number;
+  m_localVelocityX: number;
+  m_localVelocityY: number;
+  m_localVelocityZ: number;
+  m_angularVelocityX: number;
+  m_angularVelocityY: number;
+  m_angularVelocityZ: number;
+  m_angularAccelerationX: number;
+  m_angularAccelerationY: number;
+  m_angularAccelerationZ: number;
+  m_frontWheelsAngle: number;
 }
 
 export interface PacketLapData {
@@ -395,12 +413,11 @@ export interface TyreSetData {
   m_usableLife: number;
   m_lapDeltaTime: number;
   m_fitted: number;
-
 }
 
 export interface PacketTyreSetsData {
   m_header: PacketHeader;
   m_carIdx: number;
-
   m_tyreSetData: TyreSetData[]
+  m_fittedIdx: number;
 }

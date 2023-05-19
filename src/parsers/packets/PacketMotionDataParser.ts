@@ -17,64 +17,42 @@ export class PacketMotionDataParser extends F1Parser {
           type: new PacketHeaderParser(packetFormat, bigintEnabled),
         })
         .array('m_carMotionData', {
-          length: packetFormat === 2020 || packetFormat === 2021 ||
-                  packetFormat === 2022 ?
-              22 :
-              20,
+          length: packetFormat >= 2020 ? 22 : 20,
           type: new CarMotionDataParser(),
         })
-        .array('m_suspensionPosition', {
-          length: 4,
-          type: new Parser().floatle(''),
-        })
-        .array('m_suspensionVelocity', {
-          length: 4,
-          type: new Parser().floatle(''),
-        })
-        .array('m_suspensionAcceleration', {
-          length: 4,
-          type: new Parser().floatle(''),
-        })
-        .array('m_wheelSpeed', {
-          length: 4,
-          type: new Parser().floatle(''),
-        });
 
-    if (packetFormat === 2023) {
-      this.array('m_wheelSlipRatio', {
-          length: 4,
-          type: new Parser().floatle(''),
-        })
-        .array('m_wheelSlipAngle', {
-          length: 4,
-          type: new Parser().floatle(''),
-        })
-        .array('m_wheelLatForce', {
-          length: 4,
-          type: new Parser().floatle(''),
-        })
-        .array('m_wheelLongForce', {
-          length: 4,
-          type: new Parser().floatle(''),
-        })
-        .floatle('m_heightOfCOGAboveGround')
-    } else {
-      this.array('m_wheelSlip', {
+    if (packetFormat <= 2022) {
+      this.array('m_suspensionPosition', {
         length: 4,
         type: new Parser().floatle(''),
       })
+      .array('m_suspensionVelocity', {
+        length: 4,
+        type: new Parser().floatle(''),
+      })
+      .array('m_suspensionAcceleration', {
+        length: 4,
+        type: new Parser().floatle(''),
+      })
+      .array('m_wheelSpeed', {
+        length: 4,
+        type: new Parser().floatle(''),
+      })
+      .array('m_wheelSlip', {
+        length: 4,
+        type: new Parser().floatle(''),
+      })
+      .floatle('m_localVelocityX')
+      .floatle('m_localVelocityY')
+      .floatle('m_localVelocityZ')
+      .floatle('m_angularVelocityX')
+      .floatle('m_angularVelocityY')
+      .floatle('m_angularVelocityZ')
+      .floatle('m_angularAccelerationX')
+      .floatle('m_angularAccelerationY')
+      .floatle('m_angularAccelerationZ')
+      .floatle('m_frontWheelsAngle');
     }
-
-    this.floatle('m_localVelocityX')
-        .floatle('m_localVelocityY')
-        .floatle('m_localVelocityZ')
-        .floatle('m_angularVelocityX')
-        .floatle('m_angularVelocityY')
-        .floatle('m_angularVelocityZ')
-        .floatle('m_angularAccelerationX')
-        .floatle('m_angularAccelerationY')
-        .floatle('m_angularAccelerationZ')
-        .floatle('m_frontWheelsAngle');
 
     this.data = this.fromBuffer(buffer);
   }

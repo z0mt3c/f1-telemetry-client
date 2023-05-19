@@ -1,7 +1,7 @@
 import {PacketSize} from './types';
 
 export const PACKET_SIZES: {[index: string]: {[index: number]: PacketSize}} = {
-  motion: {2023: 1521 , 2022: 1464, 2021: 1464, 2020: 1464, 2019: 1343, 2018: 1341},
+  motion: {2023: 1349, 2022: 1464, 2021: 1464, 2020: 1464, 2019: 1343, 2018: 1341},
   session: {2023: 644, 2022: 632, 2021: 625, 2020: 251, 2019: 149, 2018: 147},
   lapData: {2023: 1131, 2022: 972, 2021: 970, 2020: 1190, 2019: 843, 2018: 841},
   event: {2023: 45, 2022: 40, 2021: 36, 2020: 35, 2019: 32, 2018: 25},
@@ -13,5 +13,6 @@ export const PACKET_SIZES: {[index: string]: {[index: number]: PacketSize}} = {
   lobbyInfo: {2023: 1218, 2022: 1191, 2021: 1191, 2020: 1169},
   carDamage: {2023: 953, 2022: 948, 2021: 882},
   sessionHistory: {2023: 1460, 2022: 1155, 2021: 1155},
-  tyreSets: {2023: 270},
+  tyreSets: {2023: 231},
+  motionEx: {2023: 1521},
 };

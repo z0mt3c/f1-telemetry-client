@@ -12,7 +12,7 @@ export class TyreSetDataParser extends F1Parser {
       .uint8('m_recommendedSession')
       .uint8('m_lifeSpan')
       .uint8('m_usableLife')
-      .uint16('m_lapDeltaTime')
+      .int16('m_lapDeltaTime')
       .uint8('m_fitted');
   }
 }
