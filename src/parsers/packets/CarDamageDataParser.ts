@@ -1,8 +1,9 @@
 import {Parser} from 'binary-parser';
 
 import {F1Parser} from '../F1Parser';
+import {CarDamageData} from './types';
 
-export class CarDamageDataParser extends F1Parser {
+export class CarDamageDataParser extends F1Parser<CarDamageData> {
   constructor(packetFormat: number) {
     super();
     this.array('m_tyresWear', {

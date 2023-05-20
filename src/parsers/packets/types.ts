@@ -1,5 +1,26 @@
-export interface PacketMotionData {
+export interface PacketHeaderBase {
+  m_packetFormat: number;
+}
+
+export interface PacketHeader extends PacketHeaderBase {
+  m_gameYear: number;
+  m_gameMajorVersion: number;
+  m_gameMinorVersion: number;
+  m_packetVersion: number;
+  m_packetId: number;
+  m_sessionUID: bigint;
+  m_sessionTime: number;
+  m_frameIdentifier: number;
+  m_overallFrameIdentifier?: number;
+  m_playerCarIndex: number;
+  m_secondaryPlayerCarIndex: number;
+}
+
+export interface PacketBase {
   m_header: PacketHeader;
+}
+
+export interface PacketMotionData extends PacketBase {
   m_carMotionData: MotionData[];
   m_suspensionPosition?: number[];
   m_suspensionVelocity?: number[];
@@ -39,8 +60,7 @@ export interface MotionData {
   m_roll: number;
 }
 
-export interface PacketMotionExData {
-  m_header: PacketHeader;
+export interface PacketMotionExData extends PacketBase {
   m_suspensionPosition: number[];
   m_suspensionVelocity: number[];
   m_suspensionAcceleration: number[];
@@ -62,13 +82,11 @@ export interface PacketMotionExData {
   m_frontWheelsAngle: number;
 }
 
-export interface PacketLapData {
-  m_header: PacketHeader;
+export interface PacketLapData extends PacketBase {
   m_lapData: LapData[];
 }
 
-export interface PacketSessionData {
-  m_header: PacketHeader;
+export interface PacketSessionData extends PacketBase {
   m_weather: number;
   m_trackTemperature: number;
   m_airTemperature: number;
@@ -154,8 +172,7 @@ export interface LapData {
   m_resultStatus: number;
 }
 
-export interface PacketCarDamageData {
-  m_header: PacketHeader;
+export interface PacketCarDamageData extends PacketBase {
   m_carDamageData: CarDamageData[];
 }
 
@@ -192,8 +209,7 @@ export interface CarDamageData {
   m_engineTCWear: number;
 }
 
-export interface PacketCarStatusData {
-  m_header: PacketHeader;
+export interface PacketCarStatusData extends PacketBase {
   m_carStatusData: CarStatusData[];
 }
 
@@ -233,8 +249,7 @@ export interface CarStatusData {
   m_ersDeployedThisLap: number;
 }
 
-export interface PacketCarSetupData {
-  m_header: PacketHeader;
+export interface PacketCarSetupData extends PacketBase {
   m_carSetups: CarSetupData[];
 }
 
@@ -261,40 +276,70 @@ export interface CarSetupData {
   m_fuelLoad: number;
 }
 
-export interface PacketEventData {
-  m_header: PacketHeader;
+export interface PacketEventData extends PacketBase {
   m_eventStringCode: string;
   m_eventDetails?: unknown;
 }
 
-export interface PacketParticipantsData {
-  m_header: PacketHeader;
+export interface BaseEventDataDetails {
+  vehicleIdx: number;
+}
+
+export interface VehicleEventDataDetails extends BaseEventDataDetails {
+  vehicleIdx: number;
+}
+
+export interface FlashbackEventDataDetails extends BaseEventDataDetails {
+  flashbackSessionTime: number;
+  flashbackFrameIdentifier: number;
+}
+
+export interface LightEventDataDetails extends BaseEventDataDetails {
+  numLights: number;
+}
+
+export interface ButtonEventDataDetails extends BaseEventDataDetails {
+  buttonStatus: number;
+}
+
+export interface FastestLapEventDataDetails extends VehicleEventDataDetails {
+  lapTime: number;
+}
+
+export interface OvertakeEventDataDetails extends VehicleEventDataDetails {
+  beingOvertakenVehicleIdx: number;
+  overtakingVehicleIdx: number;
+}
+
+export interface SpeedTrapEventDataDetails extends VehicleEventDataDetails {
+  speed: number;
+  overallFastestInSession: number;
+  driverFastestInSession: number;
+  isOverallFastestInSession: number;
+  isDriverFastestInSession: number;
+  fastestVehicleIdxInSession: number;
+  fastestSpeedInSession: number;
+}
+
+export interface PenaltyEventDataDetails extends VehicleEventDataDetails {
+  penaltyType: number;
+  infringementType: number;
+  otherVehicleIdx: number;
+  time: number;
+  lapNum: number;
+  placesGained: number;
+}
+
+export interface PacketParticipantsData extends PacketBase {
   m_numCars: number;
   m_participants: ParticipantData[];
 }
 
-export interface PacketCarTelemetryData {
-  m_header: PacketHeader;
-  m_buttonStatus: number;
+export interface PacketCarTelemetryData extends PacketBase {
   m_carTelemetryData: CarTelemetryData[];
   m_mfdPanelIndex: number;
   m_mfdPanelIndexSecondaryPlayer: number;
   m_suggestedGear: number;
-}
-
-export interface PacketHeader {
-  m_packetFormat: number;
-  m_gameYear: number;
-  m_gameMajorVersion: number;
-  m_gameMinorVersion: number;
-  m_packetVersion: number;
-  m_packetId: number;
-  m_sessionUID: bigint;
-  m_sessionTime: number;
-  m_frameIdentifier: number;
-  m_overallFrameIdentifier?: number;
-  m_playerCarIndex: number;
-  m_secondaryPlayerCarIndex: number;
 }
 
 export interface CarTelemetryData {
@@ -350,8 +395,7 @@ export interface FinalClassificationData {
   m_tyreStintsVisual: number[];
 }
 
-export interface PacketFinalClassificationData {
-  m_header: PacketHeader;
+export interface PacketFinalClassificationData extends PacketBase {
   m_numCars: number;
   m_classificationData: FinalClassificationData[];
 }
@@ -366,8 +410,7 @@ export interface LobbyInfoData {
   m_readyStatus: string;
 }
 
-export interface PacketLobbyInfoData {
-  m_header: PacketHeader;
+export interface PacketLobbyInfoData extends PacketBase {
   m_numPlayers: number;
   m_lobbyPlayers: LobbyInfoData[];
 }
@@ -389,8 +432,7 @@ export interface TyreStintsHistoryData {
   m_tyreVisualCompound: number;
 }
 
-export interface PacketSessionHistoryData {
-  m_header: PacketHeader;
+export interface PacketSessionHistoryData extends PacketBase {
   m_carIdx: number;
   m_numLaps: number;
   m_numTyreStints: number;
@@ -414,8 +456,7 @@ export interface TyreSetData {
   m_fitted: number;
 }
 
-export interface PacketTyreSetsData {
-  m_header: PacketHeader;
+export interface PacketTyreSetsData extends PacketBase {
   m_carIdx: number;
   m_tyreSetData: TyreSetData[];
   m_fittedIdx: number;

@@ -5,7 +5,7 @@ import {PacketHeaderParser} from './PacketHeaderParser';
 import {PacketSessionData} from './types';
 import {WeatherForecastSampleParser} from './WeatherForecastSampleParser';
 
-export class PacketSessionDataParser extends F1Parser {
+export class PacketSessionDataParser extends F1Parser<PacketSessionData> {
   data: PacketSessionData;
 
   constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {

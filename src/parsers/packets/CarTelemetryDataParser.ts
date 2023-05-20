@@ -1,8 +1,9 @@
 import {Parser} from 'binary-parser';
 
 import {F1Parser} from '../F1Parser';
+import {CarTelemetryData} from './types';
 
-export class CarTelemetryDataParser extends F1Parser {
+export class CarTelemetryDataParser extends F1Parser<CarTelemetryData> {
   constructor(packetFormat: number) {
     super();
     this.uint16le('m_speed');

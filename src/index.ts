@@ -24,6 +24,7 @@ import * as packetTypes from './parsers/packets/types';
 import {Address, Options, ParsedMessage} from './types';
 import {PacketTyreSetsDataParser} from './parsers/packets/PacketTyreSetsDataParser';
 import {PacketMotionExDataParser} from './parsers/packets/PacketMotionExDataParser';
+import {PacketHeader} from './parsers/packets/types';
 
 const DEFAULT_PORT = 20777;
 const FORWARD_ADDRESSES = undefined;
@@ -88,7 +89,7 @@ class F1TelemetryClient extends EventEmitter {
     buffer: Buffer,
     bigintEnabled: boolean
     // tslint:disable-next-line:no-any
-  ): unknown {
+  ): PacketHeader {
     const packetFormatParser = new PacketFormatParser();
     const {m_packetFormat} = packetFormatParser.fromBuffer(buffer);
     const packetHeaderParser = new PacketHeaderParser(
@@ -233,7 +234,7 @@ class F1TelemetryClient extends EventEmitter {
       this.socket.setBroadcast(true);
     });
 
-    this.socket.on('message', (m) => this.handleMessage(m));
+    this.socket.on('message', m => this.handleMessage(m));
     this.socket.bind({
       port: this.port,
       exclusive: false,

@@ -3,7 +3,7 @@ import {LobbyInfoDataParser} from './LobbyInfoDataParser';
 import {PacketHeaderParser} from './PacketHeaderParser';
 import {PacketLobbyInfoData} from './types';
 
-export class PacketLobbyInfoDataParser extends F1Parser {
+export class PacketLobbyInfoDataParser extends F1Parser<PacketLobbyInfoData> {
   data: PacketLobbyInfoData;
 
   constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {

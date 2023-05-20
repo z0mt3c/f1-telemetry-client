@@ -3,7 +3,7 @@ import {PacketHeaderParser} from './PacketHeaderParser';
 import {PacketTyreSetsData} from './types';
 import {TyreSetDataParser} from './TyreSetDataParser';
 
-export class PacketTyreSetsDataParser extends F1Parser {
+export class PacketTyreSetsDataParser extends F1Parser<PacketTyreSetsData> {
   data: PacketTyreSetsData;
 
   constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {

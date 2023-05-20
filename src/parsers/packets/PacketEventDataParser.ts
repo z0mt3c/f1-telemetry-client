@@ -4,9 +4,19 @@ import {EVENT_CODES} from '../../constants';
 import {F1Parser} from '../F1Parser';
 
 import {PacketHeaderParser} from './PacketHeaderParser';
-import {PacketEventData} from './types';
+import {
+  ButtonEventDataDetails,
+  FastestLapEventDataDetails,
+  FlashbackEventDataDetails,
+  LightEventDataDetails,
+  OvertakeEventDataDetails,
+  PacketEventData,
+  PenaltyEventDataDetails,
+  SpeedTrapEventDataDetails,
+  VehicleEventDataDetails,
+} from './types';
 
-export class GenericEventParser extends F1Parser {
+export class GenericEventParser extends F1Parser<VehicleEventDataDetails> {
   constructor() {
     super();
 
@@ -14,7 +24,7 @@ export class GenericEventParser extends F1Parser {
   }
 }
 
-export class FastestLapParser extends F1Parser {
+export class FastestLapParser extends F1Parser<FastestLapEventDataDetails> {
   constructor() {
     super();
 
@@ -22,7 +32,7 @@ export class FastestLapParser extends F1Parser {
   }
 }
 
-export class FlashbackParser extends F1Parser {
+export class FlashbackParser extends F1Parser<FlashbackEventDataDetails> {
   constructor() {
     super();
     this.endianess('little')
@@ -31,7 +41,7 @@ export class FlashbackParser extends F1Parser {
   }
 }
 
-export class StartLightsParser extends F1Parser {
+export class StartLightsParser extends F1Parser<LightEventDataDetails> {
   constructor() {
     super();
 
@@ -39,15 +49,15 @@ export class StartLightsParser extends F1Parser {
   }
 }
 
-export class ButtonsParser extends F1Parser {
+export class ButtonsParser extends F1Parser<ButtonEventDataDetails> {
   constructor() {
     super();
 
-    this.endianess('little').uint32le('m_buttonStatus');
+    this.endianess('little').uint32le('buttonStatus');
   }
 }
 
-export class OvertakeParser extends F1Parser {
+export class OvertakeParser extends F1Parser<OvertakeEventDataDetails> {
   constructor() {
     super();
 
@@ -57,7 +67,7 @@ export class OvertakeParser extends F1Parser {
   }
 }
 
-export class SpeedTrapParser extends F1Parser {
+export class SpeedTrapParser extends F1Parser<SpeedTrapEventDataDetails> {
   constructor(packetFormat: number) {
     super();
 
@@ -76,7 +86,7 @@ export class SpeedTrapParser extends F1Parser {
   }
 }
 
-export class PenaltyParser extends F1Parser {
+export class PenaltyParser extends F1Parser<PenaltyEventDataDetails> {
   constructor() {
     super();
 
@@ -91,7 +101,7 @@ export class PenaltyParser extends F1Parser {
   }
 }
 
-export class PacketEventDataParser extends F1Parser {
+export class PacketEventDataParser extends F1Parser<PacketEventData> {
   data: PacketEventData;
 
   constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {

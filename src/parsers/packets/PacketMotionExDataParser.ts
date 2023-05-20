@@ -5,7 +5,7 @@ import {F1Parser} from '../F1Parser';
 import {PacketHeaderParser} from './PacketHeaderParser';
 import {PacketMotionExData} from './types';
 
-export class PacketMotionExDataParser extends F1Parser {
+export class PacketMotionExDataParser extends F1Parser<PacketMotionExData> {
   data: PacketMotionExData;
 
   constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {

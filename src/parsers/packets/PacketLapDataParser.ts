@@ -3,7 +3,7 @@ import {LapDataParser} from './LapDataParser';
 import {PacketHeaderParser} from './PacketHeaderParser';
 import {PacketLapData} from './types';
 
-export class PacketLapDataParser extends F1Parser {
+export class PacketLapDataParser extends F1Parser<PacketLapData> {
   data: PacketLapData;
 
   constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {

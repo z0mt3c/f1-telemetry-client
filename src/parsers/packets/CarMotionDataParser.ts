@@ -1,6 +1,7 @@
 import {F1Parser} from '../F1Parser';
+import {MotionData} from './types';
 
-export class CarMotionDataParser extends F1Parser {
+export class CarMotionDataParser extends F1Parser<MotionData> {
   constructor() {
     super();
     this.floatle('m_worldPositionX')

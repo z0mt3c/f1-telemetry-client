@@ -3,7 +3,7 @@ import {CarTelemetryDataParser} from './CarTelemetryDataParser';
 import {PacketHeaderParser} from './PacketHeaderParser';
 import {PacketCarTelemetryData} from './types';
 
-export class PacketCarTelemetryDataParser extends F1Parser {
+export class PacketCarTelemetryDataParser extends F1Parser<PacketCarTelemetryData> {
   data: PacketCarTelemetryData;
 
   constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
