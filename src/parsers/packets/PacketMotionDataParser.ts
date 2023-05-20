@@ -13,45 +13,45 @@ export class PacketMotionDataParser extends F1Parser {
     super();
 
     this.endianess('little')
-        .nest('m_header', {
-          type: new PacketHeaderParser(packetFormat, bigintEnabled),
-        })
-        .array('m_carMotionData', {
-          length: packetFormat >= 2020 ? 22 : 20,
-          type: new CarMotionDataParser(),
-        })
+      .nest('m_header', {
+        type: new PacketHeaderParser(packetFormat, bigintEnabled),
+      })
+      .array('m_carMotionData', {
+        length: packetFormat >= 2020 ? 22 : 20,
+        type: new CarMotionDataParser(),
+      });
 
     if (packetFormat <= 2022) {
       this.array('m_suspensionPosition', {
         length: 4,
         type: new Parser().floatle(''),
       })
-      .array('m_suspensionVelocity', {
-        length: 4,
-        type: new Parser().floatle(''),
-      })
-      .array('m_suspensionAcceleration', {
-        length: 4,
-        type: new Parser().floatle(''),
-      })
-      .array('m_wheelSpeed', {
-        length: 4,
-        type: new Parser().floatle(''),
-      })
-      .array('m_wheelSlip', {
-        length: 4,
-        type: new Parser().floatle(''),
-      })
-      .floatle('m_localVelocityX')
-      .floatle('m_localVelocityY')
-      .floatle('m_localVelocityZ')
-      .floatle('m_angularVelocityX')
-      .floatle('m_angularVelocityY')
-      .floatle('m_angularVelocityZ')
-      .floatle('m_angularAccelerationX')
-      .floatle('m_angularAccelerationY')
-      .floatle('m_angularAccelerationZ')
-      .floatle('m_frontWheelsAngle');
+        .array('m_suspensionVelocity', {
+          length: 4,
+          type: new Parser().floatle(''),
+        })
+        .array('m_suspensionAcceleration', {
+          length: 4,
+          type: new Parser().floatle(''),
+        })
+        .array('m_wheelSpeed', {
+          length: 4,
+          type: new Parser().floatle(''),
+        })
+        .array('m_wheelSlip', {
+          length: 4,
+          type: new Parser().floatle(''),
+        })
+        .floatle('m_localVelocityX')
+        .floatle('m_localVelocityY')
+        .floatle('m_localVelocityZ')
+        .floatle('m_angularVelocityX')
+        .floatle('m_angularVelocityY')
+        .floatle('m_angularVelocityZ')
+        .floatle('m_angularAccelerationX')
+        .floatle('m_angularAccelerationY')
+        .floatle('m_angularAccelerationZ')
+        .floatle('m_frontWheelsAngle');
     }
 
     this.data = this.fromBuffer(buffer);

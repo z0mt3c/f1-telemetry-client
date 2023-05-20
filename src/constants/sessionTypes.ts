@@ -14,5 +14,5 @@ export const SESSION_TYPES: SessionTypes[] = [
   {short: 'R', long: 'Race'},
   {short: 'R2', long: 'Race 2'},
   {short: 'R3', long: 'Race 3'},
-  {short: 'TT', long: 'Time Trial'}
+  {short: 'TT', long: 'Time Trial'},
 ];

@@ -10,13 +10,13 @@ export class PacketCarSetupDataParser extends F1Parser {
     super();
 
     this.endianess('little')
-        .nest('m_header', {
-          type: new PacketHeaderParser(packetFormat, bigintEnabled),
-        })
-        .array('m_carSetups', {
-          length: [2020, 2021, 2022, 2023].includes(packetFormat) ? 22 : 20,
-          type: new CarSetupDataParser(packetFormat),
-        });
+      .nest('m_header', {
+        type: new PacketHeaderParser(packetFormat, bigintEnabled),
+      })
+      .array('m_carSetups', {
+        length: [2020, 2021, 2022, 2023].includes(packetFormat) ? 22 : 20,
+        type: new CarSetupDataParser(packetFormat),
+      });
 
     this.data = this.fromBuffer(buffer);
   }

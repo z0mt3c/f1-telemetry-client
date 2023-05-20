@@ -30,5 +30,5 @@ export const BUTTON_FLAGS: {[index: string]: string} = {
   0x10000000: 'UDP Action 9',
   0x20000000: 'UDP Action 10',
   0x40000000: 'UDP Action 11',
-  0x80000000: 'UDP Action 12'
+  0x80000000: 'UDP Action 12',
 };

@@ -10,45 +10,58 @@ export class CarTelemetryDataParser extends F1Parser {
     if (packetFormat === 2018) {
       this.uint8('m_throttle').int8('m_steer').uint8('m_brake');
     } else if (
-        packetFormat === 2019 || packetFormat === 2020 ||
-        packetFormat === 2021 || packetFormat === 2022 || packetFormat === 2023) {
+      packetFormat === 2019 ||
+      packetFormat === 2020 ||
+      packetFormat === 2021 ||
+      packetFormat === 2022 ||
+      packetFormat === 2023
+    ) {
       this.floatle('m_throttle').floatle('m_steer').floatle('m_brake');
     }
 
     this.uint8('m_clutch')
-        .int8('m_gear')
-        .uint16le('m_engineRPM')
-        .uint8('m_drs')
-        .uint8('m_revLightsPercent');
+      .int8('m_gear')
+      .uint16le('m_engineRPM')
+      .uint8('m_drs')
+      .uint8('m_revLightsPercent');
 
-    if (packetFormat === 2021 || packetFormat === 2022 || packetFormat === 2023) {
+    if (
+      packetFormat === 2021 ||
+      packetFormat === 2022 ||
+      packetFormat === 2023
+    ) {
       this.uint16le('m_revLightsBitValue');
     }
 
     this.array('m_brakesTemperature', {
-          length: 4,
-          type: new Parser().uint16le(''),
-        })
-        .array('m_tyresSurfaceTemperature', {
-          length: 4,
-          type: [2020, 2021, 2022, 2023].includes(packetFormat) ?
-              new Parser().uint8('') :
-              new Parser().uint16le(''),
-        })
-        .array('m_tyresInnerTemperature', {
-          length: 4,
-          type: [2020, 2021, 2022, 2023].includes(packetFormat) ?
-              new Parser().uint8('') :
-              new Parser().uint16le(''),
-        })
-        .uint16le('m_engineTemperature')
-        .array('m_tyresPressure', {
-          length: 4,
-          type: new Parser().floatle(''),
-        });
+      length: 4,
+      type: new Parser().uint16le(''),
+    })
+      .array('m_tyresSurfaceTemperature', {
+        length: 4,
+        type: [2020, 2021, 2022, 2023].includes(packetFormat)
+          ? new Parser().uint8('')
+          : new Parser().uint16le(''),
+      })
+      .array('m_tyresInnerTemperature', {
+        length: 4,
+        type: [2020, 2021, 2022, 2023].includes(packetFormat)
+          ? new Parser().uint8('')
+          : new Parser().uint16le(''),
+      })
+      .uint16le('m_engineTemperature')
+      .array('m_tyresPressure', {
+        length: 4,
+        type: new Parser().floatle(''),
+      });
 
-    if (packetFormat === 2019 || packetFormat === 2020 ||
-        packetFormat === 2021 || packetFormat === 2022 || packetFormat === 2023) {
+    if (
+      packetFormat === 2019 ||
+      packetFormat === 2020 ||
+      packetFormat === 2021 ||
+      packetFormat === 2022 ||
+      packetFormat === 2023
+    ) {
       this.array('m_surfaceType', {
         length: 4,
         type: new Parser().uint8(''),

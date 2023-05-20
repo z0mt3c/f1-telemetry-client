@@ -172,9 +172,9 @@ export interface BrakeDamage {
 }
 
 export interface CarDamageData {
-  m_tyresWear: TyreWear[],
-  m_tyresDamage: TyreDamage,
-  m_brakesDamage: BrakeDamage[],
+  m_tyresWear: TyreWear[];
+  m_tyresDamage: TyreDamage;
+  m_brakesDamage: BrakeDamage[];
   m_frontLeftWingDamage: number;
   m_frontRightWingDamage: number;
   m_rearWingDamage: number;
@@ -264,7 +264,7 @@ export interface CarSetupData {
 export interface PacketEventData {
   m_header: PacketHeader;
   m_eventStringCode: string;
-  m_eventDetails?: unknown
+  m_eventDetails?: unknown;
 }
 
 export interface PacketParticipantsData {
@@ -402,7 +402,6 @@ export interface PacketSessionHistoryData {
   m_tyreStintsHistoryData: TyreStintsHistoryData[];
 }
 
-
 export interface TyreSetData {
   m_actualTyreCompound: number;
   m_visualTyreCompound: number;
@@ -418,6 +417,6 @@ export interface TyreSetData {
 export interface PacketTyreSetsData {
   m_header: PacketHeader;
   m_carIdx: number;
-  m_tyreSetData: TyreSetData[]
+  m_tyreSetData: TyreSetData[];
   m_fittedIdx: number;
 }

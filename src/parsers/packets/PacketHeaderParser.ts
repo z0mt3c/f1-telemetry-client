@@ -4,21 +4,18 @@ export class PacketHeaderParser extends F1Parser {
   constructor(packetFormat: number, bigintEnabled: boolean) {
     super();
 
-    this.endianess('little')
-        .uint16le('m_packetFormat');
+    this.endianess('little').uint16le('m_packetFormat');
 
     if (packetFormat >= 2023) {
-      this.uint8('m_gameYear')
+      this.uint8('m_gameYear');
     }
 
     if (packetFormat >= 2019) {
-      this.uint8('m_gameMajorVersion')
-          .uint8('m_gameMinorVersion')
+      this.uint8('m_gameMajorVersion').uint8('m_gameMinorVersion');
     }
 
     if (packetFormat >= 2018) {
-      this.uint8('m_packetVersion')
-          .uint8('m_packetId');
+      this.uint8('m_packetVersion').uint8('m_packetId');
     }
 
     if (bigintEnabled) {
@@ -27,8 +24,7 @@ export class PacketHeaderParser extends F1Parser {
       this.skip(8);
     }
 
-    this.floatle('m_sessionTime')
-        .uint32('m_frameIdentifier');
+    this.floatle('m_sessionTime').uint32('m_frameIdentifier');
 
     if (packetFormat >= 2023) {
       this.uint32('m_overallFrameIdentifier');

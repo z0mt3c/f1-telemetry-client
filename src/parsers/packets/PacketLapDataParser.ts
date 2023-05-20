@@ -10,17 +10,16 @@ export class PacketLapDataParser extends F1Parser {
     super();
 
     this.endianess('little')
-        .nest('m_header', {
-          type: new PacketHeaderParser(packetFormat, bigintEnabled),
-        })
-        .array('m_lapData', {
-          length: packetFormat >= 2020 ? 22 : 20,
-          type: new LapDataParser(packetFormat),
-        });
+      .nest('m_header', {
+        type: new PacketHeaderParser(packetFormat, bigintEnabled),
+      })
+      .array('m_lapData', {
+        length: packetFormat >= 2020 ? 22 : 20,
+        type: new LapDataParser(packetFormat),
+      });
 
     if (packetFormat >= 2022) {
-      this.uint8('m_timeTrialPBCarIdx')
-          .uint8('m_timeTrialRivalCarIdx');
+      this.uint8('m_timeTrialPBCarIdx').uint8('m_timeTrialRivalCarIdx');
     }
 
     this.data = this.fromBuffer(buffer);
