@@ -26,7 +26,7 @@ export class ParticipantDataParser extends F1Parser<ParticipantData> {
       this.uint8('m_yourTelemetry');
     }
 
-    if (packetFormat === 2023) {
+    if (packetFormat >= 2023) {
       this.uint8('m_showOnlineNames').uint8('m_platform');
     }
   }

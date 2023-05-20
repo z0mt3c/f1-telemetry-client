@@ -17,6 +17,8 @@ client.on(PACKETS.carTelemetry, console.log);
 client.on(PACKETS.carStatus, console.log);
 client.on(PACKETS.finalClassification, console.log);
 client.on(PACKETS.lobbyInfo, console.log);
+client.on(PACKETS.tyreSets, console.log);
+client.on(PACKETS.motionEx, console.log);
 
 client.start();
 

@@ -85,7 +85,7 @@ export class PacketSessionDataParser extends F1Parser<PacketSessionData> {
         .uint8('m_sessionLength');
     }
 
-    if (packetFormat === 2023) {
+    if (packetFormat >= 2023) {
       this.uint8('m_speedUnitsLeadPlayer')
         .uint8('m_temperatureUnitsLeadPlayer')
         .uint8('m_speedUnitsSecondaryPlayer')

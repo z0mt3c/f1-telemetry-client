@@ -129,7 +129,7 @@ export class PacketEventDataParser extends F1Parser<PacketEventData> {
       this.unpack2022Format(buffer, packetFormat, bigintEnabled);
     }
 
-    if (packetFormat === 2023) {
+    if (packetFormat >= 2023) {
       this.unpack2023Format(buffer, packetFormat, bigintEnabled);
     }
 

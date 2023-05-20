@@ -27,7 +27,7 @@ export class CarStatusDataParser extends F1Parser<CarStatusData> {
       this.uint16le('m_drsActivationDistance');
     }
 
-    if ([2018, 2019, 2020].includes(packetFormat)) {
+    if (packetFormat >= 2018 && packetFormat <= 2020) {
       this.array('m_tyresWear', {
         length: 4,
         type: new Parser().uint8(''),
@@ -58,7 +58,7 @@ export class CarStatusDataParser extends F1Parser<CarStatusData> {
       this.uint8('m_drsFault');
     }
 
-    if ([2018, 2019, 2020].includes(packetFormat)) {
+    if (packetFormat >= 2018 && packetFormat <= 2020) {
       this.uint8('m_engineDamage').uint8('m_gearBoxDamage');
     }
 
@@ -68,7 +68,7 @@ export class CarStatusDataParser extends F1Parser<CarStatusData> {
       this.uint8('m_exhaustDamage').int8('m_vehicleFiaFlags');
     }
 
-    if (packetFormat === 2023) {
+    if (packetFormat >= 2023) {
       this.floatle('m_enginePowerICE').floatle('m_enginePowerMGUK');
     }
 

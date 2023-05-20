@@ -17,17 +17,13 @@ export class LapDataParser extends F1Parser<LapData> {
     if (packetFormat >= 2023) this.uint8('m_sector1TimeMinutes');
     if (packetFormat >= 2020) this.uint16le('m_sector2TimeInMS');
 
-    if (packetFormat === 2023) {
+    if (packetFormat >= 2023) {
       this.uint8('m_sector2TimeMinutes')
         .uint16le('m_deltaToCarInFrontInMS')
         .uint16le('m_deltaToRaceLeaderInMS');
     }
 
-    if (
-      packetFormat === 2018 ||
-      packetFormat === 2019 ||
-      packetFormat === 2020
-    ) {
+    if (packetFormat >= 2018 && packetFormat <= 2020) {
       this.floatle('m_bestLapTime');
     }
 
@@ -65,7 +61,7 @@ export class LapDataParser extends F1Parser<LapData> {
       this.uint8('m_warnings');
     }
 
-    if (packetFormat === 2023) {
+    if (packetFormat >= 2023) {
       this.uint8('m_totalWarnings').uint8('m_cornerCuttingWarnings');
     }
 

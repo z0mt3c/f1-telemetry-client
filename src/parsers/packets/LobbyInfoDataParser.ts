@@ -6,7 +6,7 @@ export class LobbyInfoDataParser extends F1Parser<LobbyInfoData> {
     super();
     this.uint8('m_aiControlled').uint8('m_teamId').uint8('m_nationality');
 
-    if (packetFormat === 2023) {
+    if (packetFormat >= 2023) {
       this.uint8('m_platform');
     }
 

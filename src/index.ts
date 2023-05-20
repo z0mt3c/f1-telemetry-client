@@ -57,6 +57,7 @@ class F1TelemetryClient extends EventEmitter {
   /**
    *
    * @param {Buffer} message
+   * @param bigintEnabled
    */
   static parseBufferMessage(
     message: Buffer,
@@ -83,7 +84,7 @@ class F1TelemetryClient extends EventEmitter {
   /**
    *
    * @param {Buffer} buffer
-   * @param {Boolean} bigIntEnabled
+   * @param {Boolean} bigintEnabled
    */
   static parsePacketHeader(
     buffer: Buffer,
