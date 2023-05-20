@@ -27,13 +27,7 @@ export class PacketSessionDataParser extends F1Parser<PacketSessionData> {
       this.uint8('m_era');
     }
 
-    if (
-      packetFormat === 2019 ||
-      packetFormat === 2020 ||
-      packetFormat === 2021 ||
-      packetFormat === 2022 ||
-      packetFormat === 2023
-    ) {
+    if (packetFormat >= 2019) {
       this.uint8('m_formula');
     }
 
@@ -49,12 +43,7 @@ export class PacketSessionDataParser extends F1Parser<PacketSessionData> {
       .uint8('m_safetyCarStatus')
       .uint8('m_networkGame');
 
-    if (
-      packetFormat === 2020 ||
-      packetFormat === 2021 ||
-      packetFormat === 2022 ||
-      packetFormat === 2023
-    ) {
+    if (packetFormat >= 2020) {
       this.uint8('m_numWeatherForecastSamples');
     }
 
@@ -65,11 +54,7 @@ export class PacketSessionDataParser extends F1Parser<PacketSessionData> {
       });
     }
 
-    if (
-      packetFormat === 2021 ||
-      packetFormat === 2022 ||
-      packetFormat === 2023
-    ) {
+    if (packetFormat >= 2021) {
       this.array('m_weatherForecastSamples', {
         type: new WeatherForecastSampleParser(packetFormat),
         length: 56,
@@ -93,7 +78,7 @@ export class PacketSessionDataParser extends F1Parser<PacketSessionData> {
         .uint8('m_dynamicRacingLineType');
     }
 
-    if (packetFormat === 2022 || packetFormat === 2023) {
+    if (packetFormat >= 2022) {
       this.uint8('m_gameMode')
         .uint8('m_ruleSet')
         .uint32le('m_timeOfDay')

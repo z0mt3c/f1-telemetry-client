@@ -79,11 +79,7 @@ export class LapDataParser extends F1Parser<LapData> {
       .uint8('m_driverStatus')
       .uint8('m_resultStatus');
 
-    if (
-      packetFormat === 2021 ||
-      packetFormat === 2022 ||
-      packetFormat === 2023
-    ) {
+    if (packetFormat >= 2021) {
       this.uint8('m_pitLaneTimerActive')
         .uint16le('m_pitLaneTimeInLaneInMS')
         .uint16le('m_pitStopTimerInMS')

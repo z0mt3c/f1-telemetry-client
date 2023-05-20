@@ -14,13 +14,7 @@ export class CarStatusDataParser extends F1Parser<CarStatusData> {
       .floatle('m_fuelInTank')
       .floatle('m_fuelCapacity');
 
-    if (
-      packetFormat === 2019 ||
-      packetFormat === 2020 ||
-      packetFormat === 2021 ||
-      packetFormat === 2022 ||
-      packetFormat === 2023
-    ) {
+    if (packetFormat >= 2019) {
       this.floatle('m_fuelRemainingLaps');
     }
 
@@ -29,12 +23,7 @@ export class CarStatusDataParser extends F1Parser<CarStatusData> {
       .uint8('m_maxGears')
       .uint8('m_drsAllowed');
 
-    if (
-      packetFormat === 2020 ||
-      packetFormat === 2021 ||
-      packetFormat === 2022 ||
-      packetFormat === 2023
-    ) {
+    if (packetFormat >= 2020) {
       this.uint16le('m_drsActivationDistance');
     }
 
@@ -45,24 +34,13 @@ export class CarStatusDataParser extends F1Parser<CarStatusData> {
       });
     }
 
-    if (
-      packetFormat === 2019 ||
-      packetFormat === 2020 ||
-      packetFormat === 2021 ||
-      packetFormat === 2022 ||
-      packetFormat === 2023
-    ) {
+    if (packetFormat >= 2019) {
       this.uint8('m_actualTyreCompound').uint8('m_visualTyreCompound');
     } else {
       this.uint8('m_tyreCompound');
     }
 
-    if (
-      packetFormat === 2020 ||
-      packetFormat === 2021 ||
-      packetFormat === 2022 ||
-      packetFormat === 2023
-    ) {
+    if (packetFormat >= 2020) {
       this.uint8('m_tyresAgeLaps');
     }
 
@@ -84,13 +62,7 @@ export class CarStatusDataParser extends F1Parser<CarStatusData> {
       this.uint8('m_engineDamage').uint8('m_gearBoxDamage');
     }
 
-    if (
-      packetFormat === 2019 ||
-      packetFormat === 2020 ||
-      packetFormat === 2021 ||
-      packetFormat === 2022 ||
-      packetFormat === 2023
-    ) {
+    if (packetFormat >= 2019) {
       this.uint8('m_vehicleFiaFlags');
     } else {
       this.uint8('m_exhaustDamage').int8('m_vehicleFiaFlags');
@@ -106,11 +78,7 @@ export class CarStatusDataParser extends F1Parser<CarStatusData> {
       .floatle('m_ersHarvestedThisLapMGUH')
       .floatle('m_ersDeployedThisLap');
 
-    if (
-      packetFormat === 2021 ||
-      packetFormat === 2022 ||
-      packetFormat === 2023
-    ) {
+    if (packetFormat >= 2021) {
       this.int8('m_networkPaused');
     }
   }

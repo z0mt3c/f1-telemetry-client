@@ -77,7 +77,7 @@ export class SpeedTrapParser extends F1Parser<SpeedTrapEventDataDetails> {
       this.uint8('overallFastestInSession').uint8('driverFastestInSession');
     }
 
-    if (packetFormat === 2022 || packetFormat === 2023) {
+    if (packetFormat >= 2022) {
       this.uint8('isOverallFastestInSession')
         .uint8('isDriverFastestInSession')
         .uint8('fastestVehicleIdxInSession')

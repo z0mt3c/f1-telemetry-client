@@ -10,13 +10,7 @@ export class CarTelemetryDataParser extends F1Parser<CarTelemetryData> {
 
     if (packetFormat === 2018) {
       this.uint8('m_throttle').int8('m_steer').uint8('m_brake');
-    } else if (
-      packetFormat === 2019 ||
-      packetFormat === 2020 ||
-      packetFormat === 2021 ||
-      packetFormat === 2022 ||
-      packetFormat === 2023
-    ) {
+    } else if (packetFormat >= 2019) {
       this.floatle('m_throttle').floatle('m_steer').floatle('m_brake');
     }
 
@@ -26,11 +20,7 @@ export class CarTelemetryDataParser extends F1Parser<CarTelemetryData> {
       .uint8('m_drs')
       .uint8('m_revLightsPercent');
 
-    if (
-      packetFormat === 2021 ||
-      packetFormat === 2022 ||
-      packetFormat === 2023
-    ) {
+    if (packetFormat >= 2021) {
       this.uint16le('m_revLightsBitValue');
     }
 
@@ -40,15 +30,17 @@ export class CarTelemetryDataParser extends F1Parser<CarTelemetryData> {
     })
       .array('m_tyresSurfaceTemperature', {
         length: 4,
-        type: [2020, 2021, 2022, 2023].includes(packetFormat)
-          ? new Parser().uint8('')
-          : new Parser().uint16le(''),
+        type:
+          packetFormat >= 2020
+            ? new Parser().uint8('')
+            : new Parser().uint16le(''),
       })
       .array('m_tyresInnerTemperature', {
         length: 4,
-        type: [2020, 2021, 2022, 2023].includes(packetFormat)
-          ? new Parser().uint8('')
-          : new Parser().uint16le(''),
+        type:
+          packetFormat >= 2020
+            ? new Parser().uint8('')
+            : new Parser().uint16le(''),
       })
       .uint16le('m_engineTemperature')
       .array('m_tyresPressure', {
@@ -56,13 +48,7 @@ export class CarTelemetryDataParser extends F1Parser<CarTelemetryData> {
         type: new Parser().floatle(''),
       });
 
-    if (
-      packetFormat === 2019 ||
-      packetFormat === 2020 ||
-      packetFormat === 2021 ||
-      packetFormat === 2022 ||
-      packetFormat === 2023
-    ) {
+    if (packetFormat >= 2019) {
       this.array('m_surfaceType', {
         length: 4,
         type: new Parser().uint8(''),

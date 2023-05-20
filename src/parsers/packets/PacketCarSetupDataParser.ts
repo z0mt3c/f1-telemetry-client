@@ -14,7 +14,7 @@ export class PacketCarSetupDataParser extends F1Parser<PacketCarSetupData> {
         type: new PacketHeaderParser(packetFormat, bigintEnabled),
       })
       .array('m_carSetups', {
-        length: [2020, 2021, 2022, 2023].includes(packetFormat) ? 22 : 20,
+        length: packetFormat >= 2020 ? 22 : 20,
         type: new CarSetupDataParser(packetFormat),
       });
 

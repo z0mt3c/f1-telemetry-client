@@ -21,10 +21,7 @@ export class CarSetupDataParser extends F1Parser<CarSetupData> {
       .uint8('m_brakePressure')
       .uint8('m_brakeBias');
 
-    if (
-      [2020, 2021, 2022, 2023].includes(packetFormat) ||
-      packetFormat === 2023
-    ) {
+    if (packetFormat >= 2020) {
       this.floatle('m_rearLeftTyrePressure')
         .floatle('m_rearRightTyrePressure')
         .floatle('m_frontLeftTyrePressure')

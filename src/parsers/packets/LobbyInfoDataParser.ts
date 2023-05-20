@@ -12,11 +12,7 @@ export class LobbyInfoDataParser extends F1Parser<LobbyInfoData> {
 
     this.string('m_name', {length: 48, stripNull: true});
 
-    if (
-      packetFormat === 2021 ||
-      packetFormat === 2022 ||
-      packetFormat === 2023
-    ) {
+    if (packetFormat >= 2021) {
       this.uint8('m_carNumber');
     }
 
