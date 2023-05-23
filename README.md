@@ -1,6 +1,8 @@
 # F1 Telemetry Client
 
-<img src="https://img.shields.io/npm/v/@racehub-io/f1-telemetry-client.svg"> <img  src="https://img.shields.io/github/license/racehub-io/f1-telemetry-client.svg"> <a  href="https://snyk.io/test/github/racehub-io/f1-telemetry-client?targetFile=package.json"><a  href="https://github.com/google/gts"><img  src='https://img.shields.io/badge/code%20style-google-blueviolet.svg'></a>
+<img src="https://img.shields.io/npm/v/@z0mt3c/f1-telemetry-client.svg"> <img src="https://img.shields.io/github/license/z0mt3c/f1-telemetry-client.svg"> <a href="https://snyk.io/test/github/z0mt3c/f1-telemetry-client?targetFile=package.json"><a href="https://github.com/google/gts"><img src='https://img.shields.io/badge/code%20style-google-blueviolet.svg'></a>
+
+Yet another fork of [@racehub-io/f1-telemetry-client](https://github.com/racehub-io/f1-telemetry-client)
 
 The F1 series of games support the outputting of key game data via a UDP data stream. This data can be interpreted by external apps or connected peripherals for a range of different uses, including providing additional telemetry information, customised HUD displays, motion platform hardware support or providing force feedback data for custom steering wheels.
 
@@ -9,13 +11,13 @@ This is a TypeScript UDP client and telemetry parser for EA - Codemaster's F1 22
 ## Installing
 
 ```
-$ npm install @racehub-io/f1-telemetry-client
+$ npm install @z0mt3c/f1-telemetry-client
 ```
 
 or
 
 ```
-$ yarn add @racehub-io/f1-telemetry-client
+$ yarn add @z0mt3c/f1-telemetry-client
 ```
 
 ## Running the playground

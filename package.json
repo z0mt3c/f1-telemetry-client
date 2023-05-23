@@ -1,5 +1,5 @@
 {
-  "name": "@racehub-io/f1-telemetry-client",
+  "name": "@z0mt3c/f1-telemetry-client",
   "version": "0.2.10",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
