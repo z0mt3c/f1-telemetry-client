@@ -27,7 +27,7 @@ client.on('raw', ({packetData, packetID, message}) => {
         gameYear: mHeader?.m_gameYear ?? 'unknown',
         format: mHeader?.m_packetFormat,
         packetID,
-        message: message?.data,
+        message: message,
         parsed: packetData?.data,
       },
       (key, value) => (typeof value === 'bigint' ? value.toString() : value)
