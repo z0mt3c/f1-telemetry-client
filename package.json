@@ -1,8 +1,8 @@
 {
   "name": "@z0mt3c/f1-telemetry-client",
   "version": "0.3.0-beta.4",
-  "main": "build/src/index.js",
-  "types": "build/src/index.d.ts",
+  "main": "build/main/index.js",
+  "types": "build/main/index.d.ts",
   "files": [
     "build"
   ],
@@ -32,10 +32,10 @@
   },
   "scripts": {
     "prepublishOnly": "npm run build",
-    "start": "npm run build && node build/src/playground/index.js",
-    "record": "npm run build && node build/src/playground/record.js",
-    "build": "tsc",
+    "start": "npm run build && node build/main/playground/index.js",
+    "record": "npm run build && node build/main/playground/record.js",
     "build:link": "npm run build && npm link",
+    "build": "tsc",
     "type-check:watch": "npm run type-check -- --watch",
     "type-check": "tsc --noEmit",
     "check": "gts check",
