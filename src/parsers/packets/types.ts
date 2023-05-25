@@ -136,7 +136,7 @@ export interface PacketSessionData extends PacketBase {
   m_temperatureUnitsSecondaryPlayer: number;
   m_numSafetyCarPeriods: number;
   m_numVirtualSafetyCarPeriods: number;
-  tbc: number;
+  m_numRedFlagPeriods: number;
 }
 
 export interface MarshalZone {
