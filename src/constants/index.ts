@@ -17,7 +17,7 @@ import {SESSION_TYPES} from './sessionTypes';
 import {SURFACES} from './surfaces';
 import {TEAMS} from './teams';
 import {TRACKS} from './tracks';
-import {TYRES} from './tyres';
+import {TYRES, VISUAL_TYRES} from './tyres';
 import {WEATHER} from './weather';
 
 export {
@@ -41,5 +41,6 @@ export {
   TEAMS,
   TRACKS,
   TYRES,
+  VISUAL_TYRES,
   WEATHER,
 };
