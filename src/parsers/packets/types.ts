@@ -278,7 +278,15 @@ export interface CarSetupData {
 
 export interface PacketEventData extends PacketBase {
   m_eventStringCode: string;
-  m_eventDetails?: unknown;
+  m_eventDetails?:
+    | FlashbackEventDataDetails
+    | LightEventDataDetails
+    | ButtonEventDataDetails
+    | FastestLapEventDataDetails
+    | OvertakeEventDataDetails
+    | SpeedTrapEventDataDetails
+    | PenaltyEventDataDetails
+    | VehicleEventDataDetails;
 }
 
 export interface BaseEventDataDetails {
@@ -388,6 +396,7 @@ export interface FinalClassificationData {
   m_numPitStops: number;
   m_resultStatus: number;
   m_bestLapTime: number;
+  m_bestLapTimeInMS: number;
   m_totalRaceTime: number;
   m_penaltiesTime: number;
   m_numPenalties: number;
