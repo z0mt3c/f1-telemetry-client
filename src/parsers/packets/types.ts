@@ -146,7 +146,9 @@ export interface MarshalZone {
 
 export interface LapData {
   m_lastLapTime: number;
+  m_lastLapTimeInMS: number;
   m_currentLapTime: number;
+  m_currentLapTimeInMS: number;
   m_bestLapTime: number;
   m_sector1Time: number;
   m_sector1TimeInMS: number;
