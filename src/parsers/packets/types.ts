@@ -169,31 +169,25 @@ export interface LapData {
   m_penalties: number;
   m_totalWarnings: number;
   m_cornerCuttingWarnings: number;
+  m_numUnservedDriveThroughPens: number;
+  m_numUnservedStopGoPens: number;
   m_gridPosition: number;
   m_driverStatus: number;
   m_resultStatus: number;
+  m_pitLaneTimerActive: number;
+  m_pitLaneTimeInLaneInMS: number;
+  m_pitStopTimerInMS: number;
+  m_pitStopShouldServePen: number;
 }
 
 export interface PacketCarDamageData extends PacketBase {
   m_carDamageData: CarDamageData[];
 }
 
-export interface TyreWear {
-  m_tyresWear: number;
-}
-
-export interface TyreDamage {
-  m_tyresDamage: number;
-}
-
-export interface BrakeDamage {
-  m_brakesDamage: number;
-}
-
 export interface CarDamageData {
-  m_tyresWear: TyreWear[];
-  m_tyresDamage: TyreDamage;
-  m_brakesDamage: BrakeDamage[];
+  m_tyresWear: number[];
+  m_tyresDamage: number[];
+  m_brakesDamage: number[];
   m_frontLeftWingDamage: number;
   m_frontRightWingDamage: number;
   m_rearWingDamage: number;
@@ -228,12 +222,12 @@ export interface CarStatusData {
   m_maxGears: number;
   m_drsAllowed: number;
   m_drsActivationDistance: number;
-  m_tyresWear: TyreWear[];
+  m_tyresWear: number[];
   m_actualTyreCompound: number;
   m_visualTyreCompound: number;
   m_tyresAgeLaps: number;
   m_tyreCompound: number;
-  m_tyresDamage: TyreDamage[];
+  m_tyresDamage: number[];
   m_frontLeftWingDamage: number;
   m_frontRightWingDamage: number;
   m_rearWingDamage: number;
