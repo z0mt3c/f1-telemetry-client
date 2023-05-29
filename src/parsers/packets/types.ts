@@ -399,6 +399,7 @@ export interface FinalClassificationData {
   m_numPenalties: number;
   m_tyreStintsActual: number[];
   m_tyreStintsVisual: number[];
+  m_tyreStintsEndLaps: number[];
 }
 
 export interface PacketFinalClassificationData extends PacketBase {
