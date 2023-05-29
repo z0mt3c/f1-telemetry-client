@@ -1,7 +1,7 @@
 import {BUTTON_FLAGS} from './buttonFlags';
 import {DRIVERS} from './drivers';
 import {ERAS} from './eras';
-import {ERS_DEPLOY_MODE} from './ersDeployMode';
+import {ERS_DEPLOY_MODE, ERS_DEPLOY_MODE_2019} from './ersDeployMode';
 import {EVENT_CODES} from './eventCodes';
 import {FORMULAS} from './formulas';
 import {FUEL_MIX} from './fuelMix';
@@ -26,6 +26,7 @@ export {
   DRIVERS,
   ERAS,
   ERS_DEPLOY_MODE,
+  ERS_DEPLOY_MODE_2019,
   EVENT_CODES,
   FORMULAS,
   FUEL_MIX,

@@ -383,7 +383,10 @@ export interface WeatherForecastSample {
   m_timeOffset: number;
   m_weather: number;
   m_trackTemperature: number;
+  m_trackTemperatureChange: number;
   m_airTemperature: number;
+  m_airTemperatureChange: number;
+  m_rainPercentage: number;
 }
 export interface FinalClassificationData {
   m_position: number;
