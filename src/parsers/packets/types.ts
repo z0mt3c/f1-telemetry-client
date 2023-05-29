@@ -164,6 +164,7 @@ export interface LapData {
   m_carPosition: number;
   m_currentLapNum: number;
   m_pitStatus: number;
+  m_numPitStops: number;
   m_sector: number;
   m_currentLapInvalid: number;
   m_penalties: number;
