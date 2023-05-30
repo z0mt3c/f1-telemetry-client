@@ -3,9 +3,9 @@ export interface PacketHeaderBase {
 }
 
 export interface PacketHeader extends PacketHeaderBase {
-  m_gameYear: number;
-  m_gameMajorVersion: number;
-  m_gameMinorVersion: number;
+  m_gameYear?: number;
+  m_gameMajorVersion?: number;
+  m_gameMinorVersion?: number;
   m_packetVersion: number;
   m_packetId: number;
   m_sessionUID: bigint;
@@ -13,7 +13,7 @@ export interface PacketHeader extends PacketHeaderBase {
   m_frameIdentifier: number;
   m_overallFrameIdentifier?: number;
   m_playerCarIndex: number;
-  m_secondaryPlayerCarIndex: number;
+  m_secondaryPlayerCarIndex?: number;
 }
 
 export interface PacketBase {
@@ -84,6 +84,8 @@ export interface PacketMotionExData extends PacketBase {
 
 export interface PacketLapData extends PacketBase {
   m_lapData: LapData[];
+  m_timeTrialPBCarIdx?: number;
+  m_timeTrialRivalCarIdx?: number;
 }
 
 export interface PacketSessionData extends PacketBase {
@@ -94,8 +96,8 @@ export interface PacketSessionData extends PacketBase {
   m_trackLength: number;
   m_sessionType: number;
   m_trackId: number;
-  m_era: number;
-  m_formula: number;
+  m_era?: number;
+  m_formula?: number;
   m_sessionTimeLeft: number;
   m_sessionDuration: number;
   m_pitSpeedLimit: number;
@@ -107,36 +109,36 @@ export interface PacketSessionData extends PacketBase {
   m_marshalZones: MarshalZone[];
   m_safetyCarStatus: number;
   m_networkGame: number;
-  m_numWeatherForecastSamples: number;
-  m_weatherForecastSamples: WeatherForecastSample[];
-  m_forecastAccuracy: number;
-  m_aiDifficulty: number;
-  m_seasonLinkIdentifier: number;
-  m_weekendLinkIdentifier: number;
-  m_sessionLinkIdentifier: number;
-  m_pitStopWindowIdealLap: number;
-  m_pitStopWindowLatestLap: number;
-  m_pitStopRejoinPosition: number;
-  m_steeringAssist: number;
-  m_brakingAssist: number;
-  m_gearboxAssist: number;
-  m_pitAssist: number;
-  m_pitReleaseAssist: number;
-  m_ERSAssist: number;
-  m_DRSAssist: number;
-  m_dynamicRacingLine: number;
-  m_dynamicRacingLineType: number;
-  m_gameMode: number;
-  m_ruleSet: number;
-  m_timeOfDay: number;
-  m_sessionLength: number;
-  m_speedUnitsLeadPlayer: number;
-  m_temperatureUnitsLeadPlayer: number;
-  m_speedUnitsSecondaryPlayer: number;
-  m_temperatureUnitsSecondaryPlayer: number;
-  m_numSafetyCarPeriods: number;
-  m_numVirtualSafetyCarPeriods: number;
-  m_numRedFlagPeriods: number;
+  m_numWeatherForecastSamples?: number;
+  m_weatherForecastSamples?: WeatherForecastSample[];
+  m_forecastAccuracy?: number;
+  m_aiDifficulty?: number;
+  m_seasonLinkIdentifier?: number;
+  m_weekendLinkIdentifier?: number;
+  m_sessionLinkIdentifier?: number;
+  m_pitStopWindowIdealLap?: number;
+  m_pitStopWindowLatestLap?: number;
+  m_pitStopRejoinPosition?: number;
+  m_steeringAssist?: number;
+  m_brakingAssist?: number;
+  m_gearboxAssist?: number;
+  m_pitAssist?: number;
+  m_pitReleaseAssist?: number;
+  m_ERSAssist?: number;
+  m_DRSAssist?: number;
+  m_dynamicRacingLine?: number;
+  m_dynamicRacingLineType?: number;
+  m_gameMode?: number;
+  m_ruleSet?: number;
+  m_timeOfDay?: number;
+  m_sessionLength?: number;
+  m_speedUnitsLeadPlayer?: number;
+  m_temperatureUnitsLeadPlayer?: number;
+  m_speedUnitsSecondaryPlayer?: number;
+  m_temperatureUnitsSecondaryPlayer?: number;
+  m_numSafetyCarPeriods?: number;
+  m_numVirtualSafetyCarPeriods?: number;
+  m_numRedFlagPeriods?: number;
 }
 
 export interface MarshalZone {
@@ -145,40 +147,41 @@ export interface MarshalZone {
 }
 
 export interface LapData {
-  m_lastLapTime: number;
-  m_lastLapTimeInMS: number;
-  m_currentLapTime: number;
-  m_currentLapTimeInMS: number;
-  m_bestLapTime: number;
-  m_sector1Time: number;
-  m_sector1TimeInMS: number;
-  m_sector1TimeMinutes: number;
-  m_sector2Time: number;
-  m_sector2TimeInMS: number;
-  m_sector2TimeMinutes: number;
-  m_deltaToCarInFrontInMS: number;
-  m_deltaToRaceLeaderInMS: number;
+  m_lastLapTime?: number;
+  m_lastLapTimeInMS?: number;
+  m_currentLapTime?: number;
+  m_currentLapTimeInMS?: number;
+  m_bestLapTime?: number;
+  m_sector1Time?: number;
+  m_sector1TimeInMS?: number;
+  m_sector1TimeMinutes?: number;
+  m_sector2Time?: number;
+  m_sector2TimeInMS?: number;
+  m_sector2TimeMinutes?: number;
+  m_deltaToCarInFrontInMS?: number;
+  m_deltaToRaceLeaderInMS?: number;
   m_lapDistance: number;
   m_totalDistance: number;
   m_safetyCarDelta: number;
   m_carPosition: number;
   m_currentLapNum: number;
   m_pitStatus: number;
-  m_numPitStops: number;
+  m_numPitStops?: number;
   m_sector: number;
   m_currentLapInvalid: number;
   m_penalties: number;
-  m_totalWarnings: number;
-  m_cornerCuttingWarnings: number;
-  m_numUnservedDriveThroughPens: number;
-  m_numUnservedStopGoPens: number;
+  m_warnings?: number;
+  m_totalWarnings?: number;
+  m_cornerCuttingWarnings?: number;
+  m_numUnservedDriveThroughPens?: number;
+  m_numUnservedStopGoPens?: number;
   m_gridPosition: number;
   m_driverStatus: number;
   m_resultStatus: number;
-  m_pitLaneTimerActive: number;
-  m_pitLaneTimeInLaneInMS: number;
-  m_pitStopTimerInMS: number;
-  m_pitStopShouldServePen: number;
+  m_pitLaneTimerActive?: number;
+  m_pitLaneTimeInLaneInMS?: number;
+  m_pitStopTimerInMS?: number;
+  m_pitStopShouldServePen?: number;
 }
 
 export interface PacketCarDamageData extends PacketBase {
@@ -196,6 +199,7 @@ export interface CarDamageData {
   m_diffuserDamage: number;
   m_sidepodDamage: number;
   m_drsFault: number;
+  m_ersFault: number;
   m_gearBoxDamage: number;
   m_engineDamage: number;
   m_engineMGUHWear: number;
@@ -204,6 +208,8 @@ export interface CarDamageData {
   m_engineICEWear: number;
   m_engineMGUKWear: number;
   m_engineTCWear: number;
+  m_engineBlown: number;
+  m_engineSeized: number;
 }
 
 export interface PacketCarStatusData extends PacketBase {
@@ -222,28 +228,30 @@ export interface CarStatusData {
   m_idleRPM: number;
   m_maxGears: number;
   m_drsAllowed: number;
-  m_drsActivationDistance: number;
-  m_tyresWear: number[];
-  m_actualTyreCompound: number;
-  m_visualTyreCompound: number;
-  m_tyresAgeLaps: number;
-  m_tyreCompound: number;
-  m_tyresDamage: number[];
-  m_frontLeftWingDamage: number;
-  m_frontRightWingDamage: number;
-  m_rearWingDamage: number;
-  m_drsFault: number;
-  m_engineDamage: number;
-  m_gearBoxDamage: number;
-  m_exhaustDamage: number;
+  m_drsActivationDistance?: number;
+  m_tyresWear?: number[];
+  m_actualTyreCompound?: number;
+  m_visualTyreCompound?: number;
+  m_tyresAgeLaps?: number;
+  m_tyreCompound?: number;
+  m_tyresDamage?: number[];
+  m_frontLeftWingDamage?: number;
+  m_frontRightWingDamage?: number;
+  m_rearWingDamage?: number;
+  m_drsFault?: number;
+  m_engineDamage?: number;
+  m_gearBoxDamage?: number;
+  m_exhaustDamage?: number;
   m_vehicleFiaFlags: number;
-  m_enginePowerICE: number;
-  m_enginePowerMGUK: number;
+  m_enginePowerICE?: number;
+  m_enginePowerMGUK?: number;
   m_ersStoreEnergy: number;
   m_ersDeployMode: number;
   m_ersHarvestedThisLapMGUK: number;
   m_ersHarvestedThisLapMGUH: number;
   m_ersDeployedThisLap: number;
+  m_fuelRemainingLaps?: number;
+  m_networkPaused?: number;
 }
 
 export interface PacketCarSetupData extends PacketBase {
@@ -267,8 +275,12 @@ export interface CarSetupData {
   m_rearSuspensionHeight: number;
   m_brakePressure: number;
   m_brakeBias: number;
-  m_frontTyrePressure: number;
-  m_rearTyrePressure: number;
+  m_rearLeftTyrePressure?: number;
+  m_rearRightTyrePressure?: number;
+  m_frontLeftTyrePressure?: number;
+  m_frontRightTyrePressure?: number;
+  m_frontTyrePressure?: number;
+  m_rearTyrePressure?: number;
   m_ballast: number;
   m_fuelLoad: number;
 }
@@ -286,24 +298,20 @@ export interface PacketEventData extends PacketBase {
     | VehicleEventDataDetails;
 }
 
-export interface BaseEventDataDetails {
+export interface VehicleEventDataDetails {
   vehicleIdx: number;
 }
 
-export interface VehicleEventDataDetails extends BaseEventDataDetails {
-  vehicleIdx: number;
-}
-
-export interface FlashbackEventDataDetails extends BaseEventDataDetails {
+export interface FlashbackEventDataDetails {
   flashbackSessionTime: number;
   flashbackFrameIdentifier: number;
 }
 
-export interface LightEventDataDetails extends BaseEventDataDetails {
+export interface LightEventDataDetails {
   numLights: number;
 }
 
-export interface ButtonEventDataDetails extends BaseEventDataDetails {
+export interface ButtonEventDataDetails {
   buttonStatus: number;
 }
 
@@ -311,7 +319,7 @@ export interface FastestLapEventDataDetails extends VehicleEventDataDetails {
   lapTime: number;
 }
 
-export interface OvertakeEventDataDetails extends VehicleEventDataDetails {
+export interface OvertakeEventDataDetails {
   beingOvertakenVehicleIdx: number;
   overtakingVehicleIdx: number;
 }
@@ -336,15 +344,17 @@ export interface PenaltyEventDataDetails extends VehicleEventDataDetails {
 }
 
 export interface PacketParticipantsData extends PacketBase {
-  m_numCars: number;
+  m_numCars?: number;
+  m_numActiveCars?: number;
   m_participants: ParticipantData[];
 }
 
 export interface PacketCarTelemetryData extends PacketBase {
   m_carTelemetryData: CarTelemetryData[];
-  m_mfdPanelIndex: number;
-  m_mfdPanelIndexSecondaryPlayer: number;
-  m_suggestedGear: number;
+  m_buttonStatus?: number;
+  m_mfdPanelIndex?: number;
+  m_mfdPanelIndexSecondaryPlayer?: number;
+  m_suggestedGear?: number;
 }
 
 export interface CarTelemetryData {
@@ -361,21 +371,23 @@ export interface CarTelemetryData {
   m_engineRPM: number;
   m_drs: number;
   m_revLightsPercent: number;
+  m_revLightsBitValue?: number;
   m_engineTemperature: number;
-  m_surfaceType: number[];
+  m_surfaceType?: number[];
 }
 
 export interface ParticipantData {
   m_aiControlled: number;
   m_driverId: number;
-  m_networkId: number;
+  m_networkId?: number;
   m_name: string;
   m_nationality: number;
   m_raceNumber: number;
   m_teamId: number;
-  m_myTeam: number;
-  m_yourTelemetry: number;
-  m_platform: number;
+  m_myTeam?: number;
+  m_yourTelemetry?: number;
+  m_showOnlineNames?: number;
+  m_platform?: number;
 }
 
 export interface WeatherForecastSample {
@@ -383,7 +395,10 @@ export interface WeatherForecastSample {
   m_timeOffset: number;
   m_weather: number;
   m_trackTemperature: number;
+  m_trackTemperatureChange: number;
   m_airTemperature: number;
+  m_airTemperatureChange: number;
+  m_rainPercentage: number;
 }
 export interface FinalClassificationData {
   m_position: number;
@@ -392,11 +407,13 @@ export interface FinalClassificationData {
   m_points: number;
   m_numPitStops: number;
   m_resultStatus: number;
-  m_bestLapTime: number;
+  // check why missing?
+  m_bestLapTime?: number;
   m_bestLapTimeInMS: number;
   m_totalRaceTime: number;
   m_penaltiesTime: number;
   m_numPenalties: number;
+  m_numTyreStints: number;
   m_tyreStintsActual: number[];
   m_tyreStintsVisual: number[];
   m_tyreStintsEndLaps: number[];
@@ -408,7 +425,7 @@ export interface PacketFinalClassificationData extends PacketBase {
 }
 
 export interface LobbyInfoData {
-  m_aiController: number;
+  m_aiControlled: number;
   m_teamId: number;
   m_nationality: number;
   m_platform: number;
@@ -425,11 +442,11 @@ export interface PacketLobbyInfoData extends PacketBase {
 export interface LapHistoryData {
   m_lapTimeInMS: number;
   m_sector1TimeInMS: number;
-  m_sector1TimeMinutes: number;
+  m_sector1TimeMinutes?: number;
   m_sector2TimeInMS: number;
-  m_sector2TimeMinutes: number;
+  m_sector2TimeMinutes?: number;
   m_sector3TimeInMS: number;
-  m_sector3TimeMinutes: number;
+  m_sector3TimeMinutes?: number;
   m_lapValidBitFlags: number;
 }
 

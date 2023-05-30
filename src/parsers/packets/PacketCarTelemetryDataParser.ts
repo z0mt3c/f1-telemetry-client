@@ -18,18 +18,11 @@ export class PacketCarTelemetryDataParser extends F1Parser<PacketCarTelemetryDat
         type: new CarTelemetryDataParser(packetFormat),
       });
 
-    if (packetFormat === 2018 || packetFormat === 2019) {
+    if (packetFormat >= 2018 && packetFormat <= 2020) {
       this.uint32le('m_buttonStatus');
     }
 
-    if (packetFormat === 2020) {
-      this.uint32le('m_buttonStatus')
-        .uint8('m_mfdPanelIndex')
-        .uint8('m_mfdPanelIndexSecondaryPlayer')
-        .int8('m_suggestedGear');
-    }
-
-    if (packetFormat >= 2021) {
+    if (packetFormat >= 2020) {
       this.uint8('m_mfdPanelIndex')
         .uint8('m_mfdPanelIndexSecondaryPlayer')
         .int8('m_suggestedGear');
