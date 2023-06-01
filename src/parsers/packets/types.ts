@@ -80,6 +80,7 @@ export interface PacketMotionExData extends PacketBase {
   m_angularAccelerationY: number;
   m_angularAccelerationZ: number;
   m_frontWheelsAngle: number;
+  m_wheelVertForce: number[];
 }
 
 export interface PacketLapData extends PacketBase {
@@ -286,20 +287,21 @@ export interface CarSetupData {
 }
 
 export interface GenericEvent extends PacketBase {
+  m_eventStringCode: 'SSTA' | 'LGOT' | 'RDFL';
+}
+
+export interface VehicleEvent extends PacketBase {
   m_eventStringCode:
     | 'RTMT'
     | 'TMPT'
     | 'RCWN'
     | 'DTSV'
     | 'SGSV'
-    | 'SSTA'
     | 'SEND'
     | 'DRSE'
     | 'DRSD'
-    | 'CHQF'
-    | 'LGOT'
-    | 'RDFL';
-  m_eventDetails: GenericEventDetails;
+    | 'CHQF';
+  m_eventDetails: VehicleEventDetails;
 }
 
 export interface FlashbackEvent extends PacketBase {
@@ -337,17 +339,15 @@ export interface OvertakeEvent extends PacketBase {
   m_eventDetails: OvertakeEventDetails;
 }
 
-export interface SpeedTrapEventDetails extends GenericEventDetails {
+export interface SpeedTrapEventDetails extends VehicleEventDetails {
   speed: number;
-  overallFastestInSession: number;
-  driverFastestInSession: number;
   isOverallFastestInSession: number;
   isDriverFastestInSession: number;
   fastestVehicleIdxInSession: number;
   fastestSpeedInSession: number;
 }
 
-export interface GenericEventDetails {
+export interface VehicleEventDetails {
   vehicleIdx: number;
 }
 
@@ -364,7 +364,7 @@ export interface ButtonEventDetails {
   buttonStatus: number;
 }
 
-export interface FastestLapEventDetails extends GenericEventDetails {
+export interface FastestLapEventDetails extends VehicleEventDetails {
   lapTime: number;
 }
 
@@ -373,7 +373,7 @@ export interface OvertakeEventDetails {
   overtakingVehicleIdx: number;
 }
 
-export interface PenaltyEventDetails extends GenericEventDetails {
+export interface PenaltyEventDetails extends VehicleEventDetails {
   penaltyType: number;
   infringementType: number;
   otherVehicleIdx: number;

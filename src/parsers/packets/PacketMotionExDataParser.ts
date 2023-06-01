@@ -57,8 +57,11 @@ export class PacketMotionExDataParser extends F1Parser<PacketMotionExData> {
       .floatle('m_angularAccelerationX')
       .floatle('m_angularAccelerationY')
       .floatle('m_angularAccelerationZ')
-      .floatle('m_frontWheelsAngle');
-
+      .floatle('m_frontWheelsAngle')
+      .array('m_wheelVertForce', {
+        length: 4,
+        type: new Parser().floatle(''),
+      });
     this.data = this.fromBuffer(buffer);
   }
 }
