@@ -5,22 +5,15 @@ import {F1Parser} from '../F1Parser';
 
 import {PacketHeaderParser} from './PacketHeaderParser';
 import {
-  GenericEvent,
-  ButtonEvent,
   ButtonEventDetails,
   FastestLapEventDetails,
-  FlashbackEvent,
   FlashbackEventDetails,
-  VehicleEvent,
   VehicleEventDetails,
-  LightEvent,
   LightEventDetails,
-  OvertakeEvent,
   OvertakeEventDetails,
-  PenaltyEvent,
   PenaltyEventDetails,
-  SpeedTrapEvent,
   SpeedTrapEventDetails,
+  PacketEvent,
 } from './types';
 
 export class VehicleEventParser extends F1Parser<VehicleEventDetails> {
@@ -106,25 +99,8 @@ export class PenaltyParser extends F1Parser<PenaltyEventDetails> {
   }
 }
 
-export class PacketEventDataParser extends F1Parser<
-  | GenericEvent
-  | LightEvent
-  | ButtonEvent
-  | VehicleEvent
-  | OvertakeEvent
-  | PenaltyEvent
-  | FlashbackEvent
-  | SpeedTrapEvent
-> {
-  data:
-    | GenericEvent
-    | LightEvent
-    | ButtonEvent
-    | VehicleEvent
-    | OvertakeEvent
-    | PenaltyEvent
-    | FlashbackEvent
-    | SpeedTrapEvent;
+export class PacketEventDataParser extends F1Parser<PacketEvent> {
+  data: PacketEvent;
 
   constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super();
