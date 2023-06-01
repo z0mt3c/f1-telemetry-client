@@ -5,34 +5,38 @@ import {F1Parser} from '../F1Parser';
 
 import {PacketHeaderParser} from './PacketHeaderParser';
 import {
-  ButtonEventDataDetails,
-  FastestLapEventDataDetails,
-  FlashbackEventDataDetails,
-  LightEventDataDetails,
-  OvertakeEventDataDetails,
-  PacketEventData,
-  PenaltyEventDataDetails,
-  SpeedTrapEventDataDetails,
-  VehicleEventDataDetails,
+  ButtonEvent,
+  ButtonEventDetails,
+  FastestLapEventDetails,
+  FlashbackEvent,
+  FlashbackEventDetails,
+  GenericEvent,
+  GenericEventDetails,
+  LightEvent,
+  LightEventDetails,
+  OvertakeEvent,
+  OvertakeEventDetails,
+  PenaltyEvent,
+  PenaltyEventDetails,
+  SpeedTrapEvent,
+  SpeedTrapEventDetails,
 } from './types';
 
-export class GenericEventParser extends F1Parser<VehicleEventDataDetails> {
+export class GenericEventParser extends F1Parser<GenericEventDetails> {
   constructor() {
     super();
-
     this.endianess('little').uint8('vehicleIdx');
   }
 }
 
-export class FastestLapParser extends F1Parser<FastestLapEventDataDetails> {
+export class FastestLapParser extends F1Parser<FastestLapEventDetails> {
   constructor() {
     super();
-
     this.endianess('little').uint8('vehicleIdx').floatle('lapTime');
   }
 }
 
-export class FlashbackParser extends F1Parser<FlashbackEventDataDetails> {
+export class FlashbackParser extends F1Parser<FlashbackEventDetails> {
   constructor() {
     super();
     this.endianess('little')
@@ -41,7 +45,7 @@ export class FlashbackParser extends F1Parser<FlashbackEventDataDetails> {
   }
 }
 
-export class StartLightsParser extends F1Parser<LightEventDataDetails> {
+export class StartLightsParser extends F1Parser<LightEventDetails> {
   constructor() {
     super();
 
@@ -49,7 +53,7 @@ export class StartLightsParser extends F1Parser<LightEventDataDetails> {
   }
 }
 
-export class ButtonsParser extends F1Parser<ButtonEventDataDetails> {
+export class ButtonsParser extends F1Parser<ButtonEventDetails> {
   constructor() {
     super();
 
@@ -57,7 +61,7 @@ export class ButtonsParser extends F1Parser<ButtonEventDataDetails> {
   }
 }
 
-export class OvertakeParser extends F1Parser<OvertakeEventDataDetails> {
+export class OvertakeParser extends F1Parser<OvertakeEventDetails> {
   constructor() {
     super();
 
@@ -67,7 +71,7 @@ export class OvertakeParser extends F1Parser<OvertakeEventDataDetails> {
   }
 }
 
-export class SpeedTrapParser extends F1Parser<SpeedTrapEventDataDetails> {
+export class SpeedTrapParser extends F1Parser<SpeedTrapEventDetails> {
   constructor(packetFormat: number) {
     super();
 
@@ -86,7 +90,7 @@ export class SpeedTrapParser extends F1Parser<SpeedTrapEventDataDetails> {
   }
 }
 
-export class PenaltyParser extends F1Parser<PenaltyEventDataDetails> {
+export class PenaltyParser extends F1Parser<PenaltyEventDetails> {
   constructor() {
     super();
 
@@ -101,8 +105,23 @@ export class PenaltyParser extends F1Parser<PenaltyEventDataDetails> {
   }
 }
 
-export class PacketEventDataParser extends F1Parser<PacketEventData> {
-  data: PacketEventData;
+export class PacketEventDataParser extends F1Parser<
+  | GenericEvent
+  | LightEvent
+  | ButtonEvent
+  | OvertakeEvent
+  | PenaltyEvent
+  | FlashbackEvent
+  | SpeedTrapEvent
+> {
+  data:
+    | GenericEvent
+    | LightEvent
+    | ButtonEvent
+    | OvertakeEvent
+    | PenaltyEvent
+    | FlashbackEvent
+    | SpeedTrapEvent;
 
   constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super();
@@ -121,11 +140,7 @@ export class PacketEventDataParser extends F1Parser<PacketEventData> {
       this.unpack2020Format(buffer, packetFormat, bigintEnabled);
     }
 
-    if (packetFormat === 2021) {
-      this.unpack2021Format(buffer, packetFormat, bigintEnabled);
-    }
-
-    if (packetFormat === 2022) {
+    if (packetFormat === 2021 || packetFormat === 2022) {
       this.unpack2022Format(buffer, packetFormat, bigintEnabled);
     }
 
@@ -148,13 +163,13 @@ export class PacketEventDataParser extends F1Parser<PacketEventData> {
     );
 
     if (eventStringCode === EVENT_CODES.FastestLap) {
-      this.uint8('vehicleIdx').floatle('lapTime');
+      this.nest('m_eventDetails', {type: new FastestLapParser()});
     } else if (
       eventStringCode === EVENT_CODES.Retirement ||
       eventStringCode === EVENT_CODES.TeammateInPits ||
       eventStringCode === EVENT_CODES.RaceWinner
     ) {
-      this.uint8('vehicleIdx');
+      this.nest('m_eventDetails', {type: new GenericEventParser()});
     }
   };
 
@@ -181,34 +196,6 @@ export class PacketEventDataParser extends F1Parser<PacketEventData> {
       this.nest('m_eventDetails', {type: new SpeedTrapParser(packetFormat)});
     } else if (eventStringCode === EVENT_CODES.PenaltyIssued) {
       this.nest('m_eventDetails', {type: new PenaltyParser()});
-    }
-  };
-
-  unpack2021Format = (
-    buffer: Buffer,
-    packetFormat: number,
-    bigintEnabled: boolean
-  ) => {
-    const eventStringCode = this.getEventStringCode(
-      buffer,
-      packetFormat,
-      bigintEnabled
-    );
-
-    if (eventStringCode === EVENT_CODES.FastestLap) {
-      this.nest('m_eventDetails', {type: new FastestLapParser()});
-    } else if (eventStringCode === EVENT_CODES.SpeedTrapTriggered) {
-      this.nest('m_eventDetails', {type: new SpeedTrapParser(packetFormat)});
-    } else if (eventStringCode === EVENT_CODES.PenaltyIssued) {
-      this.nest('m_eventDetails', {type: new PenaltyParser()});
-    } else if (eventStringCode === EVENT_CODES.Flashback) {
-      this.nest('m_eventDetails', {type: new FlashbackParser()});
-    } else if (eventStringCode === EVENT_CODES.StartLights) {
-      this.nest('m_eventDetails', {type: new StartLightsParser()});
-    } else if (eventStringCode === EVENT_CODES.ButtonStatus) {
-      this.nest('m_eventDetails', {type: new ButtonsParser()});
-    } else {
-      this.nest('m_eventDetails', {type: new GenericEventParser()});
     }
   };
 

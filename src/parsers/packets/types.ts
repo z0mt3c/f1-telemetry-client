@@ -285,46 +285,59 @@ export interface CarSetupData {
   m_fuelLoad: number;
 }
 
-export interface PacketEventData extends PacketBase {
-  m_eventStringCode: string;
-  m_eventDetails?:
-    | FlashbackEventDataDetails
-    | LightEventDataDetails
-    | ButtonEventDataDetails
-    | FastestLapEventDataDetails
-    | OvertakeEventDataDetails
-    | SpeedTrapEventDataDetails
-    | PenaltyEventDataDetails
-    | VehicleEventDataDetails;
+export interface GenericEvent extends PacketBase {
+  m_eventStringCode:
+    | 'RTMT'
+    | 'TMPT'
+    | 'RCWN'
+    | 'DTSV'
+    | 'SGSV'
+    | 'SSTA'
+    | 'SEND'
+    | 'DRSE'
+    | 'DRSD'
+    | 'CHQF'
+    | 'LGOT'
+    | 'RDFL';
+  m_eventDetails: GenericEventDetails;
 }
 
-export interface VehicleEventDataDetails {
-  vehicleIdx: number;
+export interface FlashbackEvent extends PacketBase {
+  m_eventStringCode: 'FLBK';
+  m_eventDetails: FlashbackEventDetails;
 }
 
-export interface FlashbackEventDataDetails {
-  flashbackSessionTime: number;
-  flashbackFrameIdentifier: number;
+export interface PenaltyEvent extends PacketBase {
+  m_eventStringCode: 'PENA';
+  m_eventDetails: PenaltyEventDetails;
 }
 
-export interface LightEventDataDetails {
-  numLights: number;
+export interface SpeedTrapEvent extends PacketBase {
+  m_eventStringCode: 'SPTP';
+  m_eventDetails: SpeedTrapEventDetails;
 }
 
-export interface ButtonEventDataDetails {
-  buttonStatus: number;
+export interface LightEvent extends PacketBase {
+  m_eventStringCode: 'STLG';
+  m_eventDetails: LightEventDetails;
 }
 
-export interface FastestLapEventDataDetails extends VehicleEventDataDetails {
-  lapTime: number;
+export interface ButtonEvent extends PacketBase {
+  m_eventStringCode: 'BUTN';
+  m_eventDetails: ButtonEventDetails;
 }
 
-export interface OvertakeEventDataDetails {
-  beingOvertakenVehicleIdx: number;
-  overtakingVehicleIdx: number;
+export interface FastestLapEvent extends PacketBase {
+  m_eventStringCode: 'FTLP';
+  m_eventDetails: FastestLapEventDetails;
 }
 
-export interface SpeedTrapEventDataDetails extends VehicleEventDataDetails {
+export interface OvertakeEvent extends PacketBase {
+  m_eventStringCode: 'OVTK';
+  m_eventDetails: OvertakeEventDetails;
+}
+
+export interface SpeedTrapEventDetails extends GenericEventDetails {
   speed: number;
   overallFastestInSession: number;
   driverFastestInSession: number;
@@ -334,7 +347,33 @@ export interface SpeedTrapEventDataDetails extends VehicleEventDataDetails {
   fastestSpeedInSession: number;
 }
 
-export interface PenaltyEventDataDetails extends VehicleEventDataDetails {
+export interface GenericEventDetails {
+  vehicleIdx: number;
+}
+
+export interface FlashbackEventDetails {
+  flashbackSessionTime: number;
+  flashbackFrameIdentifier: number;
+}
+
+export interface LightEventDetails {
+  numLights: number;
+}
+
+export interface ButtonEventDetails {
+  buttonStatus: number;
+}
+
+export interface FastestLapEventDetails extends GenericEventDetails {
+  lapTime: number;
+}
+
+export interface OvertakeEventDetails {
+  beingOvertakenVehicleIdx: number;
+  overtakingVehicleIdx: number;
+}
+
+export interface PenaltyEventDetails extends GenericEventDetails {
   penaltyType: number;
   infringementType: number;
   otherVehicleIdx: number;
