@@ -524,3 +524,13 @@ export interface PacketTyreSetsData extends PacketBase {
   m_tyreSetData: TyreSetData[];
   m_fittedIdx: number;
 }
+
+export type PacketEvent =
+  | GenericEvent
+  | LightEvent
+  | ButtonEvent
+  | VehicleEvent
+  | OvertakeEvent
+  | PenaltyEvent
+  | FlashbackEvent
+  | SpeedTrapEvent;
