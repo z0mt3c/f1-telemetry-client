@@ -5,13 +5,14 @@ import {F1Parser} from '../F1Parser';
 
 import {PacketHeaderParser} from './PacketHeaderParser';
 import {
+  GenericEvent,
   ButtonEvent,
   ButtonEventDetails,
   FastestLapEventDetails,
   FlashbackEvent,
   FlashbackEventDetails,
-  GenericEvent,
-  GenericEventDetails,
+  VehicleEvent,
+  VehicleEventDetails,
   LightEvent,
   LightEventDetails,
   OvertakeEvent,
@@ -22,7 +23,7 @@ import {
   SpeedTrapEventDetails,
 } from './types';
 
-export class GenericEventParser extends F1Parser<GenericEventDetails> {
+export class VehicleEventParser extends F1Parser<VehicleEventDetails> {
   constructor() {
     super();
     this.endianess('little').uint8('vehicleIdx');
@@ -109,6 +110,7 @@ export class PacketEventDataParser extends F1Parser<
   | GenericEvent
   | LightEvent
   | ButtonEvent
+  | VehicleEvent
   | OvertakeEvent
   | PenaltyEvent
   | FlashbackEvent
@@ -118,6 +120,7 @@ export class PacketEventDataParser extends F1Parser<
     | GenericEvent
     | LightEvent
     | ButtonEvent
+    | VehicleEvent
     | OvertakeEvent
     | PenaltyEvent
     | FlashbackEvent
@@ -169,7 +172,7 @@ export class PacketEventDataParser extends F1Parser<
       eventStringCode === EVENT_CODES.TeammateInPits ||
       eventStringCode === EVENT_CODES.RaceWinner
     ) {
-      this.nest('m_eventDetails', {type: new GenericEventParser()});
+      this.nest('m_eventDetails', {type: new VehicleEventParser()});
     }
   };
 
@@ -191,7 +194,7 @@ export class PacketEventDataParser extends F1Parser<
       eventStringCode === EVENT_CODES.TeammateInPits ||
       eventStringCode === EVENT_CODES.RaceWinner
     ) {
-      this.nest('m_eventDetails', {type: new GenericEventParser()});
+      this.nest('m_eventDetails', {type: new VehicleEventParser()});
     } else if (eventStringCode === EVENT_CODES.SpeedTrapTriggered) {
       this.nest('m_eventDetails', {type: new SpeedTrapParser(packetFormat)});
     } else if (eventStringCode === EVENT_CODES.PenaltyIssued) {
@@ -223,7 +226,7 @@ export class PacketEventDataParser extends F1Parser<
     } else if (eventStringCode === EVENT_CODES.ButtonStatus) {
       this.nest('m_eventDetails', {type: new ButtonsParser()});
     } else {
-      this.nest('m_eventDetails', {type: new GenericEventParser()});
+      this.nest('m_eventDetails', {type: new VehicleEventParser()});
     }
   };
 
@@ -253,7 +256,7 @@ export class PacketEventDataParser extends F1Parser<
     } else if (eventStringCode === EVENT_CODES.Overtake) {
       this.nest('m_eventDetails', {type: new OvertakeParser()});
     } else {
-      this.nest('m_eventDetails', {type: new GenericEventParser()});
+      this.nest('m_eventDetails', {type: new VehicleEventParser()});
     }
   };
 
