@@ -1,4 +1,4 @@
-import {Tyre} from './types';
+import {Position, Tyre} from './types';
 
 export const TYRES: {[index: number]: Tyre} = {
   0: {color: '#ffb3c3', name: 'Hyper Soft'},
@@ -36,4 +36,11 @@ export const VISUAL_TYRES: {[index: number]: Tyre} = {
   20: {color: '#f92d29', name: 'Soft'},
   21: {color: '#ebd25f', name: 'Medium'},
   22: {color: '#ffffff', name: 'Hard'},
+};
+
+export const WHEEL_POSITIONS: {[index: number]: Position} = {
+  0: {long: 'Rear Left', short: 'RL'},
+  1: {long: 'Rear Right', short: 'RR'},
+  2: {long: 'Front Left', short: 'FL'},
+  3: {long: 'Front Right', short: 'FR'},
 };
