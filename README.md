@@ -85,4 +85,6 @@ The following links contain information that summarises the UDP data structures 
 
 ## License
 
+Forked from [@racehub-io/f1-telemetry-client](https://github.com/racehub-io/f1-telemetry-client)
+
 Licensed under the MIT License.
