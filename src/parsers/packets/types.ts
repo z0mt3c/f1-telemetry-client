@@ -287,20 +287,19 @@ export interface CarSetupData {
 }
 
 export interface GenericEvent extends PacketBase {
-  m_eventStringCode: 'SSTA' | 'LGOT' | 'RDFL';
-}
-
-export interface VehicleEvent extends PacketBase {
   m_eventStringCode:
-    | 'RTMT'
-    | 'TMPT'
-    | 'RCWN'
-    | 'DTSV'
-    | 'SGSV'
+    | 'SSTA'
+    | 'LGOT'
+    | 'RDFL'
     | 'SEND'
     | 'DRSE'
     | 'DRSD'
     | 'CHQF';
+  m_eventDetails?: VehicleEventDetails;
+}
+
+export interface VehicleEvent extends PacketBase {
+  m_eventStringCode: 'RTMT' | 'TMPT' | 'RCWN' | 'DTSV' | 'SGSV';
   m_eventDetails: VehicleEventDetails;
 }
 
