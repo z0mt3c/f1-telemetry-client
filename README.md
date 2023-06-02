@@ -9,6 +9,9 @@ The F1 series of games support the outputting of key game data via a UDP data st
 
 This is a TypeScript UDP client and telemetry parser for EA - Codemaster's F1 23, F1 22, F1 2021, F1 2020, F1 2019 and F1 2018, that enables the consumption of such information.
 
+This project has originally been developed by and was forked from [@racehub-io](https://github.com/racehub-io). The original source is located at [@racehub-io/f1-telemetry-client](https://github.com/racehub-io/f1-telemetry-client).
+
+
 ## Installing
 
 ```
@@ -85,6 +88,6 @@ The following links contain information that summarises the UDP data structures 
 
 ## License
 
-Forked from [@racehub-io/f1-telemetry-client](https://github.com/racehub-io/f1-telemetry-client)
+This project has originally been developed by and was forked from [@racehub-io](https://github.com/racehub-io). The original source is located at [@racehub-io/f1-telemetry-client](https://github.com/racehub-io/f1-telemetry-client).
 
 Licensed under the MIT License.
