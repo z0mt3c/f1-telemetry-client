@@ -1,4 +1,4 @@
-export const PENALTIES: {[index: number]: string} = {
+export const PENALTIES: Record<number, string> = {
   0: 'Drive through',
   1: 'Stop Go',
   2: 'Grid penalty',
@@ -16,5 +16,5 @@ export const PENALTIES: {[index: number]: string} = {
   14: 'This and previous lap invalidated',
   15: 'This and previous lap invalidated without reason',
   16: 'Retired',
-  17: 'Black flag timer',
-};
+  17: 'Black flag timer'
+}

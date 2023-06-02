@@ -1,4 +1,4 @@
-import {
+import type {
   PacketCarDamageDataParser,
   PacketCarSetupDataParser,
   PacketCarStatusDataParser,
@@ -10,41 +10,41 @@ import {
   PacketMotionDataParser,
   PacketParticipantsDataParser,
   PacketSessionDataParser,
-  PacketSessionHistoryDataParser,
-} from './parsers/packets';
-import {PacketTyreSetsDataParser} from './parsers/packets/PacketTyreSetsDataParser';
-import {PacketMotionExDataParser} from './parsers/packets/PacketMotionExDataParser';
+  PacketSessionHistoryDataParser
+} from './parsers/packets'
+import type { PacketTyreSetsDataParser } from './parsers/packets/PacketTyreSetsDataParser'
+import type { PacketMotionExDataParser } from './parsers/packets/PacketMotionExDataParser'
 
 export interface Options {
-  port?: number;
-  forwardAddresses?: Address[] | undefined;
-  bigintEnabled?: boolean;
-  skipParsing?: boolean;
+  port?: number
+  forwardAddresses?: Address[] | undefined
+  bigintEnabled?: boolean
+  skipParsing?: boolean
 }
 
 export interface Address {
-  port: number;
-  ip?: string;
+  port: number
+  ip?: string
 }
 
 export interface ParsedMessage {
-  packetID: string;
+  packetID: string
   packetData:
-    | PacketSessionHistoryDataParser
-    | PacketSessionDataParser
-    | PacketMotionDataParser
-    | PacketLapDataParser
-    | PacketEventDataParser
-    | PacketParticipantsDataParser
-    | PacketCarSetupDataParser
-    | PacketCarTelemetryDataParser
-    | PacketCarStatusDataParser
-    | PacketCarDamageDataParser
-    | PacketFinalClassificationDataParser
-    | PacketLobbyInfoDataParser
-    | PacketTyreSetsDataParser
-    | PacketMotionExDataParser
-    | null;
+  | PacketSessionHistoryDataParser
+  | PacketSessionDataParser
+  | PacketMotionDataParser
+  | PacketLapDataParser
+  | PacketEventDataParser
+  | PacketParticipantsDataParser
+  | PacketCarSetupDataParser
+  | PacketCarTelemetryDataParser
+  | PacketCarStatusDataParser
+  | PacketCarDamageDataParser
+  | PacketFinalClassificationDataParser
+  | PacketLobbyInfoDataParser
+  | PacketTyreSetsDataParser
+  | PacketMotionExDataParser
+  | null
 
-  message?: Buffer;
+  message?: Buffer
 }

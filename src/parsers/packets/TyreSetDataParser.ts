@@ -1,9 +1,9 @@
-import {F1Parser} from '../F1Parser';
-import {TyreSetData} from './types';
+import { F1Parser } from '../F1Parser'
+import type { TyreSetData } from './types'
 
 export class TyreSetDataParser extends F1Parser<TyreSetData> {
-  constructor() {
-    super();
+  constructor () {
+    super()
 
     this.endianess('little')
       .uint8('m_actualTyreCompound')
@@ -14,6 +14,6 @@ export class TyreSetDataParser extends F1Parser<TyreSetData> {
       .uint8('m_lifeSpan')
       .uint8('m_usableLife')
       .int16('m_lapDeltaTime')
-      .uint8('m_fitted');
+      .uint8('m_fitted')
   }
 }

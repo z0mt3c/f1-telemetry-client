@@ -1,24 +1,24 @@
-import {F1TelemetryClient} from '..';
-import * as fs from 'fs';
-import {PacketHeader} from '../parsers/packets/types';
+import { F1TelemetryClient } from '..'
+import * as fs from 'fs'
+import type { ParsedMessage } from '../types'
 
 const client = new F1TelemetryClient({
   port: 30500,
-  bigintEnabled: true,
-});
+  bigintEnabled: true
+})
 
-fs.mkdir('./recordings', () => {});
+fs.mkdir('./recordings', () => {})
 
-client.on('raw', ({packetData, packetID, message}) => {
-  const mHeader = packetData?.data?.m_header as PacketHeader | undefined;
+client.on('raw', ({ packetData, packetID, message }: ParsedMessage) => {
+  const mHeader = packetData?.data?.m_header
   const filename = [
     'data',
     mHeader?.m_gameYear ?? 'unknown',
     mHeader?.m_packetFormat,
-    mHeader?.m_sessionUID ?? 'no-session',
+    mHeader?.m_sessionUID ?? 'no-session'
   ]
     .filter(n => n !== null)
-    .join('-');
+    .join('-')
 
   const data =
     JSON.stringify(
@@ -27,15 +27,15 @@ client.on('raw', ({packetData, packetID, message}) => {
         gameYear: mHeader?.m_gameYear ?? 'unknown',
         format: mHeader?.m_packetFormat,
         packetID,
-        message: message,
-        parsed: packetData?.data,
+        message,
+        parsed: packetData?.data
       },
       (key, value) => (typeof value === 'bigint' ? value.toString() : value)
-    ) + '\n';
+    ) + '\n'
 
-  fs.appendFileSync(`./recordings/${filename}-${packetID}.txt`, data);
-  fs.appendFileSync(`./recordings/${filename}-all.txt`, data);
-});
+  fs.appendFileSync(`./recordings/${filename}-${packetID}.txt`, data)
+  fs.appendFileSync(`./recordings/${filename}-all.txt`, data)
+})
 
 client.start();
 
@@ -46,7 +46,7 @@ client.start();
   'SIGUSR1',
   'SIGUSR2',
   'uncaughtException',
-  'SIGTERM',
+  'SIGTERM'
 ].forEach(eventType => {
-  (process as NodeJS.EventEmitter).on(eventType, () => client.stop());
-});
+  (process as NodeJS.EventEmitter).on(eventType, () => client.stop())
+})

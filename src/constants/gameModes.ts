@@ -1,4 +1,4 @@
-export const GAME_MODES: {[index: number]: string} = {
+export const GAME_MODES: Record<number, string> = {
   0: 'Event Mode',
   3: 'Grand Prix',
   5: 'Time Trial',
@@ -12,5 +12,5 @@ export const GAME_MODES: {[index: number]: string} = {
   15: 'Online Weekly Event',
   19: 'Career 22',
   20: 'Career 22 Online',
-  127: 'Benchmark',
-};
+  127: 'Benchmark'
+}

@@ -1,9 +1,8 @@
-import * as dgram from 'dgram';
-import {EventEmitter} from 'events';
-import {AddressInfo} from 'net';
+import * as dgram from 'dgram'
+import { EventEmitter } from 'events'
 
-import * as constants from './constants';
-import * as constantsTypes from './constants/types';
+import * as constants from './constants'
+import * as constantsTypes from './constants/types'
 import {
   PacketCarDamageDataParser,
   PacketCarSetupDataParser,
@@ -18,40 +17,40 @@ import {
   PacketMotionDataParser,
   PacketParticipantsDataParser,
   PacketSessionDataParser,
-  PacketSessionHistoryDataParser,
-} from './parsers/packets';
-import * as packetTypes from './parsers/packets/types';
-import {Address, Options, ParsedMessage} from './types';
-import {PacketTyreSetsDataParser} from './parsers/packets/PacketTyreSetsDataParser';
-import {PacketMotionExDataParser} from './parsers/packets/PacketMotionExDataParser';
-import {PacketHeader} from './parsers/packets/types';
+  PacketSessionHistoryDataParser
+} from './parsers/packets'
+import * as packetTypes from './parsers/packets/types'
+import type { Address, Options, ParsedMessage } from './types'
+import { PacketTyreSetsDataParser } from './parsers/packets/PacketTyreSetsDataParser'
+import { PacketMotionExDataParser } from './parsers/packets/PacketMotionExDataParser'
+import type { PacketHeader } from './parsers/packets/types'
 
-const DEFAULT_PORT = 20777;
-const FORWARD_ADDRESSES = undefined;
-const BIGINT_ENABLED = true;
+const DEFAULT_PORT = 20777
+const FORWARD_ADDRESSES = undefined
+const BIGINT_ENABLED = true
 
 /**
  *
  */
 class F1TelemetryClient extends EventEmitter {
-  port: number;
-  bigintEnabled: boolean;
-  forwardAddresses?: Address[];
-  socket?: dgram.Socket;
+  port: number
+  bigintEnabled: boolean
+  forwardAddresses?: Address[]
+  socket?: dgram.Socket
 
-  constructor(opts: Options = {}) {
-    super();
+  constructor (opts: Options = {}) {
+    super()
 
     const {
       port = DEFAULT_PORT,
       bigintEnabled = BIGINT_ENABLED,
-      forwardAddresses = FORWARD_ADDRESSES,
-    } = opts;
+      forwardAddresses = FORWARD_ADDRESSES
+    } = opts
 
-    this.port = port;
-    this.bigintEnabled = bigintEnabled;
-    this.forwardAddresses = forwardAddresses;
-    this.socket = dgram.createSocket('udp4');
+    this.port = port
+    this.bigintEnabled = bigintEnabled
+    this.forwardAddresses = forwardAddresses
+    this.socket = dgram.createSocket('udp4')
   }
 
   /**
@@ -59,26 +58,26 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Buffer} message
    * @param bigintEnabled
    */
-  static parseBufferMessage(
+  static parseBufferMessage (
     message: Buffer,
     bigintEnabled = false
   ): ParsedMessage | undefined {
-    const {m_packetFormat, m_packetId} = F1TelemetryClient.parsePacketHeader(
+    const { m_packetFormat, m_packetId } = F1TelemetryClient.parsePacketHeader(
       message,
       bigintEnabled
-    );
+    )
 
-    const parser = F1TelemetryClient.getParserByPacketId(m_packetId);
+    const Parser = F1TelemetryClient.getParserByPacketId(m_packetId)
 
-    if (!parser) {
-      return;
+    if (Parser == null) {
+      return
     }
 
-    const packetData = new parser(message, m_packetFormat, bigintEnabled);
-    const packetID = Object.keys(constants.PACKETS)[m_packetId];
+    const packetData = new Parser(message, m_packetFormat, bigintEnabled)
+    const packetID = Object.keys(constants.PACKETS)[m_packetId]
 
     // emit parsed message
-    return {packetData, packetID, message};
+    return { packetData, packetID, message }
   }
 
   /**
@@ -86,18 +85,17 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Buffer} buffer
    * @param {Boolean} bigintEnabled
    */
-  static parsePacketHeader(
+  static parsePacketHeader (
     buffer: Buffer,
     bigintEnabled: boolean
-    // tslint:disable-next-line:no-any
   ): PacketHeader {
-    const packetFormatParser = new PacketFormatParser();
-    const {m_packetFormat} = packetFormatParser.fromBuffer(buffer);
+    const packetFormatParser = new PacketFormatParser()
+    const { m_packetFormat } = packetFormatParser.fromBuffer(buffer)
     const packetHeaderParser = new PacketHeaderParser(
       m_packetFormat,
       bigintEnabled
-    );
-    return packetHeaderParser.fromBuffer(buffer);
+    )
+    return packetHeaderParser.fromBuffer(buffer)
   }
 
   /**
@@ -105,67 +103,67 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Number} packetFormat
    * @param {Number} packetId
    */
-  static getPacketSize(packetFormat: number, packetId: number) {
-    const {PACKET_SIZES} = constants;
-    const packetValues = Object.values(PACKET_SIZES);
-    return packetValues[packetId][packetFormat];
+  static getPacketSize (packetFormat: number, packetId: number): number {
+    const { PACKET_SIZES } = constants
+    const packetValues = Object.values(PACKET_SIZES)
+    return packetValues[packetId][packetFormat]
   }
 
   /**
    *
    * @param {Number} packetId
    */
-  static getParserByPacketId(packetId: number) {
-    const {PACKETS} = constants;
+  static getParserByPacketId (packetId: number): any {
+    const { PACKETS } = constants
 
-    const packetKeys = Object.keys(PACKETS);
-    const packetType = packetKeys[packetId];
+    const packetKeys = Object.keys(PACKETS)
+    const packetType = packetKeys[packetId]
 
     switch (packetType) {
       case PACKETS.session:
-        return PacketSessionDataParser;
+        return PacketSessionDataParser
 
       case PACKETS.motion:
-        return PacketMotionDataParser;
+        return PacketMotionDataParser
 
       case PACKETS.lapData:
-        return PacketLapDataParser;
+        return PacketLapDataParser
 
       case PACKETS.event:
-        return PacketEventDataParser;
+        return PacketEventDataParser
 
       case PACKETS.participants:
-        return PacketParticipantsDataParser;
+        return PacketParticipantsDataParser
 
       case PACKETS.carSetups:
-        return PacketCarSetupDataParser;
+        return PacketCarSetupDataParser
 
       case PACKETS.carTelemetry:
-        return PacketCarTelemetryDataParser;
+        return PacketCarTelemetryDataParser
 
       case PACKETS.carStatus:
-        return PacketCarStatusDataParser;
+        return PacketCarStatusDataParser
 
       case PACKETS.finalClassification:
-        return PacketFinalClassificationDataParser;
+        return PacketFinalClassificationDataParser
 
       case PACKETS.lobbyInfo:
-        return PacketLobbyInfoDataParser;
+        return PacketLobbyInfoDataParser
 
       case PACKETS.carDamage:
-        return PacketCarDamageDataParser;
+        return PacketCarDamageDataParser
 
       case PACKETS.sessionHistory:
-        return PacketSessionHistoryDataParser;
+        return PacketSessionHistoryDataParser
 
       case PACKETS.tyreSets:
-        return PacketTyreSetsDataParser;
+        return PacketTyreSetsDataParser
 
       case PACKETS.motionEx:
-        return PacketMotionExDataParser;
+        return PacketMotionExDataParser
 
       default:
-        return null;
+        return null
     }
   }
 
@@ -173,36 +171,36 @@ class F1TelemetryClient extends EventEmitter {
    *
    * @param {Buffer} message
    */
-  handleMessage(message: Buffer) {
-    if (this.forwardAddresses) {
+  handleMessage (message: Buffer): void {
+    if (this.forwardAddresses != null) {
       // bridge message
-      this.bridgeMessage(message);
+      this.bridgeMessage(message)
     }
 
     const parsedMessage = F1TelemetryClient.parseBufferMessage(
       message,
       this.bigintEnabled
-    );
+    )
 
-    if (!parsedMessage || !parsedMessage.packetData) {
-      return;
+    if ((parsedMessage == null) || (parsedMessage.packetData == null)) {
+      return
     }
 
     // emit parsed message
-    this.emit(parsedMessage.packetID, parsedMessage.packetData.data);
-    this.emit('raw', parsedMessage);
+    this.emit(parsedMessage.packetID, parsedMessage.packetData.data)
+    this.emit('raw', parsedMessage)
   }
 
   /**
    *
    * @param {Buffer} message
    */
-  bridgeMessage(message: Buffer) {
-    if (!this.socket) {
-      throw new Error('Socket is not initialized');
+  bridgeMessage (message: Buffer): void {
+    if (this.socket == null) {
+      throw new Error('Socket is not initialized')
     }
-    if (!this.forwardAddresses) {
-      throw new Error('No ports to bridge over');
+    if (this.forwardAddresses == null) {
+      throw new Error('No ports to bridge over')
     }
     for (const address of this.forwardAddresses) {
       this.socket.send(
@@ -210,50 +208,50 @@ class F1TelemetryClient extends EventEmitter {
         0,
         message.length,
         address.port,
-        address.ip || '0.0.0.0'
-      );
+        address.ip ?? '0.0.0.0'
+      )
     }
   }
 
   /**
    * Method to start listening for packets
    */
-  start() {
-    if (!this.socket) {
-      return;
+  start (): void {
+    if (this.socket == null) {
+      return
     }
 
     this.socket.on('listening', () => {
-      if (!this.socket) {
-        return;
+      if (this.socket == null) {
+        return
       }
 
-      const address = this.socket.address() as AddressInfo;
+      const address = this.socket.address()
       console.log(
         `UDP Client listening on ${address.address}:${address.port} 🏎`
-      );
-      this.socket.setBroadcast(true);
-    });
+      )
+      this.socket.setBroadcast(true)
+    })
 
-    this.socket.on('message', m => this.handleMessage(m));
+    this.socket.on('message', m => { this.handleMessage(m) })
     this.socket.bind({
       port: this.port,
-      exclusive: false,
-    });
+      exclusive: false
+    })
   }
 
   /**
    * Method to close the client
    */
-  stop() {
-    if (!this.socket) {
-      return;
+  stop (): dgram.Socket | undefined {
+    if (this.socket == null) {
+      return
     }
 
     return this.socket.close(() => {
-      console.log('UDP Client closed 🏁');
-      this.socket = undefined;
-    });
+      console.log('UDP Client closed 🏁')
+      this.socket = undefined
+    })
   }
 }
 
@@ -264,5 +262,5 @@ export {
   packetTypes,
   DEFAULT_PORT,
   BIGINT_ENABLED,
-  FORWARD_ADDRESSES,
-};
+  FORWARD_ADDRESSES
+}

@@ -1,23 +1,23 @@
-import {F1Parser} from '../F1Parser';
-import {CarDamageDataParser} from './CarDamageDataParser';
-import {PacketHeaderParser} from './PacketHeaderParser';
-import {PacketCarDamageData} from './types';
+import { F1Parser } from '../F1Parser'
+import { CarDamageDataParser } from './CarDamageDataParser'
+import { PacketHeaderParser } from './PacketHeaderParser'
+import type { PacketCarDamageData } from './types'
 
 export class PacketCarDamageDataParser extends F1Parser<PacketCarDamageData> {
-  data: PacketCarDamageData;
+  data: PacketCarDamageData
 
-  constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
-    super();
+  constructor (buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
+    super()
 
     this.endianess('little')
       .nest('m_header', {
-        type: new PacketHeaderParser(packetFormat, bigintEnabled),
+        type: new PacketHeaderParser(packetFormat, bigintEnabled)
       })
       .array('m_carDamageData', {
         length: 22,
-        type: new CarDamageDataParser(packetFormat),
-      });
+        type: new CarDamageDataParser(packetFormat)
+      })
 
-    this.data = this.fromBuffer(buffer);
+    this.data = this.fromBuffer(buffer)
   }
 }

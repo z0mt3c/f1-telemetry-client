@@ -1,24 +1,24 @@
-import {F1Parser} from '../F1Parser';
-import {FinalClassificationDataParser} from './FinalClassificationDataParser';
-import {PacketHeaderParser} from './PacketHeaderParser';
-import {PacketFinalClassificationData} from './types';
+import { F1Parser } from '../F1Parser'
+import { FinalClassificationDataParser } from './FinalClassificationDataParser'
+import { PacketHeaderParser } from './PacketHeaderParser'
+import type { PacketFinalClassificationData } from './types'
 
 export class PacketFinalClassificationDataParser extends F1Parser<PacketFinalClassificationData> {
-  data: PacketFinalClassificationData;
+  data: PacketFinalClassificationData
 
-  constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
-    super();
+  constructor (buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
+    super()
 
     this.endianess('little')
       .nest('m_header', {
-        type: new PacketHeaderParser(packetFormat, bigintEnabled),
+        type: new PacketHeaderParser(packetFormat, bigintEnabled)
       })
       .uint8('m_numCars')
       .array('m_classificationData', {
         length: 22,
-        type: new FinalClassificationDataParser(packetFormat),
-      });
+        type: new FinalClassificationDataParser(packetFormat)
+      })
 
-    this.data = this.fromBuffer(buffer);
+    this.data = this.fromBuffer(buffer)
   }
 }
