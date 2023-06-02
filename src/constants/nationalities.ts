@@ -1,4 +1,4 @@
-export const NATIONALITIES: {[index: number]: string} = {
+export const NATIONALITIES: Record<number, string> = {
   1: 'American',
   2: 'Argentinean',
   3: 'Australian',
@@ -86,5 +86,5 @@ export const NATIONALITIES: {[index: number]: string} = {
   85: 'Barbadian',
   86: 'Welsh',
   87: 'Vietnamese',
-  255: 'Not found',
-};
+  255: 'Not found'
+}

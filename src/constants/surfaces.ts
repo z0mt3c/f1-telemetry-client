@@ -1,4 +1,4 @@
-export const SURFACES: {[index: number]: string} = {
+export const SURFACES: Record<number, string> = {
   0: 'Tarmac',
   1: 'Rumble strip',
   2: 'Concrete',
@@ -10,5 +10,5 @@ export const SURFACES: {[index: number]: string} = {
   8: 'Water',
   9: 'Cobblestone',
   10: 'Metal',
-  11: 'Ridged',
-};
+  11: 'Ridged'
+}

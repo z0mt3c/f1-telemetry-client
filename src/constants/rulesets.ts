@@ -1,4 +1,4 @@
-export const RULESETS: {[index: number]: string} = {
+export const RULESETS: Record<number, string> = {
   0: 'Practice & Qualifying',
   1: 'Race',
   2: 'Time Trial',
@@ -7,5 +7,5 @@ export const RULESETS: {[index: number]: string} = {
   8: 'Autocross',
   9: 'Drift',
   10: 'Average Speed Zone',
-  11: 'Rival Duel',
-};
+  11: 'Rival Duel'
+}

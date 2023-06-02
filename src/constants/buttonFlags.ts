@@ -1,4 +1,4 @@
-export const BUTTON_FLAGS: {[index: string]: number} = {
+export const BUTTON_FLAGS: Record<string, number> = {
   CROSS_OR_A: 0x0001,
   TRIANGLE_OR_Y: 0x0002,
   CIRCLE_OR_B: 0x0004,
@@ -30,5 +30,5 @@ export const BUTTON_FLAGS: {[index: string]: number} = {
   UDP_ACTION_9: 0x10000000,
   UDP_ACTION_10: 0x20000000,
   UDP_ACTION_11: 0x40000000,
-  UDP_ACTION_12: 0x80000000,
-};
+  UDP_ACTION_12: 0x80000000
+}

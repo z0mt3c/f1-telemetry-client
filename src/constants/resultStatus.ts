@@ -1,4 +1,4 @@
-export const RESULT_STATUS: {[index: number]: string} = {
+export const RESULT_STATUS: Record<number, string> = {
   0: 'Invalid',
   1: 'Inactive',
   2: 'Active',
@@ -6,5 +6,5 @@ export const RESULT_STATUS: {[index: number]: string} = {
   4: 'DNF',
   5: 'DSQ',
   6: 'NC',
-  7: 'Retired',
-};
+  7: 'Retired'
+}

@@ -1,22 +1,22 @@
-export const TRACKING_CONTROL: {[index: number]: string} = {
+export const TRACKING_CONTROL: Record<number, string> = {
   0: 'Off',
   1: 'Medium',
-  2: 'Full',
-};
+  2: 'Full'
+}
 
-export const RACING_LINE: {[index: number]: string} = {
+export const RACING_LINE: Record<number, string> = {
   0: 'Off',
   1: 'Corners only',
-  2: 'Full',
-};
+  2: 'Full'
+}
 
-export const RACING_LINE_TYPE: {[index: number]: string} = {
+export const RACING_LINE_TYPE: Record<number, string> = {
   0: '2D',
-  1: '3D',
-};
+  1: '3D'
+}
 
-export const GEARBOX: {[index: number]: string} = {
+export const GEARBOX: Record<number, string> = {
   1: 'Manual',
   2: 'Manual & suggested gear',
-  3: 'Auto',
-};
+  3: 'Auto'
+}

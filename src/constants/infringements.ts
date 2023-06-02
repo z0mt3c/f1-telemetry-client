@@ -1,4 +1,4 @@
-export const INFRINGEMENTS: {[index: number]: string} = {
+export const INFRINGEMENTS: Record<number, string> = {
   0: 'Blocking by slow driving',
   1: 'Blocking by wrong way driving',
   2: 'Reversing off the start line',
@@ -53,5 +53,5 @@ export const INFRINGEMENTS: {[index: number]: string} = {
   51: 'Retry penalty',
   52: 'Illegal time gain',
   53: 'Mandatory pitstop',
-  54: 'Attribute assigned',
-};
+  54: 'Attribute assigned'
+}

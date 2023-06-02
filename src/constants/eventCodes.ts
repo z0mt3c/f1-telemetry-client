@@ -1,6 +1,6 @@
-import {EventCode} from './types';
+import type { EventCode } from './types'
 
-export const EVENT_CODES: {[index: string]: EventCode} = {
+export const EVENT_CODES: Record<string, EventCode> = {
   SessionStarted: 'SSTA',
   SessionEnded: 'SEND',
   FastestLap: 'FTLP',
@@ -19,5 +19,5 @@ export const EVENT_CODES: {[index: string]: EventCode} = {
   Flashback: 'FLBK',
   ButtonStatus: 'BUTN',
   RedFlag: 'RDFL',
-  Overtake: 'OVTK',
-};
+  Overtake: 'OVTK'
+}

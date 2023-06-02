@@ -1,9 +1,9 @@
-import {F1Parser} from '../F1Parser';
-import {CarSetupData} from './types';
+import { F1Parser } from '../F1Parser'
+import type { CarSetupData } from './types'
 
 export class CarSetupDataParser extends F1Parser<CarSetupData> {
-  constructor(packetFormat: number) {
-    super();
+  constructor (packetFormat: number) {
+    super()
     this.uint8('m_frontWing')
       .uint8('m_rearWing')
       .uint8('m_onThrottle')
@@ -19,17 +19,17 @@ export class CarSetupDataParser extends F1Parser<CarSetupData> {
       .uint8('m_frontSuspensionHeight')
       .uint8('m_rearSuspensionHeight')
       .uint8('m_brakePressure')
-      .uint8('m_brakeBias');
+      .uint8('m_brakeBias')
 
     if (packetFormat >= 2020) {
       this.floatle('m_rearLeftTyrePressure')
         .floatle('m_rearRightTyrePressure')
         .floatle('m_frontLeftTyrePressure')
-        .floatle('m_frontRightTyrePressure');
+        .floatle('m_frontRightTyrePressure')
     } else {
-      this.floatle('m_frontTyrePressure').floatle('m_rearTyrePressure');
+      this.floatle('m_frontTyrePressure').floatle('m_rearTyrePressure')
     }
 
-    this.uint8('m_ballast').floatle('m_fuelLoad');
+    this.uint8('m_ballast').floatle('m_fuelLoad')
   }
 }
