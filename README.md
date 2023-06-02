@@ -1,6 +1,9 @@
 # F1 Telemetry Client
 
-<img src="https://img.shields.io/npm/v/@racehub-io/f1-telemetry-client.svg"> <img  src="https://img.shields.io/github/license/racehub-io/f1-telemetry-client.svg"> <a  href="https://snyk.io/test/github/racehub-io/f1-telemetry-client?targetFile=package.json"><a  href="https://github.com/google/gts"><img  src='https://img.shields.io/badge/code%20style-google-blueviolet.svg'></a>
+[![Node.js CI](https://github.com/z0mt3c/f1-telemetry-client/actions/workflows/node.js.yml/badge.svg)](https://github.com/z0mt3c/f1-telemetry-client/actions/workflows/node.js.yml)
+[![NPM Release](https://img.shields.io/npm/v/@z0mt3c/f1-telemetry-client.svg)](https://snyk.io/test/github/z0mt3c/f1-telemetry-client?targetFile=package.json)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![License: MIT](https://img.shields.io/github/license/z0mt3c/f1-telemetry-client.svg)](https://opensource.org/licenses/MIT)
 
 The F1 series of games support the outputting of key game data via a UDP data stream. This data can be interpreted by external apps or connected peripherals for a range of different uses, including providing additional telemetry information, customised HUD displays, motion platform hardware support or providing force feedback data for custom steering wheels.
 
