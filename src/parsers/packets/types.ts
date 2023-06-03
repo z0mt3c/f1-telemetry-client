@@ -295,7 +295,6 @@ export interface GenericEvent extends PacketBase {
   | 'DRSE'
   | 'DRSD'
   | 'CHQF'
-  m_eventDetails?: VehicleEventDetails
 }
 
 export interface VehicleEvent extends PacketBase {

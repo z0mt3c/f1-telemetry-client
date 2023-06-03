@@ -47,4 +47,23 @@ export interface SessionTypes {
   type?: 'Q' | 'R' | 'FP' | 'TT'
 }
 
-export type EventCode = string
+export type EventCode =
+  | 'SSTA'
+  | 'SEND'
+  | 'FTLP'
+  | 'RTMT'
+  | 'DRSE'
+  | 'DRSD'
+  | 'TMPT'
+  | 'CHQF'
+  | 'RCWN'
+  | 'PENA'
+  | 'SPTP'
+  | 'STLG'
+  | 'LGOT'
+  | 'DTSV'
+  | 'SGSV'
+  | 'FLBK'
+  | 'BUTN'
+  | 'RDFL'
+  | 'OVTK'

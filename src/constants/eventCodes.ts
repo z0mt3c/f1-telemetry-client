@@ -1,6 +1,8 @@
 import type { EventCode } from './types'
 
-export const EVENT_CODES: Record<string, EventCode> = {
+type Keys = 'SessionStarted' | 'SessionEnded' | 'FastestLap' | 'Retirement' | 'DRSEnabled' | 'DRSDisabled' | 'TeammateInPits' | 'ChequeredFlag' | 'RaceWinner' | 'PenaltyIssued' | 'SpeedTrapTriggered' | 'StartLights' | 'LightsOut' | 'DriveThroughServed' | 'StopGoServed' | 'Flashback' | 'ButtonStatus' | 'RedFlag' | 'Overtake'
+
+export const EVENT_CODES: Record<Keys, EventCode> = {
   SessionStarted: 'SSTA',
   SessionEnded: 'SEND',
   FastestLap: 'FTLP',
