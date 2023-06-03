@@ -1,6 +1,6 @@
-import type { Packet } from './types'
+import type { PacketTypes } from './types'
 
-export const PACKETS: Record<Packet, Packet> = {
+export const PACKETS: Record<PacketTypes, PacketTypes> = {
   motion: 'motion',
   session: 'session',
   lapData: 'lapData',

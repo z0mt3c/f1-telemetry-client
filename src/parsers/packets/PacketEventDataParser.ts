@@ -16,7 +16,7 @@ import type {
   GenericEvent
 } from './types'
 import { EVENT_CODES } from '../../constants'
-import type { EventCode } from '../../constants/types'
+import type { EventCode } from '../../constants/eventCodes'
 
 export class VehicleEventParser extends F1Parser<VehicleEventDetails> {
   static EVENT_CODES: EventCode[] = [EVENT_CODES.Retirement, EVENT_CODES.TeammateInPits, EVENT_CODES.RaceWinner, EVENT_CODES.DriveThroughServed, EVENT_CODES.StopGoServed]

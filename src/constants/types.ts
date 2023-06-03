@@ -23,7 +23,7 @@ export interface Position {
   long: string
 }
 
-export type Packet =
+export type PacketTypes =
   | 'motion'
   | 'session'
   | 'lapData'
@@ -46,24 +46,3 @@ export interface SessionTypes {
   long: string
   type?: 'Q' | 'R' | 'FP' | 'TT'
 }
-
-export type EventCode =
-  | 'SSTA'
-  | 'SEND'
-  | 'FTLP'
-  | 'RTMT'
-  | 'DRSE'
-  | 'DRSD'
-  | 'TMPT'
-  | 'CHQF'
-  | 'RCWN'
-  | 'PENA'
-  | 'SPTP'
-  | 'STLG'
-  | 'LGOT'
-  | 'DTSV'
-  | 'SGSV'
-  | 'FLBK'
-  | 'BUTN'
-  | 'RDFL'
-  | 'OVTK'

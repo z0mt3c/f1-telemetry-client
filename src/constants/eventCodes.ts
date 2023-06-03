@@ -1,8 +1,27 @@
-import type { EventCode } from './types'
+import type { EventKeys } from '../types'
 
-type Keys = 'SessionStarted' | 'SessionEnded' | 'FastestLap' | 'Retirement' | 'DRSEnabled' | 'DRSDisabled' | 'TeammateInPits' | 'ChequeredFlag' | 'RaceWinner' | 'PenaltyIssued' | 'SpeedTrapTriggered' | 'StartLights' | 'LightsOut' | 'DriveThroughServed' | 'StopGoServed' | 'Flashback' | 'ButtonStatus' | 'RedFlag' | 'Overtake'
+export type EventCode =
+  | 'SSTA'
+  | 'SEND'
+  | 'FTLP'
+  | 'RTMT'
+  | 'DRSE'
+  | 'DRSD'
+  | 'TMPT'
+  | 'CHQF'
+  | 'RCWN'
+  | 'PENA'
+  | 'SPTP'
+  | 'STLG'
+  | 'LGOT'
+  | 'DTSV'
+  | 'SGSV'
+  | 'FLBK'
+  | 'BUTN'
+  | 'RDFL'
+  | 'OVTK'
 
-export const EVENT_CODES: Record<Keys, EventCode> = {
+export const EVENT_CODES: Record<EventKeys, EventCode> = {
   SessionStarted: 'SSTA',
   SessionEnded: 'SEND',
   FastestLap: 'FTLP',

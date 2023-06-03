@@ -50,7 +50,7 @@
     "clean": "rimraf ./build",
     "compile": "tsc -p .",
     "lint": "eslint ./src --ext .ts",
-    "fix": "npm run lint --fix",
+    "fix": "eslint ./src --ext .ts --fix",
     "test": "jest",
     "prepare": "npm run compile",
     "pretest": "npm run compile",

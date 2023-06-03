@@ -1,14 +1,9 @@
 import type {
   PacketCarDamageDataParser,
-  PacketCarSetupDataParser,
-  PacketCarStatusDataParser,
-  PacketCarTelemetryDataParser,
-  PacketEventDataParser,
-  PacketFinalClassificationDataParser,
-  PacketLapDataParser,
-  PacketLobbyInfoDataParser,
-  PacketMotionDataParser,
-  PacketParticipantsDataParser,
+  PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser,
+  PacketEventDataParser, PacketFinalClassificationDataParser,
+  PacketLapDataParser, PacketLobbyInfoDataParser,
+  PacketMotionDataParser, PacketParticipantsDataParser,
   PacketSessionDataParser,
   PacketSessionHistoryDataParser
 } from './parsers/packets'
@@ -27,9 +22,7 @@ export interface Address {
   ip?: string
 }
 
-export interface ParsedMessage {
-  packetID: string
-  packetData:
+export type PacketParser =
   | PacketSessionHistoryDataParser
   | PacketSessionDataParser
   | PacketMotionDataParser
@@ -44,7 +37,11 @@ export interface ParsedMessage {
   | PacketLobbyInfoDataParser
   | PacketTyreSetsDataParser
   | PacketMotionExDataParser
-  | null
 
+export interface ParsedMessage {
+  packetID: string
+  packetData: PacketParser
   message?: Buffer
 }
+
+export type EventKeys = 'SessionStarted' | 'SessionEnded' | 'FastestLap' | 'Retirement' | 'DRSEnabled' | 'DRSDisabled' | 'TeammateInPits' | 'ChequeredFlag' | 'RaceWinner' | 'PenaltyIssued' | 'SpeedTrapTriggered' | 'StartLights' | 'LightsOut' | 'DriveThroughServed' | 'StopGoServed' | 'Flashback' | 'ButtonStatus' | 'RedFlag' | 'Overtake'

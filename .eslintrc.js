@@ -1,7 +1,8 @@
 module.exports = {
   extends: 'standard-with-typescript',
   rules: {
-    "@typescript-eslint/naming-convention": [
+    '@typescript-eslint/no-loss-of-precision': ['warn'],
+    '@typescript-eslint/naming-convention': [
       'error',
       {
         selector: 'property',

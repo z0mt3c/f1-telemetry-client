@@ -532,3 +532,19 @@ export type PacketEvent =
   | PenaltyEvent
   | FlashbackEvent
   | SpeedTrapEvent
+
+export type Packet =
+  | PacketSessionHistoryData
+  | PacketSessionData
+  | PacketMotionData
+  | PacketLapData
+  | PacketEvent
+  | PacketParticipantsData
+  | PacketCarSetupData
+  | PacketCarTelemetryData
+  | PacketCarStatusData
+  | PacketCarDamageData
+  | PacketFinalClassificationData
+  | PacketLobbyInfoData
+  | PacketTyreSetsData
+  | PacketMotionExData
