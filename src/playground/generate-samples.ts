@@ -17,7 +17,8 @@ const typeMapping: Record<string, string[]> = {
     'OvertakeEvent',
     'PenaltyEvent',
     'FlashbackEvent',
-    'SpeedTrapEvent'
+    'SpeedTrapEvent',
+    'FastestLapEvent'
   ],
   participants: ['PacketParticipantsData'],
   carSetups: ['PacketCarSetupData'],
