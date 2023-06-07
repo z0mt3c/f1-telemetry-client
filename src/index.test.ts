@@ -135,7 +135,8 @@ describe('F1TelemetryClient', () => {
         it(`L${lineNumber++}: ${data.packetID}`, () => {
           expect(true).toBeTruthy()
           const bufferData = data?.message?.data ?? data?.message
-          const parsed = parseMessage(bufferData)
+          const parsed: any = parseMessage(bufferData)
+          expect(parsed.m_header.m_packetFormat).toEqual(year)
           expect(bufferData.length).toEqual(
             F1TelemetryClient.getPacketSize(
               data.parsed.m_header.m_packetFormat,
