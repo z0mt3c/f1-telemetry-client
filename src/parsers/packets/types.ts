@@ -197,15 +197,15 @@ export interface LapData {
   m_currentLapTimeInMS?: number
   m_bestLapTime?: number
   m_sector1Time?: number
-  m_sector1TimeMSPart?: number
-  m_sector1TimeMinutesPart?: number
+  m_sector1TimeInMS?: number
+  m_sector1TimeMinutes?: number
   m_sector2Time?: number
-  m_sector2TimeMSPart?: number
-  m_sector2TimeMinutesPart?: number
-  m_deltaToCarInFrontMSPart?: number
-  m_deltaToCarInFrontMinutesPart?: number
-  m_deltaToRaceLeaderMSPart?: number
-  m_deltaToRaceLeaderMinutesPart?: number
+  m_sector2TimeInMS?: number
+  m_sector2TimeMinutes?: number
+  m_deltaToCarInFrontInMS?: number
+  m_deltaToCarInFrontMinutes?: number
+  m_deltaToRaceLeaderInMS?: number
+  m_deltaToRaceLeaderMinutes?: number
   m_lapDistance: number
   m_totalDistance: number
   m_safetyCarDelta: number
@@ -547,12 +547,12 @@ export interface PacketLobbyInfoData extends PacketBase {
 
 export interface LapHistoryData {
   m_lapTimeInMS: number
-  m_sector1TimeMSPart: number
-  m_sector1TimeMinutesPart?: number
-  m_sector2TimeMSPart: number
-  m_sector2TimeMinutesPart?: number
-  m_sector3TimeMSPart: number
-  m_sector3TimeMinutesPart?: number
+  m_sector1TimeInMS: number
+  m_sector1TimeMinutes?: number
+  m_sector2TimeInMS: number
+  m_sector2TimeMinutes?: number
+  m_sector3TimeInMS: number
+  m_sector3TimeMinutes?: number
   m_lapValidBitFlags: number
 }
 

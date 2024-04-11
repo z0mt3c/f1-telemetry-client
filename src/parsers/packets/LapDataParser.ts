@@ -13,16 +13,16 @@ export class LapDataParser extends F1Parser<LapData> {
       this.floatle('m_lastLapTime').floatle('m_currentLapTime')
     }
 
-    if (packetFormat >= 2020) this.uint16le('m_sector1TimeMSPart')
-    if (packetFormat >= 2023) this.uint8('m_sector1TimeMinutesPart')
-    if (packetFormat >= 2020) this.uint16le('m_sector2TimeMSPart')
+    if (packetFormat >= 2020) this.uint16le('m_sector1TimeInMS')
+    if (packetFormat >= 2023) this.uint8('m_sector1TimeMinutes')
+    if (packetFormat >= 2020) this.uint16le('m_sector2TimeInMS')
 
     if (packetFormat >= 2023) {
-      this.uint8('m_sector2TimeMinutesPart')
-      this.uint16le('m_deltaToCarInFrontMSPart')
-      if (packetFormat >= 2024) this.uint8('m_deltaToCarInFrontMinutesPart')
-      this.uint16le('m_deltaToRaceLeaderMSPart')
-      if (packetFormat >= 2024) this.uint8('m_deltaToRaceLeaderMinutesPart')
+      this.uint8('m_sector2TimeMinutes')
+      this.uint16le('m_deltaToCarInFrontInMS')
+      if (packetFormat >= 2024) this.uint8('m_deltaToCarInFrontMinutes')
+      this.uint16le('m_deltaToRaceLeaderInMS')
+      if (packetFormat >= 2024) this.uint8('m_deltaToRaceLeaderMinutes')
     }
 
     if (packetFormat >= 2018 && packetFormat <= 2020) {
