@@ -10,9 +10,14 @@ export const SESSION_TYPES: Record<number, SessionTypes> = {
   6: { short: 'Q2', long: 'Qualifying 2', type: 'Q' },
   7: { short: 'Q3', long: 'Qualifying 3', type: 'Q' },
   8: { short: 'ShortQ', long: 'Short Qualifying', type: 'Q' },
-  9: { short: 'OneShotQ', long: 'One Shot Qualifying', type: 'Q' },
+  9: { short: 'OneShotQ', long: 'One-Shot Qualifying', type: 'Q' },
   10: { short: 'R', long: 'Race', type: 'R' },
   11: { short: 'R2', long: 'Race 2', type: 'R' },
   12: { short: 'R3', long: 'Race 3', type: 'R' },
-  13: { short: 'TT', long: 'Time Trial', type: 'TT' }
+  13: { short: 'TT', long: 'Time Trial', type: 'TT' },
+  // Added/replaced with F1 24
+  15: { short: 'R', long: 'Race', type: 'R' },
+  16: { short: 'R2', long: 'Race 2', type: 'R' },
+  17: { short: 'R3', long: 'Race 3', type: 'R' },
+  18: { short: 'TT', long: 'Time Trial', type: 'TT' }
 }

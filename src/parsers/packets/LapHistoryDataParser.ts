@@ -7,22 +7,22 @@ export class LapHistoryDataParser extends F1Parser<LapHistoryData> {
 
     this.endianess('little')
       .uint32('m_lapTimeInMS')
-      .uint16('m_sector1TimeInMS')
+      .uint16('m_sector1TimeMSPart')
 
     if (packetFormat >= 2023) {
-      this.uint8('m_sector1TimeMinutes')
+      this.uint8('m_sector1TimeMinutesPart')
     }
 
-    this.uint16('m_sector2TimeInMS')
+    this.uint16('m_sector2TimeMSPart')
 
     if (packetFormat >= 2023) {
-      this.uint8('m_sector2TimeMinutes')
+      this.uint8('m_sector2TimeMinutesPart')
     }
 
-    this.uint16('m_sector3TimeInMS')
+    this.uint16('m_sector3TimeMSPart')
 
     if (packetFormat >= 2023) {
-      this.uint8('m_sector3TimeMinutes')
+      this.uint8('m_sector3TimeMinutesPart')
     }
 
     this.uint8('m_lapValidBitFlags')

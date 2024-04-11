@@ -14,5 +14,6 @@ export const PACKETS: Record<PacketTypes, PacketTypes> = {
   carDamage: 'carDamage',
   sessionHistory: 'sessionHistory',
   tyreSets: 'tyreSets',
-  motionEx: 'motionEx'
+  motionEx: 'motionEx',
+  timeTrial: 'timeTrial'
 }
