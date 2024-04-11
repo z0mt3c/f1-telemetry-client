@@ -2,6 +2,7 @@ import type { PacketSize } from './types'
 
 export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
   motion: {
+    2024: 1349,
     2023: 1349,
     2022: 1464,
     2021: 1464,
