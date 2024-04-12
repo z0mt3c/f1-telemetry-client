@@ -1,5 +1,5 @@
 module.exports = {
-  extends: 'standard-with-typescript',
+  extends: 'love',
   rules: {
     '@typescript-eslint/no-loss-of-precision': ['warn'],
     '@typescript-eslint/naming-convention': [

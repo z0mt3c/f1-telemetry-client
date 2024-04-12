@@ -134,7 +134,7 @@ describe('F1TelemetryClient', () => {
         const data = JSON.parse(line.toString()) as { packetID: string, message: any, parsed: PacketBase }
         it(`L${lineNumber++}: ${data.packetID}`, () => {
           expect(true).toBeTruthy()
-          const bufferData = data?.message?.data ?? data?.message
+          const bufferData: number[] = data?.message?.data ?? data?.message
           const parsed: any = parseMessage(bufferData)
           expect(parsed.m_header.m_packetFormat).toEqual(year)
           expect(bufferData.length).toEqual(

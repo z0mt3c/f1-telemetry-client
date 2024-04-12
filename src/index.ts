@@ -182,7 +182,7 @@ class F1TelemetryClient extends EventEmitter {
       this.bigintEnabled
     )
 
-    if ((parsedMessage == null) || (parsedMessage.packetData == null)) {
+    if ((parsedMessage?.packetData == null)) {
       return
     }
 
