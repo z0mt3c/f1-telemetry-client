@@ -14,6 +14,7 @@ export interface PacketHeader extends PacketHeaderBase {
   m_overallFrameIdentifier?: number
   m_playerCarIndex: number
   m_secondaryPlayerCarIndex?: number
+  _ip_address?: string
 }
 
 export interface PacketBase {

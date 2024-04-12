@@ -16,7 +16,7 @@ module.exports = {
         selector: 'property',
         format: null,
         filter: {
-          regex: '^(m_[A-Za-z0-9]+|[0-9]+)$',
+          regex: '^(m_[A-Za-z0-9]+|[0-9]+|_[A-Za-z0-9_]+)$',
           match: true,
         }
       }
