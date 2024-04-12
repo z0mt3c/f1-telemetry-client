@@ -82,11 +82,11 @@ export interface PacketMotionExData extends PacketBase {
   m_angularAccelerationZ: number
   m_frontWheelsAngle: number
   m_wheelVertForce: number[]
-  m_frontAeroHeight: number
-  m_rearAeroHeight: number
-  m_frontRollAngle: number
-  m_rearRollAngle: number
-  m_chassisYaw: number
+  m_frontAeroHeight?: number
+  m_rearAeroHeight?: number
+  m_frontRollAngle?: number
+  m_rearRollAngle?: number
+  m_chassisYaw?: number
 }
 
 export interface PacketLapData extends PacketBase {
@@ -305,7 +305,7 @@ export interface CarStatusData {
 
 export interface PacketCarSetupData extends PacketBase {
   m_carSetups: CarSetupData[]
-  m_nextFrontWingValue: number
+  m_nextFrontWingValue?: number
 }
 
 export interface CarSetupData {
