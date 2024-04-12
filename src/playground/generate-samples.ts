@@ -70,7 +70,7 @@ for (let year = 2018; year <= 2023; year++) {
 
   while ((line = liner?.next() ?? false) !== false) {
     const data = JSON.parse(line?.toString() ?? null)
-    const bufferData = data?.message?.data ?? data?.message
+    const bufferData: number[] = data?.message?.data ?? data?.message
     const parsed = parseMessage(bufferData)
     writeTSFile(parsed, `${year}-${lineNumber++}`)
   }

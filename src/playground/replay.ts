@@ -35,8 +35,8 @@ const start = async (): Promise<void> => {
     read += line.length
     if (no++ >= startLine) {
       const data = JSON.parse(line.toString()) as { time: string, message: any }
-      const bufferData = data?.message?.data ?? data?.message
-      const buffer: any = Buffer.from(bufferData)
+      const bufferData: number[] = data?.message?.data ?? data?.message
+      const buffer: Buffer = Buffer.from(bufferData)
       const time = new Date(data.time)
       const timeToSleep = lastEventAt != null ? ((time.getTime() - lastEventAt) / speed) : 0
       if (timeToSleep > 0) await sleep(timeToSleep)
