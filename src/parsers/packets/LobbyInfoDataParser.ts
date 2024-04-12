@@ -17,7 +17,9 @@ export class LobbyInfoDataParser extends F1Parser<LobbyInfoData> {
     }
 
     if (packetFormat >= 2024) {
-      this.uint8('m_yourTelemetry').uint8('m_showOnlineNames').uint8('m_techLevel')
+      this.uint8('m_yourTelemetry')
+        .uint8('m_showOnlineNames')
+        .uint16('m_techLevel')
     }
 
     this.uint8('m_readyStatus')
