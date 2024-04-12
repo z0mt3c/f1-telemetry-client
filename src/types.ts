@@ -9,6 +9,7 @@ import type {
 } from './parsers/packets'
 import type { PacketTyreSetsDataParser } from './parsers/packets/PacketTyreSetsDataParser'
 import type { PacketMotionExDataParser } from './parsers/packets/PacketMotionExDataParser'
+import type { RemoteInfo } from 'node:dgram'
 
 export interface Options {
   port?: number
@@ -41,6 +42,7 @@ export type PacketParser =
 export interface ParsedMessage {
   packetID: string
   packetData: PacketParser
+  remoteInfo?: RemoteInfo
   message?: Buffer
 }
 

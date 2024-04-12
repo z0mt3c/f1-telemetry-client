@@ -24,6 +24,7 @@ import type { Address, Options, ParsedMessage } from './types'
 import { PacketTyreSetsDataParser } from './parsers/packets/PacketTyreSetsDataParser'
 import { PacketMotionExDataParser } from './parsers/packets/PacketMotionExDataParser'
 import type { PacketHeader } from './parsers/packets/types'
+import type { RemoteInfo } from 'node:dgram'
 import { PacketTimeTrialDataParser } from './parsers/packets/PacketTimeTrialDataParser'
 
 const DEFAULT_PORT = 20777
@@ -58,10 +59,12 @@ class F1TelemetryClient extends EventEmitter {
    *
    * @param {Buffer} message
    * @param bigintEnabled
+   * @param remoteInfo
    */
   static parseBufferMessage (
     message: Buffer,
-    bigintEnabled = false
+    bigintEnabled = false,
+    remoteInfo?: RemoteInfo
   ): ParsedMessage | undefined {
     const { m_packetFormat, m_packetId } = F1TelemetryClient.parsePacketHeader(
       message,
@@ -76,9 +79,10 @@ class F1TelemetryClient extends EventEmitter {
 
     const packetData = new Parser(message, m_packetFormat, bigintEnabled)
     const packetID = Object.keys(constants.PACKETS)[m_packetId]
+    if (remoteInfo != null && packetData?.data != null) packetData.data.m_header._ip_address = remoteInfo.address
 
     // emit parsed message
-    return { packetData, packetID, message }
+    return { packetData, packetID, message, remoteInfo }
   }
 
   /**
@@ -175,7 +179,7 @@ class F1TelemetryClient extends EventEmitter {
    *
    * @param {Buffer} message
    */
-  handleMessage (message: Buffer): void {
+  handleMessage (message: Buffer, remoteInfo: RemoteInfo): void {
     if (this.forwardAddresses != null) {
       // bridge message
       this.bridgeMessage(message)
@@ -183,7 +187,8 @@ class F1TelemetryClient extends EventEmitter {
 
     const parsedMessage = F1TelemetryClient.parseBufferMessage(
       message,
-      this.bigintEnabled
+      this.bigintEnabled,
+      remoteInfo
     )
 
     if ((parsedMessage?.packetData == null)) {
@@ -192,7 +197,7 @@ class F1TelemetryClient extends EventEmitter {
 
     // emit parsed message
     this.emit(parsedMessage.packetID, parsedMessage.packetData.data)
-    this.emit('raw', parsedMessage)
+    this.emit('raw', parsedMessage, remoteInfo)
   }
 
   /**
@@ -237,7 +242,7 @@ class F1TelemetryClient extends EventEmitter {
       this.socket.setBroadcast(true)
     })
 
-    this.socket.on('message', m => { this.handleMessage(m) })
+    this.socket.on('message', (m: Buffer, remoteInfo: RemoteInfo) => { this.handleMessage(m, remoteInfo) })
     this.socket.bind({
       port: this.port,
       exclusive: false
