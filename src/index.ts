@@ -20,7 +20,7 @@ import {
   PacketSessionHistoryDataParser
 } from './parsers/packets'
 import * as packetTypes from './parsers/packets/types'
-import type { Address, Options, ParsedMessage } from './types'
+import type { Address, Options, PacketData, ParsedMessage } from './types'
 import { PacketTyreSetsDataParser } from './parsers/packets/PacketTyreSetsDataParser'
 import { PacketMotionExDataParser } from './parsers/packets/PacketMotionExDataParser'
 import type { PacketHeader } from './parsers/packets/types'
@@ -65,7 +65,7 @@ class F1TelemetryClient extends EventEmitter {
     message: Buffer,
     bigintEnabled = false,
     remoteInfo?: RemoteInfo
-  ): ParsedMessage | undefined {
+  ): ParsedMessage<PacketData> | undefined {
     const { m_packetFormat: format, m_packetId: id } = F1TelemetryClient.parsePacketHeader(
       message,
       bigintEnabled

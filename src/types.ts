@@ -46,11 +46,11 @@ export type PacketData =
   | PacketMotionExData
   | PacketTimeTrialData
 
-export interface ParsedMessage {
+export interface ParsedMessage<T> {
   id: number
   format: number
   name: string
-  data: PacketData
+  data: T
   remoteInfo?: RemoteInfo
   message?: Buffer
 }

@@ -1,6 +1,6 @@
 import { F1TelemetryClient } from '..'
 import * as fs from 'fs'
-import type { ParsedMessage } from '../types'
+import type { PacketData, ParsedMessage } from '../types'
 
 const client = new F1TelemetryClient({
   port: 30500,
@@ -9,7 +9,7 @@ const client = new F1TelemetryClient({
 
 fs.mkdir('./recordings', () => {})
 
-client.on('*', ({ data, id, format, message }: ParsedMessage) => {
+client.on('*', ({ data, id, format, message }: ParsedMessage<PacketData>) => {
   const mHeader = data?.m_header
   const filename = [
     'data',
