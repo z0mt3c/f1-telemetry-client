@@ -59,7 +59,7 @@ function writeTSFile (body: any, filename: string): void {
 
 const parseMessage = (data: number[]): Packet | undefined => {
   const parsed = F1TelemetryClient.parseBufferMessage(Buffer.from(data), true)
-  return parsed?.packetData?.data
+  return parsed?.data
 }
 
 for (let year = 2018; year <= 2023; year++) {

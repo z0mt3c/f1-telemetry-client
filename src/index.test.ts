@@ -17,7 +17,7 @@ const normalize = (v: unknown): unknown =>
 
 const parseMessage = (data: number[]): unknown => {
   const parsed = F1TelemetryClient.parseBufferMessage(Buffer.from(data), true)
-  return normalize(parsed?.packetData?.data)
+  return normalize(parsed?.data)
 }
 
 describe('F1TelemetryClient', () => {
