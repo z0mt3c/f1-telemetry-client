@@ -196,7 +196,8 @@ class F1TelemetryClient extends EventEmitter {
     }
 
     // emit parsed message
-    this.emit(parsedMessage.name, parsedMessage)
+    this.emit(parsedMessage.name, parsedMessage.data)
+    this.emit(parsedMessage.name + ':raw', parsedMessage)
     this.emit('*', parsedMessage)
   }
 
