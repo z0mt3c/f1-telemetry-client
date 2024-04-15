@@ -67,6 +67,13 @@ client.on(PACKETS.carDamage, console.log);
 client.on(PACKETS.sessionHistory, console.log);
 client.on(PACKETS.tyreSets, console.log);
 client.on(PACKETS.motionEx, console.log);
+client.on(PACKETS.timeTrial, console.log);
+
+// to get further communication details like remoteInfo
+client.on(PACKETS.timeTrial + ':raw', console.log);
+
+// to catch all events
+client.on('*', console.log);
 
 // to start listening:
 client.start();
