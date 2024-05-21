@@ -494,6 +494,7 @@ export interface ParticipantData {
   m_yourTelemetry?: number
   m_showOnlineNames?: number
   m_platform?: number
+  m_techLevel?: number
 }
 
 export interface WeatherForecastSample {

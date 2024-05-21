@@ -18,7 +18,9 @@ const typeMapping: Record<string, string[]> = {
     'PenaltyEvent',
     'FlashbackEvent',
     'SpeedTrapEvent',
-    'FastestLapEvent'
+    'FastestLapEvent',
+    'SafetyCarEvent',
+    'CollisionEvent'
   ],
   participants: ['PacketParticipantsData'],
   carSetups: ['PacketCarSetupData'],
@@ -62,7 +64,7 @@ const parseMessage = (data: number[]): Packet | undefined => {
   return parsed?.data
 }
 
-for (let year = 2018; year <= 2023; year++) {
+for (let year = 2018; year <= 2024; year++) {
   const file = `src/mocks/${year}.json`
   const liner = fs.existsSync(file) ? new LineByLine(file) : null
   let line = null
