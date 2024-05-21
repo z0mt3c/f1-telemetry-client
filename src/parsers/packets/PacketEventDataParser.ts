@@ -13,7 +13,9 @@ import type {
   PenaltyEventDetails,
   SpeedTrapEventDetails,
   PacketEvent,
-  GenericEvent
+  GenericEvent,
+  SafetyCarEventDetails,
+  CollisionEventDetails
 } from './types'
 import { EVENT_CODES } from '../../constants'
 import type { EventCode } from '../../constants/eventCodes'
@@ -39,6 +41,23 @@ export class FlashbackParser extends F1Parser<FlashbackEventDetails> {
     this.endianess('little')
       .uint32le('flashbackFrameIdentifier')
       .floatle('flashbackSessionTime')
+  }
+}
+
+export class SafetyCarParser extends F1Parser<SafetyCarEventDetails> {
+  constructor () {
+    super()
+    this.endianess('little')
+      .uint8('safetyCarType')
+      .uint8('eventType')
+  }
+}
+export class CollisionParser extends F1Parser<CollisionEventDetails> {
+  constructor () {
+    super()
+    this.endianess('little')
+      .uint8('vehicle1Idx')
+      .uint8('vehicle2Idx')
   }
 }
 
@@ -134,6 +153,10 @@ export class PacketEventDataParser extends F1Parser<PacketEvent> {
       this.nest('m_eventDetails', { type: new ButtonsParser() })
     } else if (eventStringCode === EVENT_CODES.Overtake) {
       this.nest('m_eventDetails', { type: new OvertakeParser() })
+    } else if (eventStringCode === EVENT_CODES.SafetyCar) {
+      this.nest('m_eventDetails', { type: new SafetyCarParser() })
+    } else if (eventStringCode === EVENT_CODES.Collision) {
+      this.nest('m_eventDetails', { type: new CollisionParser() })
     } else if (VehicleEventParser.EVENT_CODES.includes(eventStringCode)) {
       this.nest('m_eventDetails', { type: new VehicleEventParser() })
     }

@@ -67,6 +67,13 @@ client.on(PACKETS.carDamage, console.log);
 client.on(PACKETS.sessionHistory, console.log);
 client.on(PACKETS.tyreSets, console.log);
 client.on(PACKETS.motionEx, console.log);
+client.on(PACKETS.timeTrial, console.log);
+
+// to get further communication details like remoteInfo
+client.on(PACKETS.timeTrial + ':raw', console.log);
+
+// to catch all events
+client.on('*', console.log);
 
 // to start listening:
 client.start();
@@ -79,6 +86,7 @@ client.stop();
 
 The following links contain information that summarises the UDP data structures so that developers of supporting hardware or software are able to configure these to work correctly with the F1 game.
 
+- F1 2024 UDP Spec (WIP)
 - [F1 2023 UDP Spec](https://answers.ea.com/t5/General-Discussion/F1-23-UDP-Specification/td-p/12632888)
 - [F1 2022 UDP Spec](https://answers.ea.com/t5/General-Discussion/F1-22-UDP-Specification/td-p/11551274)
 - [F1 2020 UDP Spec](https://forums.codemasters.com/topic/50942-f1-2020-udp-specification/)  

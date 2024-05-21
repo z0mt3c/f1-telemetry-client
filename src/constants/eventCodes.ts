@@ -20,6 +20,8 @@ export type EventCode =
   | 'BUTN'
   | 'RDFL'
   | 'OVTK'
+  | 'SCAR'
+  | 'COLL'
 
 export const EVENT_CODES: Record<EventKeys, EventCode> = {
   SessionStarted: 'SSTA',
@@ -40,5 +42,7 @@ export const EVENT_CODES: Record<EventKeys, EventCode> = {
   Flashback: 'FLBK',
   ButtonStatus: 'BUTN',
   RedFlag: 'RDFL',
-  Overtake: 'OVTK'
+  Overtake: 'OVTK',
+  SafetyCar: 'SCAR',
+  Collision: 'COLL'
 }
