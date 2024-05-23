@@ -17,7 +17,7 @@ const normalize = (v: unknown): unknown =>
 
 const parseMessage = (data: number[]): unknown => {
   const parsed = F1TelemetryClient.parseBufferMessage(Buffer.from(data), true)
-  return normalize(parsed?.packetData?.data)
+  return normalize(parsed?.data)
 }
 
 describe('F1TelemetryClient', () => {
@@ -124,7 +124,7 @@ describe('F1TelemetryClient', () => {
     })
   })
 
-  for (let year = 2018; year <= 2023; year++) {
+  for (let year = 2018; year <= 2024; year++) {
     const file = `src/mocks/${year}.json`
     const liner = fs.existsSync(file) ? new LineByLine(file) : null
     let line = null

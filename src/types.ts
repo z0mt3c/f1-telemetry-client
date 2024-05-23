@@ -1,15 +1,21 @@
-import type {
-  PacketCarDamageDataParser,
-  PacketCarSetupDataParser, PacketCarStatusDataParser, PacketCarTelemetryDataParser,
-  PacketEventDataParser, PacketFinalClassificationDataParser,
-  PacketLapDataParser, PacketLobbyInfoDataParser,
-  PacketMotionDataParser, PacketParticipantsDataParser,
-  PacketSessionDataParser,
-  PacketSessionHistoryDataParser
-} from './parsers/packets'
-import type { PacketTyreSetsDataParser } from './parsers/packets/PacketTyreSetsDataParser'
-import type { PacketMotionExDataParser } from './parsers/packets/PacketMotionExDataParser'
 import type { RemoteInfo } from 'node:dgram'
+import {
+  type PacketCarDamageData,
+  type PacketCarSetupData,
+  type PacketCarStatusData,
+  type PacketCarTelemetryData,
+  type PacketEvent,
+  type PacketFinalClassificationData,
+  type PacketLapData,
+  type PacketLobbyInfoData,
+  type PacketMotionData,
+  type PacketMotionExData,
+  type PacketParticipantsData,
+  type PacketSessionData,
+  type PacketSessionHistoryData,
+  type PacketTimeTrialData,
+  type PacketTyreSetsData
+} from './parsers/packets/types'
 
 export interface Options {
   port?: number
@@ -23,27 +29,30 @@ export interface Address {
   ip?: string
 }
 
-export type PacketParser =
-  | PacketSessionHistoryDataParser
-  | PacketSessionDataParser
-  | PacketMotionDataParser
-  | PacketLapDataParser
-  | PacketEventDataParser
-  | PacketParticipantsDataParser
-  | PacketCarSetupDataParser
-  | PacketCarTelemetryDataParser
-  | PacketCarStatusDataParser
-  | PacketCarDamageDataParser
-  | PacketFinalClassificationDataParser
-  | PacketLobbyInfoDataParser
-  | PacketTyreSetsDataParser
-  | PacketMotionExDataParser
+export type PacketData =
+  | PacketSessionHistoryData
+  | PacketSessionData
+  | PacketMotionData
+  | PacketLapData
+  | PacketEvent
+  | PacketParticipantsData
+  | PacketCarSetupData
+  | PacketCarTelemetryData
+  | PacketCarStatusData
+  | PacketCarDamageData
+  | PacketFinalClassificationData
+  | PacketLobbyInfoData
+  | PacketTyreSetsData
+  | PacketMotionExData
+  | PacketTimeTrialData
 
-export interface ParsedMessage {
-  packetID: string
-  packetData: PacketParser
+export interface ParsedMessage<T> {
+  id: number
+  format: number
+  name: string
+  data: T
   remoteInfo?: RemoteInfo
   message?: Buffer
 }
 
-export type EventKeys = 'SessionStarted' | 'SessionEnded' | 'FastestLap' | 'Retirement' | 'DRSEnabled' | 'DRSDisabled' | 'TeammateInPits' | 'ChequeredFlag' | 'RaceWinner' | 'PenaltyIssued' | 'SpeedTrapTriggered' | 'StartLights' | 'LightsOut' | 'DriveThroughServed' | 'StopGoServed' | 'Flashback' | 'ButtonStatus' | 'RedFlag' | 'Overtake'
+export type EventKeys = 'SessionStarted' | 'SessionEnded' | 'FastestLap' | 'Retirement' | 'DRSEnabled' | 'DRSDisabled' | 'TeammateInPits' | 'ChequeredFlag' | 'RaceWinner' | 'PenaltyIssued' | 'SpeedTrapTriggered' | 'StartLights' | 'LightsOut' | 'DriveThroughServed' | 'StopGoServed' | 'Flashback' | 'ButtonStatus' | 'RedFlag' | 'Overtake' | 'SafetyCar' | 'Collision'

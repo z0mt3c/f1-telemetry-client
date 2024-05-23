@@ -4,12 +4,14 @@ const MERCEDES_COLOR = '#00D2BE'
 const FERRARI_COLOR = '#DC0000'
 const RED_BULL_COLOR = '#0c1744'
 const ALPHA_TAURI_COLOR = '#20394C'
+const RB_COLOR = '#1434cb'
 const ASTON_MARTIN_COLOR = '#00352F'
 const WILLIAMS_COLOR = '#00A3E0'
 const ALPINE_COLOR = '#005BA9'
 const HAAS_COLOR = '#FFFFFF'
 const MCLAREN_COLOR = '#FF8000'
 const ALFA_ROMEO_COLOR = '#84020A'
+const SAUBER_COLOR = '#00e701'
 const LOTUS_COLOR = '#fcd56d'
 const JORDAN_COLOR = '#006F62'
 const BENTETTON_COLOR = '#fcd56d'
@@ -50,10 +52,10 @@ export const TEAMS: Record<number, Team> = {
   3: { name: 'Williams', color: WILLIAMS_COLOR },
   4: { name: 'Aston Martin', color: ASTON_MARTIN_COLOR },
   5: { name: 'Alpine', color: ALPINE_COLOR },
-  6: { name: 'Alpha Tauri', color: ALPHA_TAURI_COLOR },
+  6: { name: 'RB', color: RB_COLOR },
   7: { name: 'Haas', color: HAAS_COLOR },
   8: { name: 'McLaren', color: MCLAREN_COLOR },
-  9: { name: 'Alfa Romeo', color: ALFA_ROMEO_COLOR },
+  9: { name: 'Sauber', color: SAUBER_COLOR },
   10: { name: 'McLaren 1988', color: MCLAREN_COLOR },
   11: { name: 'McLaren 1991', color: MCLAREN_COLOR },
   12: { name: 'Williams 1992', color: WILLIAMS_COLOR },
@@ -85,7 +87,7 @@ export const TEAMS: Record<number, Team> = {
   38: { name: 'Williams 2003', color: WILLIAMS_COLOR },
   39: { name: 'Brawn 2009', color: MCLAREN_COLOR },
   40: { name: 'Lotus 1978', color: LOTUS_COLOR },
-  41: { name: 'INVALID', color: 'INVALID' },
+  41: { name: 'F1 Generic', color: '#FFFFFF' },
   42: { name: 'Art GP ’19', color: ART_GRAND_PRIX_COLOR_19 },
   43: { name: 'Campos ’19', color: CAMPOS_VEXATEC_COLOR_19 },
   44: { name: 'Carlin ’19', color: CARLIN_COLOR_19 },
@@ -169,5 +171,16 @@ export const TEAMS: Record<number, Team> = {
   138: { name: 'Trident 22', color: TRIDENT_COLOR },
   139: { name: 'Hitech 22', color: HITECH_COLOR },
   140: { name: 'Art GP 22', color: ART_GRAND_PRIX_COLOR },
+  143: { name: 'Art GP 23', color: ART_GRAND_PRIX_COLOR },
+  144: { name: 'Campos 23', color: CAMPOS_VEXATEC_COLOR },
+  145: { name: 'Carlin 23', color: CARLIN_COLOR },
+  146: { name: 'PHM 23', color: '#FFFFFF' },
+  147: { name: 'Dams 23', color: DAMS_COLOR },
+  148: { name: 'Hitech 23', color: HITECH_COLOR },
+  149: { name: 'MP Motorsport 23', color: MP_MOTORSPORT_COLOR },
+  150: { name: 'Prema 23', color: PREMA_COLOR },
+  151: { name: 'Trident 23', color: TRIDENT_COLOR },
+  152: { name: 'Van Amersfoort Racing 23', color: '#f55702' },
+  153: { name: 'Virtuosi 23', color: UNI_VIRTUOSI_COLOR },
   255: { name: 'Not found', color: '#FFFFFF' }
 }

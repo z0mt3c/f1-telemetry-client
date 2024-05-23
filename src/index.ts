@@ -20,11 +20,12 @@ import {
   PacketSessionHistoryDataParser
 } from './parsers/packets'
 import * as packetTypes from './parsers/packets/types'
-import type { Address, Options, ParsedMessage } from './types'
+import type { Address, Options, PacketData, ParsedMessage } from './types'
 import { PacketTyreSetsDataParser } from './parsers/packets/PacketTyreSetsDataParser'
 import { PacketMotionExDataParser } from './parsers/packets/PacketMotionExDataParser'
 import type { PacketHeader } from './parsers/packets/types'
 import type { RemoteInfo } from 'node:dgram'
+import { PacketTimeTrialDataParser } from './parsers/packets/PacketTimeTrialDataParser'
 
 const DEFAULT_PORT = 20777
 const FORWARD_ADDRESSES = undefined
@@ -64,24 +65,23 @@ class F1TelemetryClient extends EventEmitter {
     message: Buffer,
     bigintEnabled = false,
     remoteInfo?: RemoteInfo
-  ): ParsedMessage | undefined {
-    const { m_packetFormat, m_packetId } = F1TelemetryClient.parsePacketHeader(
+  ): ParsedMessage<PacketData> | undefined {
+    const { m_packetFormat: format, m_packetId: id } = F1TelemetryClient.parsePacketHeader(
       message,
       bigintEnabled
     )
 
-    const Parser = F1TelemetryClient.getParserByPacketId(m_packetId)
+    const Parser = F1TelemetryClient.getParserByPacketId(id)
 
     if (Parser == null) {
       return
     }
 
-    const packetData = new Parser(message, m_packetFormat, bigintEnabled)
-    const packetID = Object.keys(constants.PACKETS)[m_packetId]
-    if (remoteInfo != null && packetData?.data != null) packetData.data.m_header._ip_address = remoteInfo.address
+    const { data } = new Parser(message, format, bigintEnabled)
+    const name = Object.keys(constants.PACKETS)[id]
 
     // emit parsed message
-    return { packetData, packetID, message, remoteInfo }
+    return { id, format, name, data, message, remoteInfo }
   }
 
   /**
@@ -166,6 +166,9 @@ class F1TelemetryClient extends EventEmitter {
       case PACKETS.motionEx:
         return PacketMotionExDataParser
 
+      case PACKETS.timeTrial:
+        return PacketTimeTrialDataParser
+
       default:
         return null
     }
@@ -174,6 +177,7 @@ class F1TelemetryClient extends EventEmitter {
   /**
    *
    * @param {Buffer} message
+   * @param remoteInfo
    */
   handleMessage (message: Buffer, remoteInfo: RemoteInfo): void {
     if (this.forwardAddresses != null) {
@@ -187,13 +191,14 @@ class F1TelemetryClient extends EventEmitter {
       remoteInfo
     )
 
-    if ((parsedMessage?.packetData == null)) {
+    if ((parsedMessage?.data == null)) {
       return
     }
 
     // emit parsed message
-    this.emit(parsedMessage.packetID, parsedMessage.packetData.data)
-    this.emit('raw', parsedMessage, remoteInfo)
+    this.emit(parsedMessage.name, parsedMessage.data)
+    this.emit(parsedMessage.name + ':raw', parsedMessage)
+    this.emit('*', parsedMessage)
   }
 
   /**

@@ -4,6 +4,7 @@ import { MarshalZoneParser } from './MarshalZoneParser'
 import { PacketHeaderParser } from './PacketHeaderParser'
 import type { PacketSessionData } from './types'
 import { WeatherForecastSampleParser } from './WeatherForecastSampleParser'
+import { Parser } from 'binary-parser'
 
 export class PacketSessionDataParser extends F1Parser<PacketSessionData> {
   data: PacketSessionData
@@ -93,6 +94,40 @@ export class PacketSessionDataParser extends F1Parser<PacketSessionData> {
         .uint8('m_numSafetyCarPeriods')
         .uint8('m_numVirtualSafetyCarPeriods')
         .uint8('m_numRedFlagPeriods')
+    }
+
+    if (packetFormat >= 2024) {
+      this.uint8('m_equalCarPerformance')
+        .uint8('m_recoveryMode')
+        .uint8('m_flashbackLimit')
+        .uint8('m_surfaceType')
+        .uint8('m_lowFuelMode')
+        .uint8('m_raceStarts')
+        .uint8('m_tyreTemperature')
+        .uint8('m_pitLaneTyreSim')
+        .uint8('m_carDamage')
+        .uint8('m_carDamageRate')
+        .uint8('m_collisions')
+        .uint8('m_collisionsOffForFirstLapOnly')
+        .uint8('m_mpUnsafePitRelease')
+        .uint8('m_mpOffForGriefing')
+        .uint8('m_cornerCuttingStringency')
+        .uint8('m_parcFermeRules')
+        .uint8('m_pitStopExperience')
+        .uint8('m_safetyCar')
+        .uint8('m_safetyCarExperience')
+        .uint8('m_formationLap')
+        .uint8('m_formationLapExperience')
+        .uint8('m_redFlags')
+        .uint8('m_affectsLicenceLevelSolo')
+        .uint8('m_affectsLicenceLevelMP')
+        .uint8('m_numSessionsInWeekend')
+        .array('m_weekendStructure', {
+          length: 12,
+          type: new Parser().uint8('')
+        })
+        .floatle('m_sector2LapDistanceStart')
+        .floatle('m_sector3LapDistanceStart')
     }
 
     this.data = this.fromBuffer(buffer)

@@ -38,6 +38,7 @@ export type PacketTypes =
   | 'sessionHistory'
   | 'tyreSets'
   | 'motionEx'
+  | 'timeTrial'
 
 export type PacketSize = number
 

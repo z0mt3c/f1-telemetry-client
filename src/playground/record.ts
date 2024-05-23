@@ -1,6 +1,6 @@
 import { F1TelemetryClient } from '..'
 import * as fs from 'fs'
-import type { ParsedMessage } from '../types'
+import type { PacketData, ParsedMessage } from '../types'
 
 const client = new F1TelemetryClient({
   port: 30500,
@@ -9,32 +9,32 @@ const client = new F1TelemetryClient({
 
 fs.mkdir('./recordings', () => {})
 
-client.on('raw', ({ packetData, packetID, message }: ParsedMessage) => {
-  const mHeader = packetData?.data?.m_header
+client.on('*', ({ data, id, format, message }: ParsedMessage<PacketData>) => {
+  const mHeader = data?.m_header
   const filename = [
     'data',
     mHeader?.m_gameYear ?? 'unknown',
-    mHeader?.m_packetFormat,
+    format,
     mHeader?.m_sessionUID ?? 'no-session'
   ]
     .filter(n => n !== null)
     .join('-')
 
-  const data =
+  const serializable =
     JSON.stringify(
       {
         time: new Date().toJSON(),
         gameYear: mHeader?.m_gameYear ?? 'unknown',
-        format: mHeader?.m_packetFormat,
-        packetID,
+        format,
+        packetID: id,
         message,
-        parsed: packetData?.data
+        parsed: data
       },
       (key, value) => (typeof value === 'bigint' ? value.toString() : value)
     ) + '\n'
 
-  fs.appendFileSync(`./recordings/${filename}-${packetID}.txt`, data)
-  fs.appendFileSync(`./recordings/${filename}-all.txt`, data)
+  fs.appendFileSync(`./recordings/${filename}-${id}.txt`, serializable)
+  fs.appendFileSync(`./recordings/${filename}-all.txt`, serializable)
 })
 
 client.start();

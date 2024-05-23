@@ -16,5 +16,8 @@ export const GAME_MODES: Record<number, string> = {
   20: 'Career 22 Online',
   21: 'Career 23',
   22: 'Career 23 Online',
+  23: 'Driver Career 24',
+  24: 'Career 24 Online',
+  25: 'My Team Career 24',
   127: 'Benchmark'
 }
