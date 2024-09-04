@@ -22,7 +22,7 @@ import { RESULT_STATUS } from './resultStatus'
 import { RULESETS } from './rulesets'
 import { SAFETY_CAR_STATUSES } from './safetyCarStatuses'
 import { SESSION_LENGTH } from './sessionLength'
-import { SESSION_TYPES } from './sessionTypes'
+import { SESSION_TYPES, SESSION_TYPES_UNTIL_2023 } from './sessionTypes'
 import { SURFACES } from './surfaces'
 import { TEAMS } from './teams'
 import { TRACKS } from './tracks'
@@ -48,6 +48,7 @@ export {
   RULESETS,
   SAFETY_CAR_STATUSES,
   SESSION_TYPES,
+  SESSION_TYPES_UNTIL_2023,
   SESSION_LENGTH,
   SURFACES,
   TEAMS,
