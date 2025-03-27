@@ -43,5 +43,8 @@ export class CarDamageDataParser extends F1Parser<CarDamageData> {
     if (packetFormat >= 2022) {
       this.uint8('m_engineBlown').uint8('m_engineSeized')
     }
+
+    // TODO: missing 2025: 1041, 2024: 953 = 88 / 22 = 4
+    if (packetFormat >= 2025) this.array('m_rest', { length: 4, type: 'uint8' })
   }
 }

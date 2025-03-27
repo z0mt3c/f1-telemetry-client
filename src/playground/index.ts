@@ -33,5 +33,8 @@ client.start();
   'uncaughtException',
   'SIGTERM'
 ].forEach(eventType => {
-  (process as NodeJS.EventEmitter).on(eventType, () => client.stop())
+  (process as NodeJS.EventEmitter).on(eventType, (e) => {
+    console.error('stopping', e)
+    client.stop()
+  })
 })

@@ -39,5 +39,9 @@ export class FinalClassificationDataParser extends F1Parser<FinalClassificationD
         type: new Parser().uint8('')
       })
     }
+
+    if (packetFormat >= 2025) {
+      this.uint8('m_unknown')
+    }
   }
 }

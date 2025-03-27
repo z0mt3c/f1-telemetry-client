@@ -20,7 +20,7 @@ import {
   PacketSessionHistoryDataParser
 } from './parsers/packets'
 import * as packetTypes from './parsers/packets/types'
-import type { Address, Options, PacketData, ParsedMessage } from './types'
+import { type Address, type Options, type PacketData, type ParsedMessage, ParserError } from './types'
 import { PacketTyreSetsDataParser } from './parsers/packets/PacketTyreSetsDataParser'
 import { PacketMotionExDataParser } from './parsers/packets/PacketMotionExDataParser'
 import type { PacketHeader } from './parsers/packets/types'
@@ -66,7 +66,7 @@ class F1TelemetryClient extends EventEmitter {
     bigintEnabled = false,
     remoteInfo?: RemoteInfo
   ): ParsedMessage<PacketData> | undefined {
-    const { m_packetFormat: format, m_packetId: id } = F1TelemetryClient.parsePacketHeader(
+    const { m_packetFormat: format, m_packetId: id, m_gameYear: year } = F1TelemetryClient.parsePacketHeader(
       message,
       bigintEnabled
     )
@@ -77,11 +77,14 @@ class F1TelemetryClient extends EventEmitter {
       return
     }
 
-    const { data } = new Parser(message, format, bigintEnabled)
     const name = Object.keys(constants.PACKETS)[id]
-
-    // emit parsed message
-    return { id, format, name, data, message, remoteInfo }
+    const context = { id, year, format, name, message, remoteInfo }
+    try {
+      const { data } = new Parser(message, format, bigintEnabled)
+      return { ...context, data }
+    } catch (error) {
+      throw new ParserError('Parsing failed', error, context)
+    }
   }
 
   /**
@@ -185,19 +188,24 @@ class F1TelemetryClient extends EventEmitter {
       this.bridgeMessage(message)
     }
 
-    const parsedMessage = F1TelemetryClient.parseBufferMessage(
-      message,
-      this.bigintEnabled,
-      remoteInfo
-    )
+    try {
+      const parsedMessage = F1TelemetryClient.parseBufferMessage(
+        message,
+        this.bigintEnabled,
+        remoteInfo
+      )
 
-    if ((parsedMessage?.data == null)) {
-      return
+      this.emitPackage(parsedMessage)
+    } catch (error) {
+      this.emit('error', error)
+      if (error instanceof ParserError) this.emit('*', error.context)
     }
+  }
 
-    // emit parsed message
-    this.emit(parsedMessage.name, parsedMessage.data)
+  private emitPackage (parsedMessage?: ParsedMessage<PacketData>): void {
+    if ((parsedMessage?.data == null)) return
     this.emit(parsedMessage.name + ':raw', parsedMessage)
+    this.emit(parsedMessage.name, parsedMessage.data)
     this.emit('*', parsedMessage)
   }
 

@@ -62,6 +62,9 @@ export class PacketMotionExDataParser extends F1Parser<PacketMotionExData> {
         length: 4,
         type: new Parser().floatle('')
       })
+
+    // TODO: 2025: 273, 2024: 237 = 36
+    if (packetFormat >= 2025) this.array('m_wheelGroundContact', { length: 9, type: 'floatle' })
     this.data = this.fromBuffer(buffer)
   }
 }

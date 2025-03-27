@@ -131,18 +131,20 @@ describe('F1TelemetryClient', () => {
     let lineNumber = 1
     describe(`F1 ${year}`, () => {
       while ((line = liner?.next()) !== false && line != null) {
-        const data = JSON.parse(line.toString()) as { packetID: string, message: any, parsed: PacketBase }
+        if (line.length === 0) continue
+        const data = JSON.parse(line.toString()) as { packetID: number | string, message: any, parsed: PacketBase, format?: number }
         it(`L${lineNumber++}: ${data.packetID}`, () => {
           expect(true).toBeTruthy()
           const bufferData: number[] = data?.message?.data ?? data?.message
-          const parsed: any = parseMessage(bufferData)
-          expect(parsed.m_header.m_packetFormat).toEqual(year)
+          const packetID = typeof data?.packetID === 'number' ? data?.packetID : null
           expect(bufferData.length).toEqual(
             F1TelemetryClient.getPacketSize(
-              data.parsed.m_header.m_packetFormat,
-              data.parsed.m_header.m_packetId
+              data?.format ?? data.parsed.m_header.m_packetFormat,
+              packetID ?? data.parsed.m_header.m_packetId
             )
           )
+          const parsed: any = parseMessage(bufferData)
+          expect(parsed.m_header.m_packetFormat).toEqual(year)
           expect(parsed).toEqual(data.parsed)
         })
       }

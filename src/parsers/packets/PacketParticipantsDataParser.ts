@@ -22,8 +22,9 @@ export class PacketParticipantsDataParser extends F1Parser<PacketParticipantsDat
       this.uint8('m_numActiveCars')
     }
 
+    const length = packetFormat >= 2020 ? 22 : 20
     this.array('m_participants', {
-      length: packetFormat >= 2020 ? 22 : 20,
+      length,
       type: new ParticipantDataParser(packetFormat)
     })
 

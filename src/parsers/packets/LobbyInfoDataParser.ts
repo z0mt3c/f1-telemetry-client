@@ -10,7 +10,8 @@ export class LobbyInfoDataParser extends F1Parser<LobbyInfoData> {
       this.uint8('m_platform')
     }
 
-    this.string('m_name', { length: 48, stripNull: true })
+    const nameLength = packetFormat >= 2025 ? 32 : 48
+    this.string('m_name', { length: nameLength, stripNull: true })
 
     if (packetFormat >= 2021) {
       this.uint8('m_carNumber')
@@ -18,8 +19,8 @@ export class LobbyInfoDataParser extends F1Parser<LobbyInfoData> {
 
     if (packetFormat >= 2024) {
       this.uint8('m_yourTelemetry')
-        .uint8('m_showOnlineNames')
-        .uint16('m_techLevel')
+      this.uint8('m_showOnlineNames')
+      this.uint16le('m_techLevel')
     }
 
     this.uint8('m_readyStatus')

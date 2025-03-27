@@ -18,21 +18,19 @@ export class ParticipantDataParser extends F1Parser<ParticipantData> {
       this.uint8('m_myTeam')
     }
 
+    const nameLength = packetFormat >= 2025 ? 32 : 48
     this.uint8('m_raceNumber')
       .uint8('m_nationality')
       .string('m_name', {
-        length: 48,
+        length: nameLength,
         stripNull: true
       })
 
-    if (packetFormat >= 2019) {
-      this.uint8('m_yourTelemetry')
-    }
-
-    if (packetFormat >= 2023) {
-      this.uint8('m_showOnlineNames')
-      if (packetFormat >= 2024) this.uint16('m_techLevel')
-      this.uint8('m_platform')
-    }
+    if (packetFormat >= 2019) this.uint8('m_yourTelemetry')
+    if (packetFormat >= 2023) this.uint8('m_showOnlineNames')
+    if (packetFormat >= 2024) this.uint16le('m_techLevel')
+    if (packetFormat >= 2023) this.uint8('m_platform')
+    if (packetFormat >= 2025) this.uint8('h_unknown')
+    if (packetFormat >= 2025) this.buffer('m_remaining', { length: 12 })
   }
 }

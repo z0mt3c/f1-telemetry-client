@@ -49,10 +49,23 @@ export type PacketData =
 export interface ParsedMessage<T> {
   id: number
   format: number
+  year: number | undefined
   name: string
-  data: T
+  data: T | undefined
   remoteInfo?: RemoteInfo
   message?: Buffer
+}
+
+export class ParserError<T> extends Error {
+  cause: unknown
+  context: Partial<ParsedMessage<T>>
+
+  constructor (message: string, cause: unknown, context: Partial<ParsedMessage<T>>) {
+    super(message)
+    this.name = 'ParserError'
+    this.cause = cause
+    this.context = context
+  }
 }
 
 export type EventKeys = 'SessionStarted' | 'SessionEnded' | 'FastestLap' | 'Retirement' | 'DRSEnabled' | 'DRSDisabled' | 'TeammateInPits' | 'ChequeredFlag' | 'RaceWinner' | 'PenaltyIssued' | 'SpeedTrapTriggered' | 'StartLights' | 'LightsOut' | 'DriveThroughServed' | 'StopGoServed' | 'Flashback' | 'ButtonStatus' | 'RedFlag' | 'Overtake' | 'SafetyCar' | 'Collision'
