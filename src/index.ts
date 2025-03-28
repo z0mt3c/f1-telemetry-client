@@ -26,6 +26,7 @@ import { PacketMotionExDataParser } from './parsers/packets/PacketMotionExDataPa
 import type { PacketHeader } from './parsers/packets/types'
 import type { RemoteInfo } from 'node:dgram'
 import { PacketTimeTrialDataParser } from './parsers/packets/PacketTimeTrialDataParser'
+import { PACKET_ID_TO_PACKET } from './constants/packets'
 
 const DEFAULT_PORT = 20777
 const FORWARD_ADDRESSES = undefined
@@ -123,8 +124,7 @@ class F1TelemetryClient extends EventEmitter {
   static getParserByPacketId (packetId: number): any {
     const { PACKETS } = constants
 
-    const packetKeys = Object.keys(PACKETS)
-    const packetType = packetKeys[packetId]
+    const packetType = PACKET_ID_TO_PACKET[packetId]
 
     switch (packetType) {
       case PACKETS.session:

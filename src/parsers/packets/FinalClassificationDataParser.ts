@@ -1,5 +1,3 @@
-import { Parser } from 'binary-parser'
-
 import { F1Parser } from '../F1Parser'
 import type { FinalClassificationData } from './types'
 
@@ -21,27 +19,24 @@ export class FinalClassificationDataParser extends F1Parser<FinalClassificationD
     }
 
     this.doublele('m_totalRaceTime')
-      .uint8('m_penaltiesTime')
+    if (packetFormat >= 2025) this.uint8('m_unknown')
+    this.uint8('m_penaltiesTime')
       .uint8('m_numPenalties')
       .uint8('m_numTyreStints')
       .array('m_tyreStintsActual', {
         length: 8,
-        type: new Parser().uint8('')
+        type: 'uint8'
       })
       .array('m_tyreStintsVisual', {
         length: 8,
-        type: new Parser().uint8('')
+        type: 'uint8'
       })
 
     if (packetFormat >= 2022) {
       this.array('m_tyreStintsEndLaps', {
         length: 8,
-        type: new Parser().uint8('')
+        type: 'uint8'
       })
-    }
-
-    if (packetFormat >= 2025) {
-      this.uint8('m_unknown')
     }
   }
 }
