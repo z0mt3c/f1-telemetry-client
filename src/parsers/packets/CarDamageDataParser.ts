@@ -1,23 +1,14 @@
-import { Parser } from 'binary-parser'
-
 import { F1Parser } from '../F1Parser'
 import type { CarDamageData } from './types'
 
 export class CarDamageDataParser extends F1Parser<CarDamageData> {
   constructor (packetFormat: number) {
     super()
-    this.array('m_tyresWear', {
-      length: 4,
-      type: new Parser().floatle('')
-    })
-      .array('m_tyresDamage', {
-        length: 4,
-        type: new Parser().uint8('')
-      })
-      .array('m_brakesDamage', {
-        length: 4,
-        type: new Parser().uint8('')
-      })
+    this.array('m_tyresWear', { length: 4, type: 'floatle' })
+      .array('m_tyresDamage', { length: 4, type: 'uint8' })
+      .array('m_brakesDamage', { length: 4, type: 'uint8' })
+
+    if (packetFormat >= 2025) this.array('m_tyreBlisters', { length: 4, type: 'uint8' })
 
     this.uint8('m_frontLeftWingDamage')
       .uint8('m_frontRightWingDamage')
@@ -43,8 +34,5 @@ export class CarDamageDataParser extends F1Parser<CarDamageData> {
     if (packetFormat >= 2022) {
       this.uint8('m_engineBlown').uint8('m_engineSeized')
     }
-
-    // TODO: missing 2025: 1041, 2024: 953 = 88 / 22 = 4
-    if (packetFormat >= 2025) this.array('m_unknown', { length: 4, type: 'uint8' })
   }
 }

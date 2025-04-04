@@ -27,6 +27,7 @@ import type { PacketHeader } from './parsers/packets/types'
 import type { RemoteInfo } from 'node:dgram'
 import { PacketTimeTrialDataParser } from './parsers/packets/PacketTimeTrialDataParser'
 import { PACKET_ID_TO_PACKET } from './constants/packets'
+import { PacketLapPositionsDataParser } from './parsers/packets/PacketLapPositionsDataParser'
 
 const DEFAULT_PORT = 20777
 const FORWARD_ADDRESSES = undefined
@@ -67,19 +68,13 @@ class F1TelemetryClient extends EventEmitter {
     bigintEnabled = false,
     remoteInfo?: RemoteInfo
   ): ParsedMessage<PacketData> | undefined {
-    const { m_packetFormat: format, m_packetId: id, m_gameYear: year } = F1TelemetryClient.parsePacketHeader(
-      message,
-      bigintEnabled
-    )
-
+    const packetHeader = F1TelemetryClient.parsePacketHeader(message, bigintEnabled)
+    const { m_packetFormat: format, m_packetId: id, m_gameYear: year } = packetHeader
+    const context = { id, year, format, message, remoteInfo, name: 'unknown', data: packetHeader }
     const Parser = F1TelemetryClient.getParserByPacketId(id)
 
-    if (Parser == null) {
-      return
-    }
-
-    const name = Object.keys(constants.PACKETS)[id]
-    const context = { id, year, format, name, message, remoteInfo }
+    if (Parser == null) throw new ParserError('No parser available', undefined, context)
+    context.name = Object.keys(constants.PACKETS)[id]
     try {
       const { data } = new Parser(message, format, bigintEnabled)
       return { ...context, data }
@@ -171,6 +166,9 @@ class F1TelemetryClient extends EventEmitter {
 
       case PACKETS.timeTrial:
         return PacketTimeTrialDataParser
+
+      case PACKETS.lapPositions:
+        return PacketLapPositionsDataParser
 
       default:
         return null

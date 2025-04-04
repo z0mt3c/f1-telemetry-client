@@ -3,25 +3,34 @@ import { Parser } from 'binary-parser'
 import { F1Parser } from '../F1Parser'
 
 import { PacketHeaderParser } from './PacketHeaderParser'
-import type {
-  ButtonEventDetails,
-  FastestLapEventDetails,
-  FlashbackEventDetails,
-  VehicleEventDetails,
-  LightEventDetails,
-  OvertakeEventDetails,
-  PenaltyEventDetails,
-  SpeedTrapEventDetails,
-  PacketEvent,
-  GenericEvent,
-  SafetyCarEventDetails,
-  CollisionEventDetails
+import {
+  type ButtonEventDetails,
+  type FastestLapEventDetails,
+  type FlashbackEventDetails,
+  type VehicleEventDetails,
+  type LightEventDetails,
+  type OvertakeEventDetails,
+  type PenaltyEventDetails,
+  type SpeedTrapEventDetails,
+  type PacketEvent,
+  type GenericEvent,
+  type SafetyCarEventDetails,
+  type CollisionEventDetails,
+  type StopGoPenaltyServedEventDetails,
+  type DRSDisabledEventDetails,
+  type RetirementEventDetails,
+  EventCode
 } from './types'
-import { EVENT_CODES } from '../../constants'
-import type { EventCode } from '../../constants/eventCodes'
 
 export class VehicleEventParser extends F1Parser<VehicleEventDetails> {
-  static EVENT_CODES: EventCode[] = [EVENT_CODES.Retirement, EVENT_CODES.TeammateInPits, EVENT_CODES.RaceWinner, EVENT_CODES.DriveThroughServed, EVENT_CODES.StopGoServed]
+  static VEHICLE_EVENT_CODES: EventCode[] = [
+    EventCode.Retirement,
+    EventCode.TeamMateInPits,
+    EventCode.RaceWinner,
+    EventCode.DriveThroughServed,
+    EventCode.StopGoServed
+  ]
+
   constructor () {
     super()
     this.endianess('little').uint8('vehicleIdx')
@@ -52,6 +61,7 @@ export class SafetyCarParser extends F1Parser<SafetyCarEventDetails> {
       .uint8('eventType')
   }
 }
+
 export class CollisionParser extends F1Parser<CollisionEventDetails> {
   constructor () {
     super()
@@ -84,6 +94,35 @@ export class OvertakeParser extends F1Parser<OvertakeEventDetails> {
     this.endianess('little')
       .uint8('overtakingVehicleIdx')
       .uint8('beingOvertakenVehicleIdx')
+  }
+}
+
+export class DRSDisabledParser extends F1Parser<DRSDisabledEventDetails> {
+  constructor (format: number) {
+    super()
+
+    this.endianess('little')
+      .uint8('reason')
+  }
+}
+
+export class RetirementParser extends F1Parser<RetirementEventDetails> {
+  constructor (format: number) {
+    super()
+
+    this.endianess('little')
+      .uint8('vehicleIdx')
+      .uint8('reason')
+  }
+}
+
+export class StopGoParser extends F1Parser<StopGoPenaltyServedEventDetails> {
+  constructor (format: number) {
+    super()
+
+    this.endianess('little')
+      .uint8('vehicleIdx')
+      .floatle('stopTime')
   }
 }
 
@@ -139,25 +178,31 @@ export class PacketEventDataParser extends F1Parser<PacketEvent> {
       bigintEnabled
     )
 
-    if (eventStringCode === EVENT_CODES.FastestLap) {
+    if (eventStringCode === EventCode.FastestLap) {
       this.nest('m_eventDetails', { type: new FastestLapParser() })
-    } else if (eventStringCode === EVENT_CODES.SpeedTrapTriggered) {
+    } else if (eventStringCode === EventCode.SpeedTrap) {
       this.nest('m_eventDetails', { type: new SpeedTrapParser(packetFormat) })
-    } else if (eventStringCode === EVENT_CODES.PenaltyIssued) {
+    } else if (eventStringCode === EventCode.Penalty) {
       this.nest('m_eventDetails', { type: new PenaltyParser() })
-    } else if (eventStringCode === EVENT_CODES.Flashback) {
+    } else if (eventStringCode === EventCode.Flashback) {
       this.nest('m_eventDetails', { type: new FlashbackParser() })
-    } else if (eventStringCode === EVENT_CODES.StartLights) {
+    } else if (eventStringCode === EventCode.StartLights) {
       this.nest('m_eventDetails', { type: new StartLightsParser() })
-    } else if (eventStringCode === EVENT_CODES.ButtonStatus) {
+    } else if (eventStringCode === EventCode.ButtonStatus) {
       this.nest('m_eventDetails', { type: new ButtonsParser() })
-    } else if (eventStringCode === EVENT_CODES.Overtake) {
+    } else if (eventStringCode === EventCode.Overtake) {
       this.nest('m_eventDetails', { type: new OvertakeParser() })
-    } else if (eventStringCode === EVENT_CODES.SafetyCar) {
+    } else if (eventStringCode === EventCode.Retirement) {
+      if (packetFormat >= 2025) this.nest('m_eventDetails', { type: new RetirementParser(packetFormat) })
+    } else if (eventStringCode === EventCode.DRSDisabled) {
+      if (packetFormat >= 2025) this.nest('m_eventDetails', { type: new DRSDisabledParser(packetFormat) })
+    } else if (eventStringCode === EventCode.StopGoServed) {
+      if (packetFormat >= 2025) this.nest('m_eventDetails', { type: new StopGoParser(packetFormat) })
+    } else if (eventStringCode === EventCode.SafetyCar) {
       this.nest('m_eventDetails', { type: new SafetyCarParser() })
-    } else if (eventStringCode === EVENT_CODES.Collision) {
+    } else if (eventStringCode === EventCode.Collision) {
       this.nest('m_eventDetails', { type: new CollisionParser() })
-    } else if (VehicleEventParser.EVENT_CODES.includes(eventStringCode)) {
+    } else if (VehicleEventParser.VEHICLE_EVENT_CODES.includes(eventStringCode)) {
       this.nest('m_eventDetails', { type: new VehicleEventParser() })
     }
 

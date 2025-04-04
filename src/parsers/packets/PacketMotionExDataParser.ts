@@ -63,8 +63,20 @@ export class PacketMotionExDataParser extends F1Parser<PacketMotionExData> {
         type: new Parser().floatle('')
       })
 
-    // TODO: 2025: 273, 2024: 237 = 36
-    if (packetFormat >= 2025) this.array('m_wheelGroundContact', { length: 9, type: 'floatle' })
+    if (packetFormat >= 2024) {
+      this.floatle('m_frontAeroHeight')
+        .floatle('m_rearAeroHeight')
+        .floatle('m_frontRollAngle')
+        .floatle('m_rearRollAngle')
+        .floatle('m_chassisYaw')
+    }
+
+    if (packetFormat >= 2025) {
+      this.floatle('m_chassisPitch')
+        .array('m_wheelCamber', { length: 4, type: 'floatle' })
+        .array('m_wheelCamberGain', { length: 4, type: 'floatle' })
+    }
+
     this.data = this.fromBuffer(buffer)
   }
 }

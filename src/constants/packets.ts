@@ -13,7 +13,8 @@ export enum PACKETS {
   sessionHistory = 'sessionHistory',
   tyreSets = 'tyreSets',
   motionEx = 'motionEx',
-  timeTrial = 'timeTrial'
+  timeTrial = 'timeTrial',
+  lapPositions = 'lapPositions'
 }
 
 export const PACKET_ID_TO_PACKET: Record<number, PACKETS> = {
@@ -31,5 +32,6 @@ export const PACKET_ID_TO_PACKET: Record<number, PACKETS> = {
   11: PACKETS.sessionHistory,
   12: PACKETS.tyreSets,
   13: PACKETS.motionEx,
-  14: PACKETS.timeTrial
+  14: PACKETS.timeTrial,
+  15: PACKETS.lapPositions
 }

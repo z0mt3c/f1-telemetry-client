@@ -41,7 +41,7 @@ client.on('error', ({ cause, context }: ParserError<PacketData>) => {
   try {
     const { format, id, year, message, name } = context
     const causeMessage = cause instanceof Error ? cause.message : undefined
-    console.log('Error', { format, id, name, year, causeMessage })
+    console.log('Error', { format, id, name, year, causeMessage, message })
 
     const filename = [
       'error',

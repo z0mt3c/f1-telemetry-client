@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import LineByLine from 'n-readlines'
 import { PACKETS } from '../constants'
 import { rimraf } from 'rimraf'
-import type { Packet } from '../parsers/packets/types'
+import { EventCode, type Packet } from '../parsers/packets/types'
 
 const typeMapping: Record<string, string[]> = {
   motion: ['PacketMotionData'],
@@ -20,7 +20,10 @@ const typeMapping: Record<string, string[]> = {
     'SpeedTrapEvent',
     'FastestLapEvent',
     'SafetyCarEvent',
-    'CollisionEvent'
+    'CollisionEvent',
+    'DRSDisabledEvent',
+    'RetirementEvent',
+    'EventCode'
   ],
   participants: ['PacketParticipantsData'],
   carSetups: ['PacketCarSetupData'],
@@ -44,18 +47,21 @@ const normalize = (v: unknown): any =>
     )
   )
 
+// eslint-disable-next-line
+const findKey = (types: any, value: any): string => Object.keys(types)[Object.values(types).indexOf(value)]
+
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any
 function writeTSFile (body: any, filename: string): void {
   const packet = Object.values(PACKETS)[body.m_header.m_packetId]
   const type = typeMapping[packet]
   fs.writeFileSync(
     `./src/samples/${filename}-${type.join('-')}.ts`,
-    `import type {${type.join(',')}} from '../parsers/packets/types';\nexport const SAMPLE: ${type.join(
+    `import {${type.join(',')}} from '../parsers/packets/types';\nexport const SAMPLE: ${type.join(
       '|'
     )} = ${JSON.stringify(normalize(body), null, '  ')};`.replace(
       /"m_sessionUID": "([0-9]+)"/g,
       '"m_sessionUID": BigInt(\'$1\')'
-    )
+    ).replace(/"m_eventStringCode": "([A-Za-z]+)"/g, (match, type) => 'm_eventStringCode: EventCode.' + findKey(EventCode, type))
   )
 }
 
@@ -64,7 +70,7 @@ const parseMessage = (data: number[]): Packet | undefined => {
   return parsed?.data
 }
 
-for (let year = 2018; year <= 2024; year++) {
+for (let year = 2018; year <= 2025; year++) {
   const file = `src/mocks/${year}.json`
   const liner = fs.existsSync(file) ? new LineByLine(file) : null
   let line = null

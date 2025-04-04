@@ -1,5 +1,12 @@
 import { F1Parser } from '../F1Parser'
-import type { ParticipantData } from './types'
+import type { LiveryColour, ParticipantData } from './types'
+
+class LiveryColourParser extends F1Parser<LiveryColour> {
+  constructor () {
+    super()
+    this.endianess('little').uint8('red').uint8('green').uint8('blue')
+  }
+}
 
 export class ParticipantDataParser extends F1Parser<ParticipantData> {
   constructor (packetFormat: number) {
@@ -30,6 +37,9 @@ export class ParticipantDataParser extends F1Parser<ParticipantData> {
     if (packetFormat >= 2023) this.uint8('m_showOnlineNames')
     if (packetFormat >= 2024) this.uint16le('m_techLevel')
     if (packetFormat >= 2023) this.uint8('m_platform')
-    if (packetFormat >= 2025) this.array('h_unknown', { length: 13, type: 'uint8' })
+    if (packetFormat >= 2025) {
+      this.uint8('m_numColours')
+        .array('m_liveryColours', { length: 4, type: new LiveryColourParser() })
+    }
   }
 }

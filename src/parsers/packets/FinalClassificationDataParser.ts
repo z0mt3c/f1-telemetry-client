@@ -11,6 +11,7 @@ export class FinalClassificationDataParser extends F1Parser<FinalClassificationD
       .uint8('m_points')
       .uint8('m_numPitStops')
       .uint8('m_resultStatus')
+    if (packetFormat >= 2025) this.uint8('m_resultReason')
 
     if (packetFormat >= 2021) {
       this.uint32le('m_bestLapTimeInMS')
@@ -19,7 +20,6 @@ export class FinalClassificationDataParser extends F1Parser<FinalClassificationD
     }
 
     this.doublele('m_totalRaceTime')
-    if (packetFormat >= 2025) this.uint8('m_unknown')
     this.uint8('m_penaltiesTime')
       .uint8('m_numPenalties')
       .uint8('m_numTyreStints')

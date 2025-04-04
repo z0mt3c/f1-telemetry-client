@@ -20,6 +20,7 @@ class TimeTrialDataSetParser extends F1Parser<TimeTrialDataSet> {
       .uint8('m_valid')
   }
 }
+
 export class PacketTimeTrialDataParser extends F1Parser<PacketTimeTrialData> {
   data: PacketTimeTrialData
 
