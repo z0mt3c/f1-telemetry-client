@@ -772,7 +772,7 @@ export interface PacketFinalClassificationData extends PacketBase {
   m_classificationData: FinalClassificationData[]
 }
 
-export interface LapPositionData extends PacketBase {
+export interface PacketLapPositionsData extends PacketBase {
   m_numLaps: number
   m_lapStart: number
   m_positionForVehicleIdx: number[][]
