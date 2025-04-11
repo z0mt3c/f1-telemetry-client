@@ -6,7 +6,7 @@ import { Parser } from 'binary-parser'
 export class PacketLapPositionsDataParser extends F1Parser<PacketLobbyInfoData> {
   data: PacketLobbyInfoData
 
-  constructor (buffer: Buffer, packetFormat: number, bigintEnabled: boolean, laps: number) {
+  constructor (buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super()
 
     this.endianess('little')
@@ -16,7 +16,7 @@ export class PacketLapPositionsDataParser extends F1Parser<PacketLobbyInfoData> 
       .uint8('m_numLaps')
       .uint8('m_lapStart')
       .array('m_positionForVehicleIdx', {
-        length: laps,
+        length: 50,
         type: new Parser().array('cars', { length: 22, type: 'uint8' })
       })
 
