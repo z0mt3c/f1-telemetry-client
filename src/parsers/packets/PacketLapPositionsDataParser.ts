@@ -1,10 +1,10 @@
 import { F1Parser } from '../F1Parser'
 import { PacketHeaderParser } from './PacketHeaderParser'
-import type { PacketLobbyInfoData } from './types'
+import type { PacketLapPositionsData } from './types'
 import { Parser } from 'binary-parser'
 
-export class PacketLapPositionsDataParser extends F1Parser<PacketLobbyInfoData> {
-  data: PacketLobbyInfoData
+export class PacketLapPositionsDataParser extends F1Parser<PacketLapPositionsData> {
+  data: PacketLapPositionsData
 
   constructor (buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super()
