@@ -271,11 +271,12 @@ class F1TelemetryClient extends EventEmitter {
   }
 }
 
+export type * from './parsers/packets/types'
+export type * from './constants/types'
+
 export {
   F1TelemetryClient,
   constants,
-  constantsTypes,
-  packetTypes,
   DEFAULT_PORT,
   BIGINT_ENABLED,
   FORWARD_ADDRESSES
