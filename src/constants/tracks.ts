@@ -33,5 +33,8 @@ export const TRACKS: Record<number, Track> = {
   29: { name: 'Jeddah' },
   30: { name: 'Miami' },
   31: { name: 'Las Vegas' },
-  32: { name: 'Losail' }
+  32: { name: 'Losail' },
+  39: { name: 'Silverstone (Reverse)' },
+  40: { name: 'Austria (Reverse)' },
+  41: { name: 'Zandvoort (Reverse)' }
 }
