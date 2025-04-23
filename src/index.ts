@@ -2,7 +2,6 @@ import * as dgram from 'dgram'
 import { EventEmitter } from 'events'
 
 import * as constants from './constants'
-import * as constantsTypes from './constants/types'
 import {
   PacketCarDamageDataParser,
   PacketCarSetupDataParser,
@@ -19,7 +18,6 @@ import {
   PacketSessionDataParser,
   PacketSessionHistoryDataParser
 } from './parsers/packets'
-import * as packetTypes from './parsers/packets/types'
 import { type Address, type Options, type PacketData, type ParsedMessage, ParserError } from './types'
 import { PacketTyreSetsDataParser } from './parsers/packets/PacketTyreSetsDataParser'
 import { PacketMotionExDataParser } from './parsers/packets/PacketMotionExDataParser'
