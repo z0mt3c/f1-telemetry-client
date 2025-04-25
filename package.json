@@ -17,10 +17,10 @@
       "require": "./dist/cjs/types/index.js",
       "types": "./dist/esm/types/index.d.ts"
     },
-    "./types/contentTypes": {
-      "import": "./dist/esm/types/contentTypes.js",
-      "require": "./dist/cjs/types/contentTypes.js",
-      "types": "./dist/esm/types/contentTypes.d.ts"
+    "./types/constantTypes": {
+      "import": "./dist/esm/types/constantTypes.js",
+      "require": "./dist/cjs/types/constantTypes.js",
+      "types": "./dist/esm/types/constantTypes.d.ts"
     },
     "./types/parserTypes": {
       "import": "./dist/esm/types/parserTypes.js",

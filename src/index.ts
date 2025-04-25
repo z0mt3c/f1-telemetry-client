@@ -269,4 +269,6 @@ class F1TelemetryClient extends EventEmitter {
 export default F1TelemetryClient
 export { F1TelemetryClient, constants }
 export * from './types'
+export type * from './types/parserTypes'
+export type * from './types/constantTypes'
 export * from './constants'
