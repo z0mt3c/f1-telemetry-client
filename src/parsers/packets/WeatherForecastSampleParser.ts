@@ -1,5 +1,5 @@
 import { F1Parser } from '../F1Parser'
-import type { WeatherForecastSample } from './types'
+import type { WeatherForecastSample } from '../../types/parserTypes'
 
 export class WeatherForecastSampleParser extends F1Parser<WeatherForecastSample> {
   constructor (packetFormat: number) {

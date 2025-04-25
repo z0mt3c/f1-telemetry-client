@@ -1,4 +1,4 @@
-import type { Driver } from './types'
+import type { Driver } from '../types/constantTypes'
 
 export const DRIVERS: Record<number, Driver> = {
   0: { abbreviation: 'SAI', firstName: 'Carlos', lastName: 'Sainz' },

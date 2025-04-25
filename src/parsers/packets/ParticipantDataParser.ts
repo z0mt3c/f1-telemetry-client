@@ -1,5 +1,5 @@
 import { F1Parser } from '../F1Parser'
-import type { LiveryColour, ParticipantData } from './types'
+import type { LiveryColour, ParticipantData } from '../../types/parserTypes'
 
 class LiveryColourParser extends F1Parser<LiveryColour> {
   constructor () {

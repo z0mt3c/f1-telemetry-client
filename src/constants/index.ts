@@ -18,6 +18,7 @@ import { NATIONALITIES } from './nationalities'
 import {PACKET_ID_TO_PACKET, PACKETS } from './packets'
 import { PACKET_SIZES } from './packetSizes'
 import { PENALTIES } from './penalties'
+import { PIT_STATUS } from './pitStatus'
 import { RESULT_STATUS } from './resultStatus'
 import { RULESETS } from './rulesets'
 import { SAFETY_CAR_STATUSES } from './safetyCarStatuses'
@@ -44,6 +45,7 @@ export {
   NATIONALITIES,
   PACKETS,
   PACKET_ID_TO_PACKET,
+  PIT_STATUS,
   PACKET_SIZES,
   PENALTIES,
   RULESETS,

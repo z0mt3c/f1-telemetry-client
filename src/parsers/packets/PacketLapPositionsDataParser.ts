@@ -1,6 +1,6 @@
 import { F1Parser } from '../F1Parser'
 import { PacketHeaderParser } from './PacketHeaderParser'
-import type { PacketLapPositionsData } from './types'
+import type { PacketLapPositionsData } from '../../types/parserTypes'
 import { Parser } from 'binary-parser'
 
 export class PacketLapPositionsDataParser extends F1Parser<PacketLapPositionsData> {

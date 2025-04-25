@@ -1,5 +1,5 @@
 import { F1Parser } from '../F1Parser'
-import type { CarSetupData } from './types'
+import type { CarSetupData } from '../../types/parserTypes'
 
 export class CarSetupDataParser extends F1Parser<CarSetupData> {
   constructor (packetFormat: number) {

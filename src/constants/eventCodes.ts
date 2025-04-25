@@ -1,3 +1,3 @@
-import { EventCode } from '../parsers/packets/types'
+import { EventCode } from '../types/parserTypes'
 
 export const EVENT_CODES = { ...EventCode }

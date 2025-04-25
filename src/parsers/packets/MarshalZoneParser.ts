@@ -1,5 +1,5 @@
 import { F1Parser } from '../F1Parser'
-import type { MarshalZone } from './types'
+import type { MarshalZone } from '../../types/parserTypes'
 
 export class MarshalZoneParser extends F1Parser<MarshalZone> {
   constructor () {

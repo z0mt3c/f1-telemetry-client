@@ -1,5 +1,5 @@
 import { F1Parser } from '../F1Parser'
-import type { PacketHeader } from './types'
+import type { PacketHeader } from '../../types/parserTypes'
 
 export class PacketHeaderParser extends F1Parser<PacketHeader> {
   constructor (packetFormat: number, bigintEnabled: boolean) {

@@ -1,4 +1,4 @@
-import type { Position, Tyre } from './types'
+import type { Position, Tyre } from '../types/constantTypes'
 
 export const TYRES: Record<number, Tyre> = {
   0: { color: '#ffb3c3', name: 'Hyper Soft' },

@@ -20,7 +20,7 @@ import {
   type DRSDisabledEventDetails,
   type RetirementEventDetails,
   EventCode
-} from './types'
+} from '../../types/parserTypes'
 
 export class VehicleEventParser extends F1Parser<VehicleEventDetails> {
   static VEHICLE_EVENT_CODES: EventCode[] = [

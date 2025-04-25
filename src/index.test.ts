@@ -6,7 +6,7 @@ import {
 } from './index'
 import LineByLine from 'n-readlines'
 import * as fs from 'fs'
-import type { PacketBase } from './parsers/packets/types'
+import type { PacketBase } from './types/parserTypes'
 
 const normalize = (v: unknown): unknown =>
   JSON.parse(
@@ -38,7 +38,7 @@ describe('F1TelemetryClient', () => {
 
         it('should set up client as udp4 client', () => {
           expect(f1TelemetryClient.socket).toBeDefined()
-           
+
           expect((f1TelemetryClient.socket as any).type).toBe('udp4')
         })
       })
@@ -63,7 +63,7 @@ describe('F1TelemetryClient', () => {
 
         it('should set up client as udp4 client', () => {
           expect(f1TelemetryClient.socket).toBeDefined()
-           
+
           expect((f1TelemetryClient.socket as any).type).toBe('udp4')
         })
       })
@@ -92,7 +92,7 @@ describe('F1TelemetryClient', () => {
 
         it('should set up client as udp4 client', () => {
           expect(f1TelemetryClient.socket).toBeDefined()
-           
+
           expect((f1TelemetryClient.socket as any).type).toBe('udp4')
         })
       })
@@ -117,7 +117,7 @@ describe('F1TelemetryClient', () => {
 
         it('should set up client as udp4 client', () => {
           expect(f1TelemetryClient.socket).toBeDefined()
-           
+
           expect((f1TelemetryClient.socket as any).type).toBe('udp4')
         })
       })

@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import LineByLine from 'n-readlines'
 import { PACKETS } from '../constants'
 import { rimraf } from 'rimraf'
-import { EventCode, type Packet } from '../parsers/packets/types'
+import { type Packet, EventCode } from '../types'
 
 const typeMapping: Record<string, string[]> = {
   motion: ['PacketMotionData'],
@@ -47,16 +47,14 @@ const normalize = (v: unknown): any =>
     )
   )
 
- 
 const findKey = (types: any, value: any): string => Object.keys(types)[Object.values(types).indexOf(value)]
 
- 
 function writeTSFile (body: any, filename: string): void {
   const packet = Object.values(PACKETS)[body.m_header.m_packetId]
   const type = typeMapping[packet]
   fs.writeFileSync(
     `./src/samples/${filename}-${type.join('-')}.ts`,
-    `import {${type.join(',')}} from '../parsers/packets/types';\nexport const SAMPLE: ${type.join(
+    `import {${type.join(',')}} from '../types';\nexport const SAMPLE: ${type.join(
       '|'
     )} = ${JSON.stringify(normalize(body), null, '  ')};`.replace(
       /"m_sessionUID": "([0-9]+)"/g,

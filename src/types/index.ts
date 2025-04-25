@@ -1,4 +1,3 @@
-import type { RemoteInfo } from 'node:dgram'
 import {
   type PacketCarDamageData,
   type PacketCarSetupData,
@@ -15,7 +14,7 @@ import {
   type PacketSessionHistoryData,
   type PacketTimeTrialData,
   type PacketTyreSetsData
-} from './parsers/packets/types'
+} from './parserTypes'
 
 export interface Options {
   port?: number
@@ -52,7 +51,7 @@ export interface ParsedMessage<T> {
   year: number | undefined
   name: string
   data: T | undefined
-  remoteInfo?: RemoteInfo
+  remoteInfo?: unknown
   message?: Buffer
 }
 
@@ -68,5 +67,7 @@ export class ParserError<T> extends Error {
   }
 }
 
-export type * from './parsers/packets/types'
-export type * from './constants/types'
+export * from './parserTypes'
+export type * from './parserTypes'
+export * from './constantTypes'
+export type * from './constantTypes'

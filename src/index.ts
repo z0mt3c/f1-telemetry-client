@@ -20,7 +20,7 @@ import {
 import { type Address, type Options, type PacketData, type ParsedMessage, ParserError } from './types'
 import { PacketTyreSetsDataParser } from './parsers/packets/PacketTyreSetsDataParser'
 import { PacketMotionExDataParser } from './parsers/packets/PacketMotionExDataParser'
-import type { PacketHeader } from './parsers/packets/types'
+import type { PacketHeader } from './types/parserTypes'
 import type { RemoteInfo } from 'node:dgram'
 import { PacketTimeTrialDataParser } from './parsers/packets/PacketTimeTrialDataParser'
 import { PacketLapPositionsDataParser } from './parsers/packets/PacketLapPositionsDataParser'

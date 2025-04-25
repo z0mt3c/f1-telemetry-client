@@ -1,5 +1,5 @@
 import { F1Parser } from '../F1Parser'
-import type { LapHistoryData } from './types'
+import type { LapHistoryData } from '../../types/parserTypes'
 
 export class LapHistoryDataParser extends F1Parser<LapHistoryData> {
   constructor (packetFormat: number) {
