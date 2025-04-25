@@ -1,5 +1,5 @@
 src
-.gitignore
-.babelrc
-jest.config.ts
-README.md
+recordings
+misc
+.idea
+.github
