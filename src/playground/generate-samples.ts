@@ -47,10 +47,10 @@ const normalize = (v: unknown): any =>
     )
   )
 
-// eslint-disable-next-line
+ 
 const findKey = (types: any, value: any): string => Object.keys(types)[Object.values(types).indexOf(value)]
 
-// eslint-disable-next-line  @typescript-eslint/no-explicit-any
+ 
 function writeTSFile (body: any, filename: string): void {
   const packet = Object.values(PACKETS)[body.m_header.m_packetId]
   const type = typeMapping[packet]

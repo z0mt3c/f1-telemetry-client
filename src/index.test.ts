@@ -38,7 +38,7 @@ describe('F1TelemetryClient', () => {
 
         it('should set up client as udp4 client', () => {
           expect(f1TelemetryClient.socket).toBeDefined()
-          // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+           
           expect((f1TelemetryClient.socket as any).type).toBe('udp4')
         })
       })
@@ -63,7 +63,7 @@ describe('F1TelemetryClient', () => {
 
         it('should set up client as udp4 client', () => {
           expect(f1TelemetryClient.socket).toBeDefined()
-          // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+           
           expect((f1TelemetryClient.socket as any).type).toBe('udp4')
         })
       })
@@ -92,7 +92,7 @@ describe('F1TelemetryClient', () => {
 
         it('should set up client as udp4 client', () => {
           expect(f1TelemetryClient.socket).toBeDefined()
-          // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+           
           expect((f1TelemetryClient.socket as any).type).toBe('udp4')
         })
       })
@@ -117,7 +117,7 @@ describe('F1TelemetryClient', () => {
 
         it('should set up client as udp4 client', () => {
           expect(f1TelemetryClient.socket).toBeDefined()
-          // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+           
           expect((f1TelemetryClient.socket as any).type).toBe('udp4')
         })
       })

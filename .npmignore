@@ -1,5 +1,5 @@
 src
 .gitignore
 .babelrc
-jest.config.js
+jest.config.ts
 README.md

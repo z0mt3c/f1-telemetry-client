@@ -15,7 +15,7 @@ import { GAME_MODES } from './gameModes'
 import { INFRINGEMENTS } from './infringements'
 import { LAP_VALID_FLAGS } from './lapValidFlags'
 import { NATIONALITIES } from './nationalities'
-import { PACKETS } from './packets'
+import {PACKET_ID_TO_PACKET, PACKETS } from './packets'
 import { PACKET_SIZES } from './packetSizes'
 import { PENALTIES } from './penalties'
 import { RESULT_STATUS } from './resultStatus'
@@ -43,6 +43,7 @@ export {
   INFRINGEMENTS,
   NATIONALITIES,
   PACKETS,
+  PACKET_ID_TO_PACKET,
   PACKET_SIZES,
   PENALTIES,
   RULESETS,

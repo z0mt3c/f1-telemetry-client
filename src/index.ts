@@ -1,7 +1,6 @@
 import * as dgram from 'dgram'
 import { EventEmitter } from 'events'
 
-import * as constants from './constants'
 import {
   PacketCarDamageDataParser,
   PacketCarSetupDataParser,
@@ -24,12 +23,13 @@ import { PacketMotionExDataParser } from './parsers/packets/PacketMotionExDataPa
 import type { PacketHeader } from './parsers/packets/types'
 import type { RemoteInfo } from 'node:dgram'
 import { PacketTimeTrialDataParser } from './parsers/packets/PacketTimeTrialDataParser'
-import { PACKET_ID_TO_PACKET } from './constants/packets'
 import { PacketLapPositionsDataParser } from './parsers/packets/PacketLapPositionsDataParser'
+import { PACKET_SIZES, PACKET_ID_TO_PACKET, PACKETS } from './constants'
+import * as constants from './constants'
 
-const DEFAULT_PORT = 20777
-const FORWARD_ADDRESSES = undefined
-const BIGINT_ENABLED = true
+export const DEFAULT_PORT = 20777
+export const FORWARD_ADDRESSES = undefined
+export const BIGINT_ENABLED = true
 
 /**
  *
@@ -72,7 +72,7 @@ class F1TelemetryClient extends EventEmitter {
     const Parser = F1TelemetryClient.getParserByPacketId(id)
 
     if (Parser == null) throw new ParserError('No parser available', undefined, context)
-    context.name = Object.keys(constants.PACKETS)[id]
+    context.name = Object.keys(PACKETS)[id]
     try {
       const { data } = new Parser(message, format, bigintEnabled)
       return { ...context, data }
@@ -105,7 +105,6 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Number} packetId
    */
   static getPacketSize (packetFormat: number, packetId: number): number {
-    const { PACKET_SIZES } = constants
     const packetValues = Object.values(PACKET_SIZES)
     return packetValues[packetId][packetFormat]
   }
@@ -115,8 +114,6 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Number} packetId
    */
   static getParserByPacketId (packetId: number): any {
-    const { PACKETS } = constants
-
     const packetType = PACKET_ID_TO_PACKET[packetId]
 
     switch (packetType) {
@@ -269,13 +266,5 @@ class F1TelemetryClient extends EventEmitter {
   }
 }
 
-export type * from './parsers/packets/types'
-export type * from './constants/types'
-
-export {
-  F1TelemetryClient,
-  constants,
-  DEFAULT_PORT,
-  BIGINT_ENABLED,
-  FORWARD_ADDRESSES
-}
+export default F1TelemetryClient
+export { F1TelemetryClient, constants }
