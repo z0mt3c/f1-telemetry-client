@@ -68,6 +68,4 @@ export class ParserError<T> extends Error {
 }
 
 export * from './parserTypes'
-export type * from './parserTypes'
 export * from './constantTypes'
-export type * from './constantTypes'
