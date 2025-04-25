@@ -1,23 +1,6 @@
 {
   "name": "@z0mt3c/f1-telemetry-client",
   "version": "2.0.0-beta.18",
-  "exports": {
-    ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
-      "types": "./dist/esm/index.d.ts"
-    },
-    "./constants": {
-      "import": "./dist/esm/constants/index.js",
-      "require": "./dist/cjs/constants/index.js",
-      "types": "./dist/esm/constants/index.d.ts"
-    },
-    "./types": {
-      "import": "./dist/esm/types/index.js",
-      "require": "./dist/cjs/types/index.js",
-      "types": "./dist/esm/types/index.d.ts"
-    }
-  },
   "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
