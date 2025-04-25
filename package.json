@@ -16,16 +16,6 @@
       "import": "./dist/esm/types/index.js",
       "require": "./dist/cjs/types/index.js",
       "types": "./dist/esm/types/index.d.ts"
-    },
-    "./types/constantTypes": {
-      "import": "./dist/esm/types/constantTypes.js",
-      "require": "./dist/cjs/types/constantTypes.js",
-      "types": "./dist/esm/types/constantTypes.d.ts"
-    },
-    "./types/parserTypes": {
-      "import": "./dist/esm/types/parserTypes.js",
-      "require": "./dist/cjs/types/parserTypes.js",
-      "types": "./dist/esm/types/parserTypes.d.ts"
     }
   },
   "type": "module",

@@ -20,12 +20,11 @@ import {
 import { type Address, type Options, type PacketData, type ParsedMessage, ParserError } from './types'
 import { PacketTyreSetsDataParser } from './parsers/packets/PacketTyreSetsDataParser'
 import { PacketMotionExDataParser } from './parsers/packets/PacketMotionExDataParser'
-import type { PacketHeader } from './types/parserTypes'
+import type { PacketHeader } from './types'
 import type { RemoteInfo } from 'node:dgram'
 import { PacketTimeTrialDataParser } from './parsers/packets/PacketTimeTrialDataParser'
 import { PacketLapPositionsDataParser } from './parsers/packets/PacketLapPositionsDataParser'
 import { PACKET_SIZES, PACKET_ID_TO_PACKET, PACKETS } from './constants'
-import * as constants from './constants'
 
 export const DEFAULT_PORT = 20777
 export const FORWARD_ADDRESSES = undefined
@@ -34,7 +33,7 @@ export const BIGINT_ENABLED = true
 /**
  *
  */
-class F1TelemetryClient extends EventEmitter {
+export class F1TelemetryClient extends EventEmitter {
   port: number
   bigintEnabled: boolean
   forwardAddresses?: Address[]
@@ -266,9 +265,7 @@ class F1TelemetryClient extends EventEmitter {
   }
 }
 
-export default F1TelemetryClient
-export { F1TelemetryClient, constants }
 export * from './types'
-export type * from './types/parserTypes'
-export type * from './types/constantTypes'
 export * from './constants'
+
+export default F1TelemetryClient
