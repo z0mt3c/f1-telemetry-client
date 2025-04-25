@@ -5,6 +5,14 @@
     ".": {
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
+    },
+    "./constants": {
+      "import": "./dist/esm/constants/index.js",
+      "require": "./dist/cjs/constants/index.js"
+    },
+    "./types": {
+      "import": "./dist/esm/types/index.js",
+      "require": "./dist/cjs/types/index.js"
     }
   },
   "type": "module",
