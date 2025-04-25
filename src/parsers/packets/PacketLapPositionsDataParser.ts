@@ -6,18 +6,18 @@ import { Parser } from 'binary-parser'
 export class PacketLapPositionsDataParser extends F1Parser<PacketLapPositionsData> {
   data: PacketLapPositionsData
 
-  constructor (buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
+  constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super()
 
     this.endianess('little')
       .nest('m_header', {
-        type: new PacketHeaderParser(packetFormat, bigintEnabled)
+        type: new PacketHeaderParser(packetFormat, bigintEnabled),
       })
       .uint8('m_numLaps')
       .uint8('m_lapStart')
       .array('m_positionForVehicleIdx', {
         length: 50,
-        type: new Parser().array('cars', { length: 22, type: 'uint8' })
+        type: new Parser().array('cars', { length: 22, type: 'uint8' }),
       })
 
     this.data = this.fromBuffer(buffer)

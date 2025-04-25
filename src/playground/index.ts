@@ -2,7 +2,7 @@ import { F1TelemetryClient, PACKETS } from '..'
 
 const client = new F1TelemetryClient({
   port: 30500,
-  bigintEnabled: false
+  bigintEnabled: false,
 })
 
 client.on(PACKETS.event, console.log)
@@ -20,18 +20,11 @@ client.on(PACKETS.sessionHistory, console.log)
 client.on(PACKETS.tyreSets, console.log)
 client.on(PACKETS.motionEx, console.log)
 
-client.start();
+client.start()
 
 // stops the client
-[
-  'exit',
-  'SIGINT',
-  'SIGUSR1',
-  'SIGUSR2',
-  'uncaughtException',
-  'SIGTERM'
-].forEach(eventType => {
-  (process as NodeJS.EventEmitter).on(eventType, (e) => {
+;['exit', 'SIGINT', 'SIGUSR1', 'SIGUSR2', 'uncaughtException', 'SIGTERM'].forEach((eventType) => {
+  ;(process as NodeJS.EventEmitter).on(eventType, (e) => {
     console.error('stopping', e)
     client.stop()
   })

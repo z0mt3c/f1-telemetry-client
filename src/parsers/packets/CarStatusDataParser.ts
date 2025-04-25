@@ -4,24 +4,15 @@ import { F1Parser } from '../F1Parser'
 import type { CarStatusData } from '../../types/parserTypes'
 
 export class CarStatusDataParser extends F1Parser<CarStatusData> {
-  constructor (packetFormat: number) {
+  constructor(packetFormat: number) {
     super()
-    this.uint8('m_tractionControl')
-      .uint8('m_antiLockBrakes')
-      .uint8('m_fuelMix')
-      .uint8('m_frontBrakeBias')
-      .uint8('m_pitLimiterStatus')
-      .floatle('m_fuelInTank')
-      .floatle('m_fuelCapacity')
+    this.uint8('m_tractionControl').uint8('m_antiLockBrakes').uint8('m_fuelMix').uint8('m_frontBrakeBias').uint8('m_pitLimiterStatus').floatle('m_fuelInTank').floatle('m_fuelCapacity')
 
     if (packetFormat >= 2019) {
       this.floatle('m_fuelRemainingLaps')
     }
 
-    this.uint16le('m_maxRPM')
-      .uint16le('m_idleRPM')
-      .uint8('m_maxGears')
-      .uint8('m_drsAllowed')
+    this.uint16le('m_maxRPM').uint16le('m_idleRPM').uint8('m_maxGears').uint8('m_drsAllowed')
 
     if (packetFormat >= 2020) {
       this.uint16le('m_drsActivationDistance')
@@ -30,7 +21,7 @@ export class CarStatusDataParser extends F1Parser<CarStatusData> {
     if (packetFormat >= 2018 && packetFormat <= 2020) {
       this.array('m_tyresWear', {
         length: 4,
-        type: new Parser().uint8('')
+        type: new Parser().uint8(''),
       })
     }
 
@@ -47,7 +38,7 @@ export class CarStatusDataParser extends F1Parser<CarStatusData> {
     if (packetFormat < 2021) {
       this.array('m_tyresDamage', {
         length: 4,
-        type: new Parser().uint8('')
+        type: new Parser().uint8(''),
       })
         .uint8('m_frontLeftWingDamage')
         .uint8('m_frontRightWingDamage')
@@ -72,11 +63,7 @@ export class CarStatusDataParser extends F1Parser<CarStatusData> {
       this.floatle('m_enginePowerICE').floatle('m_enginePowerMGUK')
     }
 
-    this.floatle('m_ersStoreEnergy')
-      .uint8('m_ersDeployMode')
-      .floatle('m_ersHarvestedThisLapMGUK')
-      .floatle('m_ersHarvestedThisLapMGUH')
-      .floatle('m_ersDeployedThisLap')
+    this.floatle('m_ersStoreEnergy').uint8('m_ersDeployMode').floatle('m_ersHarvestedThisLapMGUK').floatle('m_ersHarvestedThisLapMGUH').floatle('m_ersDeployedThisLap')
 
     if (packetFormat >= 2021) {
       this.int8('m_networkPaused')

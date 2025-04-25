@@ -2,7 +2,7 @@ import { F1Parser } from '../F1Parser'
 import type { LobbyInfoData } from '../../types/parserTypes'
 
 export class LobbyInfoDataParser extends F1Parser<LobbyInfoData> {
-  constructor (packetFormat: number) {
+  constructor(packetFormat: number) {
     super()
     this.uint8('m_aiControlled').uint8('m_teamId').uint8('m_nationality')
 

@@ -6,16 +6,16 @@ import type { PacketCarDamageData } from '../../types/parserTypes'
 export class PacketCarDamageDataParser extends F1Parser<PacketCarDamageData> {
   data: PacketCarDamageData
 
-  constructor (buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
+  constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super()
 
     this.endianess('little')
       .nest('m_header', {
-        type: new PacketHeaderParser(packetFormat, bigintEnabled)
+        type: new PacketHeaderParser(packetFormat, bigintEnabled),
       })
       .array('m_carDamageData', {
         length: 22,
-        type: new CarDamageDataParser(packetFormat)
+        type: new CarDamageDataParser(packetFormat),
       })
 
     this.data = this.fromBuffer(buffer)

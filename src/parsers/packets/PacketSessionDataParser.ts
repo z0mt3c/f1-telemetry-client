@@ -9,12 +9,12 @@ import { Parser } from 'binary-parser'
 export class PacketSessionDataParser extends F1Parser<PacketSessionData> {
   data: PacketSessionData
 
-  constructor (buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
+  constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super()
 
     this.endianess('little')
       .nest('m_header', {
-        type: new PacketHeaderParser(packetFormat, bigintEnabled)
+        type: new PacketHeaderParser(packetFormat, bigintEnabled),
       })
       .uint8('m_weather')
       .int8('m_trackTemperature')
@@ -51,14 +51,14 @@ export class PacketSessionDataParser extends F1Parser<PacketSessionData> {
     if (packetFormat === 2020) {
       this.array('m_weatherForecastSamples', {
         type: new WeatherForecastSampleParser(packetFormat),
-        length: 20
+        length: 20,
       })
     }
 
     if (packetFormat >= 2021) {
       this.array('m_weatherForecastSamples', {
         type: new WeatherForecastSampleParser(packetFormat),
-        length: 56
+        length: 56,
       })
         .uint8('m_forecastAccuracy')
         .uint8('m_aiDifficulty')
@@ -80,10 +80,7 @@ export class PacketSessionDataParser extends F1Parser<PacketSessionData> {
     }
 
     if (packetFormat >= 2022) {
-      this.uint8('m_gameMode')
-        .uint8('m_ruleSet')
-        .uint32le('m_timeOfDay')
-        .uint8('m_sessionLength')
+      this.uint8('m_gameMode').uint8('m_ruleSet').uint32le('m_timeOfDay').uint8('m_sessionLength')
     }
 
     if (packetFormat >= 2023) {
@@ -124,7 +121,7 @@ export class PacketSessionDataParser extends F1Parser<PacketSessionData> {
         .uint8('m_numSessionsInWeekend')
         .array('m_weekendStructure', {
           length: 12,
-          type: new Parser().uint8('')
+          type: new Parser().uint8(''),
         })
         .floatle('m_sector2LapDistanceStart')
         .floatle('m_sector3LapDistanceStart')

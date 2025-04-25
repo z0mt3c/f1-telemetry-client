@@ -15,7 +15,7 @@ import {
   PacketMotionDataParser,
   PacketParticipantsDataParser,
   PacketSessionDataParser,
-  PacketSessionHistoryDataParser
+  PacketSessionHistoryDataParser,
 } from './parsers/packets'
 import { type Address, type Options, type PacketData, type ParsedMessage, ParserError } from './types'
 import { PacketTyreSetsDataParser } from './parsers/packets/PacketTyreSetsDataParser'
@@ -39,14 +39,10 @@ export class F1TelemetryClient extends EventEmitter {
   forwardAddresses?: Address[]
   socket?: dgram.Socket
 
-  constructor (opts: Options = {}) {
+  constructor(opts: Options = {}) {
     super()
 
-    const {
-      port = DEFAULT_PORT,
-      bigintEnabled = BIGINT_ENABLED,
-      forwardAddresses = FORWARD_ADDRESSES
-    } = opts
+    const { port = DEFAULT_PORT, bigintEnabled = BIGINT_ENABLED, forwardAddresses = FORWARD_ADDRESSES } = opts
 
     this.port = port
     this.bigintEnabled = bigintEnabled
@@ -60,11 +56,7 @@ export class F1TelemetryClient extends EventEmitter {
    * @param bigintEnabled
    * @param remoteInfo
    */
-  static parseBufferMessage (
-    message: Buffer,
-    bigintEnabled = false,
-    remoteInfo?: RemoteInfo
-  ): ParsedMessage<PacketData> | undefined {
+  static parseBufferMessage(message: Buffer, bigintEnabled = false, remoteInfo?: RemoteInfo): ParsedMessage<PacketData> | undefined {
     const packetHeader = F1TelemetryClient.parsePacketHeader(message, bigintEnabled)
     const { m_packetFormat: format, m_packetId: id, m_gameYear: year } = packetHeader
     const context = { id, year, format, message, remoteInfo, name: 'unknown', data: packetHeader }
@@ -85,16 +77,10 @@ export class F1TelemetryClient extends EventEmitter {
    * @param {Buffer} buffer
    * @param {Boolean} bigintEnabled
    */
-  static parsePacketHeader (
-    buffer: Buffer,
-    bigintEnabled: boolean
-  ): PacketHeader {
+  static parsePacketHeader(buffer: Buffer, bigintEnabled: boolean): PacketHeader {
     const packetFormatParser = new PacketFormatParser()
     const { m_packetFormat } = packetFormatParser.fromBuffer(buffer)
-    const packetHeaderParser = new PacketHeaderParser(
-      m_packetFormat,
-      bigintEnabled
-    )
+    const packetHeaderParser = new PacketHeaderParser(m_packetFormat, bigintEnabled)
     return packetHeaderParser.fromBuffer(buffer)
   }
 
@@ -103,7 +89,7 @@ export class F1TelemetryClient extends EventEmitter {
    * @param {Number} packetFormat
    * @param {Number} packetId
    */
-  static getPacketSize (packetFormat: number, packetId: number): number {
+  static getPacketSize(packetFormat: number, packetId: number): number {
     const packetValues = Object.values(PACKET_SIZES)
     return packetValues[packetId][packetFormat]
   }
@@ -112,7 +98,7 @@ export class F1TelemetryClient extends EventEmitter {
    *
    * @param {Number} packetId
    */
-  static getParserByPacketId (packetId: number): any {
+  static getParserByPacketId(packetId: number): any {
     const packetType = PACKET_ID_TO_PACKET[packetId]
 
     switch (packetType) {
@@ -174,18 +160,14 @@ export class F1TelemetryClient extends EventEmitter {
    * @param {Buffer} message
    * @param remoteInfo
    */
-  handleMessage (message: Buffer, remoteInfo: RemoteInfo): void {
+  handleMessage(message: Buffer, remoteInfo: RemoteInfo): void {
     if (this.forwardAddresses != null) {
       // bridge message
       this.bridgeMessage(message)
     }
 
     try {
-      const parsedMessage = F1TelemetryClient.parseBufferMessage(
-        message,
-        this.bigintEnabled,
-        remoteInfo
-      )
+      const parsedMessage = F1TelemetryClient.parseBufferMessage(message, this.bigintEnabled, remoteInfo)
 
       this.emitPackage(parsedMessage)
     } catch (error) {
@@ -194,8 +176,8 @@ export class F1TelemetryClient extends EventEmitter {
     }
   }
 
-  private emitPackage (parsedMessage?: ParsedMessage<PacketData>): void {
-    if ((parsedMessage?.data == null)) return
+  private emitPackage(parsedMessage?: ParsedMessage<PacketData>): void {
+    if (parsedMessage?.data == null) return
     this.emit(parsedMessage.name + ':raw', parsedMessage)
     this.emit(parsedMessage.name, parsedMessage.data)
     this.emit('*', parsedMessage)
@@ -205,7 +187,7 @@ export class F1TelemetryClient extends EventEmitter {
    *
    * @param {Buffer} message
    */
-  bridgeMessage (message: Buffer): void {
+  bridgeMessage(message: Buffer): void {
     if (this.socket == null) {
       throw new Error('Socket is not initialized')
     }
@@ -213,20 +195,14 @@ export class F1TelemetryClient extends EventEmitter {
       throw new Error('No ports to bridge over')
     }
     for (const address of this.forwardAddresses) {
-      this.socket.send(
-        message,
-        0,
-        message.length,
-        address.port,
-        address.ip ?? '0.0.0.0'
-      )
+      this.socket.send(message, 0, message.length, address.port, address.ip ?? '0.0.0.0')
     }
   }
 
   /**
    * Method to start listening for packets
    */
-  start (): void {
+  start(): void {
     if (this.socket == null) {
       return
     }
@@ -237,23 +213,23 @@ export class F1TelemetryClient extends EventEmitter {
       }
 
       const address = this.socket.address()
-      console.log(
-        `UDP Client listening on ${address.address}:${address.port} 🏎`
-      )
+      console.log(`UDP Client listening on ${address.address}:${address.port} 🏎`)
       this.socket.setBroadcast(true)
     })
 
-    this.socket.on('message', (m: Buffer, remoteInfo: RemoteInfo) => { this.handleMessage(m, remoteInfo) })
+    this.socket.on('message', (m: Buffer, remoteInfo: RemoteInfo) => {
+      this.handleMessage(m, remoteInfo)
+    })
     this.socket.bind({
       port: this.port,
-      exclusive: false
+      exclusive: false,
     })
   }
 
   /**
    * Method to close the client
    */
-  stop (): dgram.Socket | undefined {
+  stop(): dgram.Socket | undefined {
     if (this.socket == null) {
       return
     }
@@ -267,5 +243,146 @@ export class F1TelemetryClient extends EventEmitter {
 
 export * from './types'
 export * from './constants'
+
+export {
+  SESSION_TYPES,
+  TRACKS,
+  TYRES,
+  VISUAL_TYRES,
+  PACKETS,
+  PACKET_ID_TO_PACKET,
+  PIT_STATUS,
+  PACKET_SIZES,
+  PENALTIES,
+  RULESETS,
+  SAFETY_CAR_STATUSES,
+  SESSION_TYPES_UNTIL_2023,
+  SESSION_LENGTH,
+  SURFACES,
+  TEAMS,
+  ERAS,
+  ERS_DEPLOY_MODE,
+  ERS_DEPLOY_MODE_2019,
+  EVENT_CODES,
+  FORMULAS,
+  FUEL_MIX,
+  GAME_MODES,
+  INFRINGEMENTS,
+  NATIONALITIES,
+  DRIVERS,
+  GEARBOX,
+  RACING_LINE,
+  RACING_LINE_TYPE,
+  TRACKING_CONTROL,
+  BUTTON_FLAGS,
+  LAP_VALID_FLAGS,
+  RESULT_STATUS,
+  WEATHER,
+  WHEEL_POSITIONS,
+} from './constants'
+export {
+  PacketHeader,
+  ParserError,
+  Address,
+  PacketData,
+  PacketSessionData,
+  Packet,
+  EventCode,
+  ParsedMessage,
+  Options,
+  PacketHeaderBase,
+  PacketBase,
+  PacketMotionExData,
+  PacketMotionData,
+  MotionData,
+  PacketSessionHistoryData,
+  LapHistoryData,
+  LapData,
+  PacketParticipantsData,
+  ParticipantData,
+  PacketLapData,
+  PacketLapPositionsData,
+  CarDamageData,
+  CarSetupData,
+  CarTelemetryData,
+  CarStatusData,
+  CarPerformanceStatus,
+  AssistStatus,
+  ButtonEvent,
+  ButtonEventDetails,
+  CollisionEventDetails,
+  CollisionEvent,
+  PacketCarSetupData,
+  PacketCarStatusData,
+  PacketCarDamageData,
+  PacketCarTelemetryData,
+  CustomSetupStatus,
+  Driver,
+  LightEventDetails,
+  LightEvent,
+  FlashbackEventDetails,
+  FlashbackEvent,
+  OvertakeEventDetails,
+  OvertakeEvent,
+  PenaltyEventDetails,
+  PenaltyEvent,
+  VehicleEventDetails,
+  VehicleEvent,
+  RetirementEventDetails,
+  RetirementEvent,
+  DRSDisabledEventDetails,
+  DRSDisabledEvent,
+  DRSDisabledReason,
+  FastestLapEventDetails,
+  FastestLapEvent,
+  DRSAllowed,
+  GenericEvent,
+  PacketSize,
+  FaultStatus,
+  PacketTimeTrialData,
+  FinalClassificationData,
+  PacketFinalClassificationData,
+  PacketEvent,
+  PacketLobbyInfoData,
+  LobbyInfoData,
+  TimeTrialDataSet,
+  TyreSetData,
+  PacketTyreSetsData,
+  Tyre,
+  PacketTypes,
+  ActualTyreCompound,
+  FuelMix,
+  SafetyCarEventDetails,
+  SafetyCarEvent,
+  SafetyCarEventType,
+  SafetyCarType,
+  Team,
+  StopGoPenaltyServedEventDetails,
+  StopAndGoEvent,
+  AntiLockBrakes,
+  ERSDeployMode,
+  LiveryColour,
+  Position,
+  MarshalZone,
+  VisualTyreCompound,
+  NetworkPaused,
+  OnlineNamesStatus,
+  ReadyStatus,
+  ResultReason,
+  ResultStatus,
+  PitLimiterStatus,
+  SessionTypes,
+  SpeedTrapEvent,
+  SpeedTrapEventDetails,
+  TelemetryStatus,
+  Track,
+  TyreStintsHistoryData,
+  RetirementReason,
+  ValidationStatus,
+  Platform,
+  VehicleFIAFlags,
+  TractionControl,
+  WeatherForecastSample,
+} from './types'
 
 export default F1TelemetryClient

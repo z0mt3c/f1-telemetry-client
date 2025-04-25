@@ -19,7 +19,7 @@ export const SESSION_TYPES: Record<number, SessionTypes> = {
   15: { short: 'R', long: 'Race', type: 'R' },
   16: { short: 'R2', long: 'Race 2', type: 'R' },
   17: { short: 'R3', long: 'Race 3', type: 'R' },
-  18: { short: 'TT', long: 'Time Trial', type: 'TT' }
+  18: { short: 'TT', long: 'Time Trial', type: 'TT' },
 }
 
 export const SESSION_TYPES_UNTIL_2023: Record<number, SessionTypes> = {
@@ -36,5 +36,5 @@ export const SESSION_TYPES_UNTIL_2023: Record<number, SessionTypes> = {
   10: { short: 'R', long: 'Race', type: 'R' },
   11: { short: 'R2', long: 'Race 2', type: 'R' },
   12: { short: 'R3', long: 'Race 3', type: 'R' },
-  13: { short: 'TT', long: 'Time Trial', type: 'TT' }
+  13: { short: 'TT', long: 'Time Trial', type: 'TT' },
 }

@@ -2,12 +2,10 @@ import { F1Parser } from '../F1Parser'
 import type { LapHistoryData } from '../../types/parserTypes'
 
 export class LapHistoryDataParser extends F1Parser<LapHistoryData> {
-  constructor (packetFormat: number) {
+  constructor(packetFormat: number) {
     super()
 
-    this.endianess('little')
-      .uint32('m_lapTimeInMS')
-      .uint16('m_sector1TimeInMS')
+    this.endianess('little').uint32('m_lapTimeInMS').uint16('m_sector1TimeInMS')
 
     if (packetFormat >= 2023) {
       this.uint8('m_sector1TimeMinutes')

@@ -182,5 +182,5 @@ export const TEAMS: Record<number, Team> = {
   151: { name: 'Trident 23', color: TRIDENT_COLOR },
   152: { name: 'Van Amersfoort Racing 23', color: '#f55702' },
   153: { name: 'Virtuosi 23', color: UNI_VIRTUOSI_COLOR },
-  255: { name: 'Not found', color: '#FFFFFF' }
+  255: { name: 'Not found', color: '#FFFFFF' },
 }

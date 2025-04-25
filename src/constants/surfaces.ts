@@ -10,5 +10,5 @@ export const SURFACES: Record<number, string> = {
   8: 'Water',
   9: 'Cobblestone',
   10: 'Metal',
-  11: 'Ridged'
+  11: 'Ridged',
 }

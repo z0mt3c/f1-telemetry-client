@@ -16,5 +16,5 @@ export const PENALTIES: Record<number, string> = {
   14: 'This and previous lap invalidated',
   15: 'This and previous lap invalidated without reason',
   16: 'Retired',
-  17: 'Black flag timer'
+  17: 'Black flag timer',
 }

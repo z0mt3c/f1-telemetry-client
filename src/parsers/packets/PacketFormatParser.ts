@@ -2,7 +2,7 @@ import { F1Parser } from '../F1Parser'
 import type { PacketHeaderBase } from '../../types/parserTypes'
 
 export class PacketFormatParser extends F1Parser<PacketHeaderBase> {
-  constructor () {
+  constructor() {
     super()
     this.endianess('little').uint16le('m_packetFormat')
   }

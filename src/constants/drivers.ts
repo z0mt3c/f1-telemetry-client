@@ -159,7 +159,7 @@ export const DRIVERS: Record<number, Driver> = {
   165: { abbreviation: 'ANT', firstName: 'Andrea-Kimi', lastName: 'Antonelli' },
   166: { abbreviation: 'MIY', firstName: 'Ritomo', lastName: 'Miyata' },
   167: { abbreviation: 'VAR', firstName: 'Rafael', lastName: 'Villagomez' },
-  168: { abbreviation: 'ZOS', firstName: 'Zak', lastName: 'O\'Sullivan' },
+  168: { abbreviation: 'ZOS', firstName: 'Zak', lastName: "O'Sullivan" },
   169: { abbreviation: 'PEP', firstName: 'Pepe', lastName: 'Marti' },
-  255: { abbreviation: 'DRV', firstName: 'Network', lastName: 'Human' }
+  255: { abbreviation: 'DRV', firstName: 'Network', lastName: 'Human' },
 }

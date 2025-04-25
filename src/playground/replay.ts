@@ -7,12 +7,12 @@ const target = { ip: process.env.REPLAY_IP ?? '0.0.0.0', port: parseInt(process.
 const client = new F1TelemetryClient({
   port: 99999,
   bigintEnabled: true,
-  forwardAddresses: [
-    target
-  ]
+  forwardAddresses: [target],
 })
 
-const sleep = async (ms: number): Promise<void> => { await new Promise((resolve) => setTimeout(resolve, ms)) }
+const sleep = async (ms: number): Promise<void> => {
+  await new Promise((resolve) => setTimeout(resolve, ms))
+}
 const file: string = process.env.REPLAY_FILE ?? ''
 const speed: number = parseFloat(process.env.REPLAY_SPEED ?? '1')
 if (!fs.existsSync(file)) throw new Error(`REPLAY_FILE file not found: ${file}`)
@@ -25,7 +25,7 @@ console.log(`Replay file:   ${file}`)
 console.log(`Start line:    ${startLine}`)
 
 const progressBar = new SingleBar({}, Presets.shades_classic)
-progressBar.start(Math.round(fileSize / 1024 / 1024 * 10) / 10, 0)
+progressBar.start(Math.round((fileSize / 1024 / 1024) * 10) / 10, 0)
 let read: number = 0
 let no: number = 0
 const start = async (): Promise<void> => {
@@ -34,14 +34,14 @@ const start = async (): Promise<void> => {
   while ((line = liner?.next()) !== false && line != null) {
     read += line.length
     if (no++ >= startLine) {
-      const data = JSON.parse(line.toString()) as { time: string, message: any }
+      const data = JSON.parse(line.toString()) as { time: string; message: any }
       const bufferData: number[] = data?.message?.data ?? data?.message
       const buffer: Buffer = Buffer.from(bufferData)
       const time = new Date(data.time)
-      const timeToSleep = lastEventAt != null ? ((time.getTime() - lastEventAt) / speed) : 0
+      const timeToSleep = lastEventAt != null ? (time.getTime() - lastEventAt) / speed : 0
       if (timeToSleep > 0) await sleep(timeToSleep)
       lastEventAt = time.getTime()
-      progressBar.update(Math.round(read / 1024 / 1024 * 10) / 10)
+      progressBar.update(Math.round((read / 1024 / 1024) * 10) / 10)
       client.bridgeMessage(buffer)
     }
   }

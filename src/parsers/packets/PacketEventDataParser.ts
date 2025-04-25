@@ -19,60 +19,48 @@ import {
   type StopGoPenaltyServedEventDetails,
   type DRSDisabledEventDetails,
   type RetirementEventDetails,
-  EventCode
+  EventCode,
 } from '../../types/parserTypes'
 
 export class VehicleEventParser extends F1Parser<VehicleEventDetails> {
-  static VEHICLE_EVENT_CODES: EventCode[] = [
-    EventCode.Retirement,
-    EventCode.TeamMateInPits,
-    EventCode.RaceWinner,
-    EventCode.DriveThroughServed,
-    EventCode.StopGoServed
-  ]
+  static VEHICLE_EVENT_CODES: EventCode[] = [EventCode.Retirement, EventCode.TeamMateInPits, EventCode.RaceWinner, EventCode.DriveThroughServed, EventCode.StopGoServed]
 
-  constructor () {
+  constructor() {
     super()
     this.endianess('little').uint8('vehicleIdx')
   }
 }
 
 export class FastestLapParser extends F1Parser<FastestLapEventDetails> {
-  constructor () {
+  constructor() {
     super()
     this.endianess('little').uint8('vehicleIdx').floatle('lapTime')
   }
 }
 
 export class FlashbackParser extends F1Parser<FlashbackEventDetails> {
-  constructor () {
+  constructor() {
     super()
-    this.endianess('little')
-      .uint32le('flashbackFrameIdentifier')
-      .floatle('flashbackSessionTime')
+    this.endianess('little').uint32le('flashbackFrameIdentifier').floatle('flashbackSessionTime')
   }
 }
 
 export class SafetyCarParser extends F1Parser<SafetyCarEventDetails> {
-  constructor () {
+  constructor() {
     super()
-    this.endianess('little')
-      .uint8('safetyCarType')
-      .uint8('eventType')
+    this.endianess('little').uint8('safetyCarType').uint8('eventType')
   }
 }
 
 export class CollisionParser extends F1Parser<CollisionEventDetails> {
-  constructor () {
+  constructor() {
     super()
-    this.endianess('little')
-      .uint8('vehicle1Idx')
-      .uint8('vehicle2Idx')
+    this.endianess('little').uint8('vehicle1Idx').uint8('vehicle2Idx')
   }
 }
 
 export class StartLightsParser extends F1Parser<LightEventDetails> {
-  constructor () {
+  constructor() {
     super()
 
     this.endianess('little').uint8('numLights')
@@ -80,7 +68,7 @@ export class StartLightsParser extends F1Parser<LightEventDetails> {
 }
 
 export class ButtonsParser extends F1Parser<ButtonEventDetails> {
-  constructor () {
+  constructor() {
     super()
 
     this.endianess('little').uint32le('buttonStatus')
@@ -88,46 +76,39 @@ export class ButtonsParser extends F1Parser<ButtonEventDetails> {
 }
 
 export class OvertakeParser extends F1Parser<OvertakeEventDetails> {
-  constructor () {
+  constructor() {
     super()
 
-    this.endianess('little')
-      .uint8('overtakingVehicleIdx')
-      .uint8('beingOvertakenVehicleIdx')
+    this.endianess('little').uint8('overtakingVehicleIdx').uint8('beingOvertakenVehicleIdx')
   }
 }
 
 export class DRSDisabledParser extends F1Parser<DRSDisabledEventDetails> {
-  constructor (format: number) {
+  constructor(format: number) {
     super()
 
-    this.endianess('little')
-      .uint8('reason')
+    this.endianess('little').uint8('reason')
   }
 }
 
 export class RetirementParser extends F1Parser<RetirementEventDetails> {
-  constructor (format: number) {
+  constructor(format: number) {
     super()
 
-    this.endianess('little')
-      .uint8('vehicleIdx')
-      .uint8('reason')
+    this.endianess('little').uint8('vehicleIdx').uint8('reason')
   }
 }
 
 export class StopGoParser extends F1Parser<StopGoPenaltyServedEventDetails> {
-  constructor (format: number) {
+  constructor(format: number) {
     super()
 
-    this.endianess('little')
-      .uint8('vehicleIdx')
-      .floatle('stopTime')
+    this.endianess('little').uint8('vehicleIdx').floatle('stopTime')
   }
 }
 
 export class SpeedTrapParser extends F1Parser<SpeedTrapEventDetails> {
-  constructor (packetFormat: number) {
+  constructor(packetFormat: number) {
     super()
 
     this.endianess('little').uint8('vehicleIdx').floatle('speed')
@@ -137,46 +118,32 @@ export class SpeedTrapParser extends F1Parser<SpeedTrapEventDetails> {
     }
 
     if (packetFormat >= 2022) {
-      this.uint8('isOverallFastestInSession')
-        .uint8('isDriverFastestInSession')
-        .uint8('fastestVehicleIdxInSession')
-        .floatle('fastestSpeedInSession')
+      this.uint8('isOverallFastestInSession').uint8('isDriverFastestInSession').uint8('fastestVehicleIdxInSession').floatle('fastestSpeedInSession')
     }
   }
 }
 
 export class PenaltyParser extends F1Parser<PenaltyEventDetails> {
-  constructor () {
+  constructor() {
     super()
 
-    this.endianess('little')
-      .uint8('penaltyType')
-      .uint8('infringementType')
-      .uint8('vehicleIdx')
-      .uint8('otherVehicleIdx')
-      .uint8('time')
-      .uint8('lapNum')
-      .uint8('placesGained')
+    this.endianess('little').uint8('penaltyType').uint8('infringementType').uint8('vehicleIdx').uint8('otherVehicleIdx').uint8('time').uint8('lapNum').uint8('placesGained')
   }
 }
 
 export class PacketEventDataParser extends F1Parser<PacketEvent> {
   data: PacketEvent
 
-  constructor (buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
+  constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super()
 
     this.endianess('little').nest('m_header', {
-      type: new PacketHeaderParser(packetFormat, bigintEnabled)
+      type: new PacketHeaderParser(packetFormat, bigintEnabled),
     })
 
     this.string('m_eventStringCode', { length: 4 })
 
-    const eventStringCode = this.getEventStringCode(
-      buffer,
-      packetFormat,
-      bigintEnabled
-    )
+    const eventStringCode = this.getEventStringCode(buffer, packetFormat, bigintEnabled)
 
     if (eventStringCode === EventCode.FastestLap) {
       this.nest('m_eventDetails', { type: new FastestLapParser() })
@@ -209,15 +176,11 @@ export class PacketEventDataParser extends F1Parser<PacketEvent> {
     this.data = this.fromBuffer(buffer)
   }
 
-  getEventStringCode = (
-    buffer: Buffer,
-    packetFormat: number,
-    bigintEnabled: boolean
-  ): EventCode => {
+  getEventStringCode = (buffer: Buffer, packetFormat: number, bigintEnabled: boolean): EventCode => {
     const headerParser = new Parser()
       .endianess('little')
       .nest('m_header', {
-        type: new PacketHeaderParser(packetFormat, bigintEnabled)
+        type: new PacketHeaderParser(packetFormat, bigintEnabled),
       })
       .string('m_eventStringCode', { length: 4 })
     const { m_eventStringCode } = headerParser.parse(buffer) as GenericEvent

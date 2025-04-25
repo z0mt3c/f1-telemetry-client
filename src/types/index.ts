@@ -13,7 +13,7 @@ import {
   type PacketSessionData,
   type PacketSessionHistoryData,
   type PacketTimeTrialData,
-  type PacketTyreSetsData
+  type PacketTyreSetsData,
 } from './parserTypes'
 
 export interface Options {
@@ -59,7 +59,7 @@ export class ParserError<T> extends Error {
   cause: unknown
   context: Partial<ParsedMessage<T>>
 
-  constructor (message: string, cause: unknown, context: Partial<ParsedMessage<T>>) {
+  constructor(message: string, cause: unknown, context: Partial<ParsedMessage<T>>) {
     super(message)
     this.name = 'ParserError'
     this.cause = cause

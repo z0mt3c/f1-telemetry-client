@@ -22,7 +22,7 @@ export const TYRES: Record<number, Tyre> = {
   18: { color: '#ebd25f', name: 'C3' },
   19: { color: '#ffffff', name: 'C2' },
   20: { color: '#ffffff', name: 'C1' },
-  21: { color: '#ffffff', name: 'C0' }
+  21: { color: '#ffffff', name: 'C0' },
 }
 
 export const VISUAL_TYRES: Record<number, Tyre> = {
@@ -35,12 +35,12 @@ export const VISUAL_TYRES: Record<number, Tyre> = {
   19: { color: '#b14ba7', name: 'Super Soft' },
   20: { color: '#f92d29', name: 'Soft' },
   21: { color: '#ebd25f', name: 'Medium' },
-  22: { color: '#ffffff', name: 'Hard' }
+  22: { color: '#ffffff', name: 'Hard' },
 }
 
 export const WHEEL_POSITIONS: Record<number, Position> = {
   0: { long: 'Rear Left', short: 'RL' },
   1: { long: 'Rear Right', short: 'RR' },
   2: { long: 'Front Left', short: 'FL' },
-  3: { long: 'Front Right', short: 'FR' }
+  3: { long: 'Front Right', short: 'FR' },
 }

@@ -276,29 +276,29 @@ export interface PacketCarStatusData extends PacketBase {
 export enum TractionControl {
   Off = 0,
   Medium = 1,
-  Full = 2
+  Full = 2,
 }
 
 export enum AntiLockBrakes {
   Off = 0,
-  On = 1
+  On = 1,
 }
 
 export enum FuelMix {
   Lean = 0,
   Standard = 1,
   Rich = 2,
-  Max = 3
+  Max = 3,
 }
 
 export enum PitLimiterStatus {
   Off = 0,
-  On = 1
+  On = 1,
 }
 
 export enum DRSAllowed {
   NotAllowed = 0,
-  Allowed = 1
+  Allowed = 1,
 }
 
 export enum VehicleFIAFlags {
@@ -306,19 +306,19 @@ export enum VehicleFIAFlags {
   None = 0,
   Green = 1,
   Blue = 2,
-  Yellow = 3
+  Yellow = 3,
 }
 
 export enum ERSDeployMode {
   None = 0,
   Medium = 1,
   Hotlap = 2,
-  Overtake = 3
+  Overtake = 3,
 }
 
 export enum NetworkPaused {
   NotPaused = 0,
-  Paused = 1
+  Paused = 1,
 }
 
 export enum ActualTyreCompound {
@@ -337,7 +337,7 @@ export enum ActualTyreCompound {
   SoftF2 = 12,
   MediumF2 = 13,
   HardF2 = 14,
-  WetF2 = 15
+  WetF2 = 15,
 }
 
 export enum VisualTyreCompound {
@@ -353,7 +353,7 @@ export enum VisualTyreCompound {
   SuperSoftF2_20 = 19,
   SoftF2_20 = 20,
   MediumF2_20 = 21,
-  HardF2_20 = 22
+  HardF2_20 = 22,
 }
 
 export interface CarStatusData {
@@ -448,25 +448,15 @@ export enum EventCode {
   RedFlag = 'RDFL',
   Overtake = 'OVTK',
   SafetyCar = 'SCAR',
-  Collision = 'COLL'
+  Collision = 'COLL',
 }
 
 export interface GenericEvent extends PacketBase {
-  m_eventStringCode:
-  | EventCode.SessionStarted
-  | EventCode.LightsOut
-  | EventCode.RedFlag
-  | EventCode.SessionEnded
-  | EventCode.DRSEnabled
-  | EventCode.ChequeredFlag
+  m_eventStringCode: EventCode.SessionStarted | EventCode.LightsOut | EventCode.RedFlag | EventCode.SessionEnded | EventCode.DRSEnabled | EventCode.ChequeredFlag
 }
 
 export interface VehicleEvent extends PacketBase {
-  m_eventStringCode:
-  | EventCode.Retirement
-  | EventCode.TeamMateInPits
-  | EventCode.RaceWinner
-  | EventCode.DriveThroughServed
+  m_eventStringCode: EventCode.Retirement | EventCode.TeamMateInPits | EventCode.RaceWinner | EventCode.DriveThroughServed
   m_eventDetails: VehicleEventDetails
 }
 
@@ -556,14 +546,14 @@ export enum SafetyCarType {
   NoSafetyCar = 0,
   FullSafetyCar = 1,
   VirtualSafetyCar = 2,
-  FormationLapSafetyCar = 3
+  FormationLapSafetyCar = 3,
 }
 
 export enum SafetyCarEventType {
   Deployed = 0,
   Returning = 1,
   Returned = 2,
-  ResumeRace = 3
+  ResumeRace = 3,
 }
 
 export interface SafetyCarEventDetails {
@@ -604,7 +594,7 @@ export enum RetirementReason {
   RedFlagged = 7,
   MechanicalFailure = 8,
   SessionSkipped = 9,
-  SessionSimulated = 10
+  SessionSimulated = 10,
 }
 
 export interface RetirementEventDetails extends VehicleEventDetails {
@@ -675,17 +665,17 @@ export enum Platform {
   PlayStation = 3,
   Xbox = 4,
   Origin = 6,
-  Unknown = 255
+  Unknown = 255,
 }
 
 export enum TelemetryStatus {
   Restricted = 0,
-  Public = 1
+  Public = 1,
 }
 
 export enum OnlineNamesStatus {
   Off = 0,
-  On = 1
+  On = 1,
 }
 
 export enum ReadyStatus {
@@ -730,7 +720,7 @@ export enum ResultStatus {
   DidNotFinish = 4,
   Disqualified = 5,
   NotClassified = 6,
-  Retired = 7
+  Retired = 7,
 }
 
 export enum ResultReason {
@@ -744,7 +734,7 @@ export enum ResultReason {
   RedFlagged = 7,
   MechanicalFailure = 8,
   SessionSkipped = 9,
-  SessionSimulated = 10
+  SessionSimulated = 10,
 }
 
 export interface FinalClassificationData {
@@ -845,22 +835,22 @@ export interface PacketTyreSetsData extends PacketBase {
 
 export enum AssistStatus {
   Off = 0,
-  On = 1
+  On = 1,
 }
 
 export enum CarPerformanceStatus {
   Realistic = 0,
-  Equal = 1
+  Equal = 1,
 }
 
 export enum CustomSetupStatus {
   No = 0,
-  Yes = 1
+  Yes = 1,
 }
 
 export enum ValidationStatus {
   Invalid = 0,
-  Valid = 1
+  Valid = 1,
 }
 
 export interface TimeTrialDataSet {

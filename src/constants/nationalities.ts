@@ -89,5 +89,5 @@ export const NATIONALITIES: Record<number, string> = {
   88: 'Algerian',
   89: 'Bosnian',
   90: 'Filipino',
-  255: 'Not found'
+  255: 'Not found',
 }

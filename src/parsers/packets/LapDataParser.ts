@@ -2,7 +2,7 @@ import { F1Parser } from '../F1Parser'
 import type { LapData } from '../../types/parserTypes'
 
 export class LapDataParser extends F1Parser<LapData> {
-  constructor (packetFormat: number) {
+  constructor(packetFormat: number) {
     super()
 
     this.endianess('little')
@@ -46,12 +46,7 @@ export class LapDataParser extends F1Parser<LapData> {
         .uint8('m_bestOverallSector3LapNum')
     }
 
-    this.floatle('m_lapDistance')
-      .floatle('m_totalDistance')
-      .floatle('m_safetyCarDelta')
-      .uint8('m_carPosition')
-      .uint8('m_currentLapNum')
-      .uint8('m_pitStatus')
+    this.floatle('m_lapDistance').floatle('m_totalDistance').floatle('m_safetyCarDelta').uint8('m_carPosition').uint8('m_currentLapNum').uint8('m_pitStatus')
 
     if (packetFormat >= 2021) {
       this.uint8('m_numPitStops')
@@ -68,25 +63,17 @@ export class LapDataParser extends F1Parser<LapData> {
     }
 
     if (packetFormat >= 2021) {
-      this.uint8('m_numUnservedDriveThroughPens').uint8(
-        'm_numUnservedStopGoPens'
-      )
+      this.uint8('m_numUnservedDriveThroughPens').uint8('m_numUnservedStopGoPens')
     }
 
-    this.uint8('m_gridPosition')
-      .uint8('m_driverStatus')
-      .uint8('m_resultStatus')
+    this.uint8('m_gridPosition').uint8('m_driverStatus').uint8('m_resultStatus')
 
     if (packetFormat >= 2021) {
-      this.uint8('m_pitLaneTimerActive')
-        .uint16le('m_pitLaneTimeInLaneInMS')
-        .uint16le('m_pitStopTimerInMS')
-        .uint8('m_pitStopShouldServePen')
+      this.uint8('m_pitLaneTimerActive').uint16le('m_pitLaneTimeInLaneInMS').uint16le('m_pitStopTimerInMS').uint8('m_pitStopShouldServePen')
     }
 
     if (packetFormat >= 2024) {
-      this.floatle('m_speedTrapFastestSpeed')
-        .uint8('m_speedTrapFastestLap')
+      this.floatle('m_speedTrapFastestSpeed').uint8('m_speedTrapFastestLap')
     }
   }
 }

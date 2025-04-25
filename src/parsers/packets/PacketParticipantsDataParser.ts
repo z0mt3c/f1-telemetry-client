@@ -7,11 +7,11 @@ import type { PacketParticipantsData } from '../../types/parserTypes'
 export class PacketParticipantsDataParser extends F1Parser<PacketParticipantsData> {
   data: PacketParticipantsData
 
-  constructor (buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
+  constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super()
 
     this.endianess('little').nest('m_header', {
-      type: new PacketHeaderParser(packetFormat, bigintEnabled)
+      type: new PacketHeaderParser(packetFormat, bigintEnabled),
     })
 
     if (packetFormat === 2018) {
@@ -25,7 +25,7 @@ export class PacketParticipantsDataParser extends F1Parser<PacketParticipantsDat
     const length = packetFormat >= 2020 ? 22 : 20
     this.array('m_participants', {
       length,
-      type: new ParticipantDataParser(packetFormat)
+      type: new ParticipantDataParser(packetFormat),
     })
 
     this.data = this.fromBuffer(buffer)
