@@ -38,9 +38,10 @@ $ yarn start
 ## Usage
 
 ```
-import { F1TelemetryClient, constants } from "f1-telemetry-client";
+import { F1TelemetryClient } from "f1-telemetry-client";
+import { PACKETS } from "f1-telemetry-client/constants";
+import { ... } from "f1-telemetry-client/types";
 // or: const { F1TelemetryClient, constants } = require('f1-telemetry-client');
-const { PACKETS } = constants;
 
 /*
 *   'port' is optional, defaults to 20777
