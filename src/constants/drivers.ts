@@ -4,7 +4,7 @@ export interface Driver {
   abbreviation: string
 }
 
-export const DRIVERS: Record<number, Driver> = {
+export const DRIVERS: { [index: number]: Driver } = {
   0: { abbreviation: 'SAI', firstName: 'Carlos', lastName: 'Sainz' },
   1: { abbreviation: 'KVY', firstName: 'Daniil', lastName: 'Kvyat' },
   2: { abbreviation: 'RIC', firstName: 'Daniel', lastName: 'Ricciardo' },
