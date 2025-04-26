@@ -1,27 +1,10 @@
 {
   "name": "@z0mt3c/f1-telemetry-client",
   "version": "2.0.0-beta.22",
-  "exports": {
-    ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
-      "types": "./dist/esm/index.d.ts"
-    },
-    "./constants": {
-      "import": "./dist/esm/constants/index.js",
-      "require": "./dist/cjs/constants/index.js",
-      "types": "./dist/esm/constants/index.d.ts"
-    },
-    "./types": {
-      "import": "./dist/esm/types.js",
-      "require": "./dist/cjs/types.js",
-      "types": "./dist/esm/types.d.ts"
-    }
-  },
   "type": "module",
   "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/esm/index.d.ts",
+  "module": "./dist/cjs/index.js",
+  "types": "./dist/cjs/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -31,6 +14,12 @@
     "binary-parser": "^2.2.1",
     "struct": "^0.0.12"
   },
+  "files": [
+    "dist",
+    "types",
+    "README.md",
+    "LICENSE"
+  ],
   "devDependencies": {
     "@types/binary-parser": "^1.5.5",
     "@types/cli-progress": "^3.11.6",
@@ -54,9 +43,8 @@
     "start": "tsx src/playground/index.ts",
     "record": "tsx src/playground/record.ts",
     "replay": "tsx src/playground/replay.ts",
-    "build:esm": "tsc --project tsconfig.json",
-    "build:cjs": "tsc --project tsconfig.cjs.json",
-    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build": "npm run clean &&npm run build:cjs",
+    "build:cjs": "tsc -p tsconfig.json",
     "build:link": "npm run build && npm link",
     "type-check:watch": "npm run type-check -- --watch",
     "type-check": "tsc --noEmit",
