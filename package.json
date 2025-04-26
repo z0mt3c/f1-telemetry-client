@@ -1,6 +1,6 @@
 {
   "name": "@z0mt3c/f1-telemetry-client",
-  "version": "2.0.0-beta.21",
+  "version": "2.0.0-beta.22",
   "exports": {
     ".": {
       "import": "./dist/esm/index.js",
