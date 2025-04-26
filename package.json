@@ -1,10 +1,8 @@
 {
   "name": "@z0mt3c/f1-telemetry-client",
   "version": "2.0.0-beta.26",
-  "type": "module",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/cjs/index.js",
-  "types": "./dist/cjs/index.d.ts",
+  "main": "./build/cjs/index.js",
+  "types": "./build/cjs/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -15,8 +13,7 @@
     "struct": "^0.0.12"
   },
   "files": [
-    "dist",
-    "types",
+    "build",
     "README.md",
     "LICENSE"
   ],
@@ -43,7 +40,7 @@
     "start": "tsx src/playground/index.ts",
     "record": "tsx src/playground/record.ts",
     "replay": "tsx src/playground/replay.ts",
-    "build": "npm run clean &&npm run build:cjs",
+    "build": "npm run clean && npm run build:cjs",
     "build:cjs": "tsc -p tsconfig.json",
     "build:link": "npm run build && npm link",
     "type-check:watch": "npm run type-check -- --watch",
