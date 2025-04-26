@@ -27,5 +27,5 @@ export {
   PacketParticipantsDataParser,
   PacketSessionDataParser,
   PacketCarDamageDataParser,
-  PacketSessionHistoryDataParser
+  PacketSessionHistoryDataParser,
 }

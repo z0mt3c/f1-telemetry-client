@@ -1,19 +1,9 @@
-import {
-  BIGINT_ENABLED,
-  DEFAULT_PORT,
-  F1TelemetryClient,
-  FORWARD_ADDRESSES
-} from './index'
+import { BIGINT_ENABLED, DEFAULT_PORT, F1TelemetryClient, FORWARD_ADDRESSES } from './index'
 import LineByLine from 'n-readlines'
 import * as fs from 'fs'
-import type { PacketBase } from './parsers/packets/types'
+import type { PacketBase } from './types'
 
-const normalize = (v: unknown): unknown =>
-  JSON.parse(
-    JSON.stringify(v, (key, value) =>
-      typeof value === 'bigint' ? value.toString() : value
-    )
-  )
+const normalize = (v: unknown): unknown => JSON.parse(JSON.stringify(v, (key, value) => (typeof value === 'bigint' ? value.toString() : value)))
 
 const parseMessage = (data: number[]): unknown => {
   const parsed = F1TelemetryClient.parseBufferMessage(Buffer.from(data), true)
@@ -38,7 +28,7 @@ describe('F1TelemetryClient', () => {
 
         it('should set up client as udp4 client', () => {
           expect(f1TelemetryClient.socket).toBeDefined()
-           
+
           expect((f1TelemetryClient.socket as any).type).toBe('udp4')
         })
       })
@@ -63,7 +53,7 @@ describe('F1TelemetryClient', () => {
 
         it('should set up client as udp4 client', () => {
           expect(f1TelemetryClient.socket).toBeDefined()
-           
+
           expect((f1TelemetryClient.socket as any).type).toBe('udp4')
         })
       })
@@ -75,14 +65,12 @@ describe('F1TelemetryClient', () => {
 
         beforeAll(() => {
           f1TelemetryClient = new F1TelemetryClient({
-            forwardAddresses: [{ port: 4477 }]
+            forwardAddresses: [{ port: 4477 }],
           })
         })
 
         it('should set parser enabled', () => {
-          expect(f1TelemetryClient.forwardAddresses).toStrictEqual([
-            { port: 4477 }
-          ])
+          expect(f1TelemetryClient.forwardAddresses).toStrictEqual([{ port: 4477 }])
         })
 
         it('should set port, forward port and bigintEnabled to default values', () => {
@@ -92,7 +80,7 @@ describe('F1TelemetryClient', () => {
 
         it('should set up client as udp4 client', () => {
           expect(f1TelemetryClient.socket).toBeDefined()
-           
+
           expect((f1TelemetryClient.socket as any).type).toBe('udp4')
         })
       })
@@ -117,7 +105,7 @@ describe('F1TelemetryClient', () => {
 
         it('should set up client as udp4 client', () => {
           expect(f1TelemetryClient.socket).toBeDefined()
-           
+
           expect((f1TelemetryClient.socket as any).type).toBe('udp4')
         })
       })
@@ -132,17 +120,12 @@ describe('F1TelemetryClient', () => {
     describe(`F1 ${year}`, () => {
       while ((line = liner?.next()) !== false && line != null) {
         if (line.length === 0) continue
-        const data = JSON.parse(line.toString()) as { packetID: number | string, message: any, parsed: PacketBase, format?: number }
+        const data = JSON.parse(line.toString()) as { packetID: number | string; message: any; parsed: PacketBase; format?: number }
         it(`L${lineNumber++}: ${data.packetID}`, () => {
           expect(true).toBeTruthy()
           const bufferData: number[] = data?.message?.data ?? data?.message
           const packetID = typeof data?.packetID === 'number' ? data?.packetID : null
-          expect(bufferData.length).toEqual(
-            F1TelemetryClient.getPacketSize(
-              data?.format ?? data.parsed.m_header.m_packetFormat,
-              packetID ?? data.parsed.m_header.m_packetId
-            )
-          )
+          expect(bufferData.length).toEqual(F1TelemetryClient.getPacketSize(data?.format ?? data.parsed.m_header.m_packetFormat, packetID ?? data.parsed.m_header.m_packetId))
           const parsed: any = parseMessage(bufferData)
           expect(parsed.m_header.m_packetFormat).toEqual(year)
           expect(parsed).toEqual(data.parsed)

@@ -4,5 +4,5 @@ export const WEATHER: Record<number, string> = {
   2: 'Overcast',
   3: 'Light Rain',
   4: 'Heavy Rain',
-  5: 'Storm'
+  5: 'Storm',
 }

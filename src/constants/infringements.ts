@@ -53,5 +53,5 @@ export const INFRINGEMENTS: Record<number, string> = {
   51: 'Retry penalty',
   52: 'Illegal time gain',
   53: 'Mandatory pitstop',
-  54: 'Attribute assigned'
+  54: 'Attribute assigned',
 }

@@ -7,5 +7,5 @@ export const RULESETS: Record<number, string> = {
   8: 'Autocross',
   9: 'Drift',
   10: 'Average Speed Zone',
-  11: 'Rival Duel'
+  11: 'Rival Duel',
 }

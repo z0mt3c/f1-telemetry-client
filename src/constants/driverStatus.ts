@@ -3,5 +3,5 @@ export const DRIVER_STATUS: Record<number, string> = {
   1: 'Flying Lap',
   2: 'In Lap',
   3: 'Out Lap',
-  4: 'On Track'
+  4: 'On Track',
 }

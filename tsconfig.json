@@ -1,24 +1,19 @@
 {
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     "target": "ES2020",
     "lib": ["ES2020"],
-    "module": "ESNext",
-    "outDir": "dist/esm",
+    "module": "CommonJS",
+    "outDir": "./build/cjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "preserveConstEnums": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "rootDir": "./src",
     "moduleResolution": "Node",
     "declaration": true,
-    "declarationMap": true,
-    "rootDir": "src",
-    "sourceMap": true,
-    "strict": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "noEmitOnError": true,
-    "pretty": true
-  },
-  "include": ["src/**/*.ts"]
+    "emitDeclarationOnly": false,
+  }
 }

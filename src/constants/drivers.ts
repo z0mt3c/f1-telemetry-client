@@ -1,6 +1,10 @@
-import type { Driver } from './types'
+export interface Driver {
+  firstName: string
+  lastName: string
+  abbreviation: string
+}
 
-export const DRIVERS: Record<number, Driver> = {
+export const DRIVERS: { [index: number]: Driver } = {
   0: { abbreviation: 'SAI', firstName: 'Carlos', lastName: 'Sainz' },
   1: { abbreviation: 'KVY', firstName: 'Daniil', lastName: 'Kvyat' },
   2: { abbreviation: 'RIC', firstName: 'Daniel', lastName: 'Ricciardo' },
@@ -159,7 +163,7 @@ export const DRIVERS: Record<number, Driver> = {
   165: { abbreviation: 'ANT', firstName: 'Andrea-Kimi', lastName: 'Antonelli' },
   166: { abbreviation: 'MIY', firstName: 'Ritomo', lastName: 'Miyata' },
   167: { abbreviation: 'VAR', firstName: 'Rafael', lastName: 'Villagomez' },
-  168: { abbreviation: 'ZOS', firstName: 'Zak', lastName: 'O\'Sullivan' },
+  168: { abbreviation: 'ZOS', firstName: 'Zak', lastName: "O'Sullivan" },
   169: { abbreviation: 'PEP', firstName: 'Pepe', lastName: 'Marti' },
-  255: { abbreviation: 'DRV', firstName: 'Network', lastName: 'Human' }
+  255: { abbreviation: 'DRV', firstName: 'Network', lastName: 'Human' },
 }

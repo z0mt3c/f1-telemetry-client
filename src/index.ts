@@ -15,18 +15,19 @@ import {
   PacketMotionDataParser,
   PacketParticipantsDataParser,
   PacketSessionDataParser,
-  PacketSessionHistoryDataParser
+  PacketSessionHistoryDataParser,
 } from './parsers/packets'
-import { type Address, type Options, type PacketData, type ParsedMessage, ParserError } from './types'
+
+import { type Address, type Options, type Packet, type ParsedMessage, ParserError } from './types'
 import { PacketTyreSetsDataParser } from './parsers/packets/PacketTyreSetsDataParser'
 import { PacketMotionExDataParser } from './parsers/packets/PacketMotionExDataParser'
-import type { PacketHeader } from './parsers/packets/types'
+import type { PacketHeader } from './types'
 import type { RemoteInfo } from 'node:dgram'
 import { PacketTimeTrialDataParser } from './parsers/packets/PacketTimeTrialDataParser'
 import { PacketLapPositionsDataParser } from './parsers/packets/PacketLapPositionsDataParser'
-import { PACKET_SIZES, PACKET_ID_TO_PACKET, PACKETS } from './constants'
 import * as constants from './constants'
 
+const { PACKET_SIZES, PACKET_ID_TO_PACKET, PACKETS } = constants
 export const DEFAULT_PORT = 20777
 export const FORWARD_ADDRESSES = undefined
 export const BIGINT_ENABLED = true
@@ -34,20 +35,16 @@ export const BIGINT_ENABLED = true
 /**
  *
  */
-class F1TelemetryClient extends EventEmitter {
+export class F1TelemetryClient extends EventEmitter {
   port: number
   bigintEnabled: boolean
   forwardAddresses?: Address[]
   socket?: dgram.Socket
 
-  constructor (opts: Options = {}) {
+  constructor(opts: Options = {}) {
     super()
 
-    const {
-      port = DEFAULT_PORT,
-      bigintEnabled = BIGINT_ENABLED,
-      forwardAddresses = FORWARD_ADDRESSES
-    } = opts
+    const { port = DEFAULT_PORT, bigintEnabled = BIGINT_ENABLED, forwardAddresses = FORWARD_ADDRESSES } = opts
 
     this.port = port
     this.bigintEnabled = bigintEnabled
@@ -61,11 +58,7 @@ class F1TelemetryClient extends EventEmitter {
    * @param bigintEnabled
    * @param remoteInfo
    */
-  static parseBufferMessage (
-    message: Buffer,
-    bigintEnabled = false,
-    remoteInfo?: RemoteInfo
-  ): ParsedMessage<PacketData> | undefined {
+  static parseBufferMessage(message: Buffer, bigintEnabled = false, remoteInfo?: RemoteInfo): ParsedMessage<Packet> | undefined {
     const packetHeader = F1TelemetryClient.parsePacketHeader(message, bigintEnabled)
     const { m_packetFormat: format, m_packetId: id, m_gameYear: year } = packetHeader
     const context = { id, year, format, message, remoteInfo, name: 'unknown', data: packetHeader }
@@ -86,16 +79,10 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Buffer} buffer
    * @param {Boolean} bigintEnabled
    */
-  static parsePacketHeader (
-    buffer: Buffer,
-    bigintEnabled: boolean
-  ): PacketHeader {
+  static parsePacketHeader(buffer: Buffer, bigintEnabled: boolean): PacketHeader {
     const packetFormatParser = new PacketFormatParser()
     const { m_packetFormat } = packetFormatParser.fromBuffer(buffer)
-    const packetHeaderParser = new PacketHeaderParser(
-      m_packetFormat,
-      bigintEnabled
-    )
+    const packetHeaderParser = new PacketHeaderParser(m_packetFormat, bigintEnabled)
     return packetHeaderParser.fromBuffer(buffer)
   }
 
@@ -104,7 +91,7 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Number} packetFormat
    * @param {Number} packetId
    */
-  static getPacketSize (packetFormat: number, packetId: number): number {
+  static getPacketSize(packetFormat: number, packetId: number): number {
     const packetValues = Object.values(PACKET_SIZES)
     return packetValues[packetId][packetFormat]
   }
@@ -113,7 +100,7 @@ class F1TelemetryClient extends EventEmitter {
    *
    * @param {Number} packetId
    */
-  static getParserByPacketId (packetId: number): any {
+  static getParserByPacketId(packetId: number): any {
     const packetType = PACKET_ID_TO_PACKET[packetId]
 
     switch (packetType) {
@@ -175,18 +162,14 @@ class F1TelemetryClient extends EventEmitter {
    * @param {Buffer} message
    * @param remoteInfo
    */
-  handleMessage (message: Buffer, remoteInfo: RemoteInfo): void {
+  handleMessage(message: Buffer, remoteInfo: RemoteInfo): void {
     if (this.forwardAddresses != null) {
       // bridge message
       this.bridgeMessage(message)
     }
 
     try {
-      const parsedMessage = F1TelemetryClient.parseBufferMessage(
-        message,
-        this.bigintEnabled,
-        remoteInfo
-      )
+      const parsedMessage = F1TelemetryClient.parseBufferMessage(message, this.bigintEnabled, remoteInfo)
 
       this.emitPackage(parsedMessage)
     } catch (error) {
@@ -195,8 +178,8 @@ class F1TelemetryClient extends EventEmitter {
     }
   }
 
-  private emitPackage (parsedMessage?: ParsedMessage<PacketData>): void {
-    if ((parsedMessage?.data == null)) return
+  private emitPackage(parsedMessage?: ParsedMessage<Packet>): void {
+    if (parsedMessage?.data == null) return
     this.emit(parsedMessage.name + ':raw', parsedMessage)
     this.emit(parsedMessage.name, parsedMessage.data)
     this.emit('*', parsedMessage)
@@ -206,7 +189,7 @@ class F1TelemetryClient extends EventEmitter {
    *
    * @param {Buffer} message
    */
-  bridgeMessage (message: Buffer): void {
+  bridgeMessage(message: Buffer): void {
     if (this.socket == null) {
       throw new Error('Socket is not initialized')
     }
@@ -214,20 +197,14 @@ class F1TelemetryClient extends EventEmitter {
       throw new Error('No ports to bridge over')
     }
     for (const address of this.forwardAddresses) {
-      this.socket.send(
-        message,
-        0,
-        message.length,
-        address.port,
-        address.ip ?? '0.0.0.0'
-      )
+      this.socket.send(message, 0, message.length, address.port, address.ip ?? '0.0.0.0')
     }
   }
 
   /**
    * Method to start listening for packets
    */
-  start (): void {
+  start(): void {
     if (this.socket == null) {
       return
     }
@@ -238,23 +215,23 @@ class F1TelemetryClient extends EventEmitter {
       }
 
       const address = this.socket.address()
-      console.log(
-        `UDP Client listening on ${address.address}:${address.port} 🏎`
-      )
+      console.log(`UDP Client listening on ${address.address}:${address.port} 🏎`)
       this.socket.setBroadcast(true)
     })
 
-    this.socket.on('message', (m: Buffer, remoteInfo: RemoteInfo) => { this.handleMessage(m, remoteInfo) })
+    this.socket.on('message', (m: Buffer, remoteInfo: RemoteInfo) => {
+      this.handleMessage(m, remoteInfo)
+    })
     this.socket.bind({
       port: this.port,
-      exclusive: false
+      exclusive: false,
     })
   }
 
   /**
    * Method to close the client
    */
-  stop (): dgram.Socket | undefined {
+  stop(): dgram.Socket | undefined {
     if (this.socket == null) {
       return
     }
@@ -267,4 +244,5 @@ class F1TelemetryClient extends EventEmitter {
 }
 
 export default F1TelemetryClient
-export { F1TelemetryClient, constants }
+
+export { constants }

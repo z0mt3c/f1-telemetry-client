@@ -5,5 +5,5 @@ export const SESSION_LENGTH: Record<number, string> = {
   4: 'Medium',
   5: 'Medium Long',
   6: 'Long',
-  7: 'Full'
+  7: 'Full',
 }

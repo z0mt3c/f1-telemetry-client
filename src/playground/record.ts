@@ -1,24 +1,17 @@
 import { F1TelemetryClient } from '..'
 import * as fs from 'fs'
-import { type PacketData, type ParsedMessage, type ParserError } from '../types'
+import { type Packet, type ParsedMessage, type ParserError } from '../types'
 
 const client = new F1TelemetryClient({
   port: 30500,
-  bigintEnabled: true
+  bigintEnabled: true,
 })
 
 fs.mkdir('./recordings', () => {})
 
-client.on('*', ({ data, id, format, message }: ParsedMessage<PacketData>) => {
+client.on('*', ({ data, id, format, message }: ParsedMessage<Packet>) => {
   const mHeader = data?.m_header
-  const filename = [
-    'data',
-    mHeader?.m_gameYear ?? 'unknown',
-    format,
-    mHeader?.m_sessionUID ?? 'no-session'
-  ]
-    .filter(n => n !== null)
-    .join('-')
+  const filename = ['data', mHeader?.m_gameYear ?? 'unknown', format, mHeader?.m_sessionUID ?? 'no-session'].filter((n) => n !== null).join('-')
 
   const serializable =
     JSON.stringify(
@@ -28,7 +21,7 @@ client.on('*', ({ data, id, format, message }: ParsedMessage<PacketData>) => {
         format,
         packetID: id,
         message,
-        parsed: data
+        parsed: data,
       },
       (key, value) => (typeof value === 'bigint' ? value.toString() : value)
     ) + '\n'
@@ -37,20 +30,13 @@ client.on('*', ({ data, id, format, message }: ParsedMessage<PacketData>) => {
   fs.appendFileSync(`./recordings/${filename}-all.txt`, serializable)
 })
 
-client.on('error', ({ cause, context }: ParserError<PacketData>) => {
+client.on('error', ({ cause, context }: ParserError<Packet>) => {
   try {
     const { format, id, year, message, name } = context
     const causeMessage = cause instanceof Error ? cause.message : undefined
     console.log('Error', { format, id, name, year, causeMessage, message })
 
-    const filename = [
-      'error',
-      year,
-      format,
-      'unknown-session'
-    ]
-      .filter(n => n !== null)
-      .join('-')
+    const filename = ['error', year, format, 'unknown-session'].filter((n) => n !== null).join('-')
 
     const serializable =
       JSON.stringify(
@@ -61,7 +47,7 @@ client.on('error', ({ cause, context }: ParserError<PacketData>) => {
           packetID: id,
           message,
           causeMessage,
-          cause
+          cause,
         },
         (key, value) => (typeof value === 'bigint' ? value.toString() : value)
       ) + '\n'
@@ -72,18 +58,11 @@ client.on('error', ({ cause, context }: ParserError<PacketData>) => {
   }
 })
 
-client.start();
+client.start()
 
 // stops the client
-[
-  'exit',
-  'SIGINT',
-  'SIGUSR1',
-  'SIGUSR2',
-  'uncaughtException',
-  'SIGTERM'
-].forEach(eventType => {
-  (process as NodeJS.EventEmitter).on(eventType, (e) => {
+;['exit', 'SIGINT', 'SIGUSR1', 'SIGUSR2', 'uncaughtException', 'SIGTERM'].forEach((eventType) => {
+  ;(process as NodeJS.EventEmitter).on(eventType, (e) => {
     console.error('stopping', e)
     client.stop()
   })

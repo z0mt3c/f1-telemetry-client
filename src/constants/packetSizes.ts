@@ -1,6 +1,4 @@
-import type { PacketSize } from './types'
-
-export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
+export const PACKET_SIZES: Record<string, Record<number, number>> = {
   motion: {
     2025: 1349,
     2024: 1349,
@@ -9,7 +7,7 @@ export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
     2021: 1464,
     2020: 1464,
     2019: 1343,
-    2018: 1341
+    2018: 1341,
   },
   session: {
     2025: 753,
@@ -19,7 +17,7 @@ export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
     2021: 625,
     2020: 251,
     2019: 149,
-    2018: 147
+    2018: 147,
   },
   lapData: {
     2025: 1285,
@@ -29,7 +27,7 @@ export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
     2021: 970,
     2020: 1190,
     2019: 843,
-    2018: 841
+    2018: 841,
   },
   event: {
     2025: 45,
@@ -39,7 +37,7 @@ export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
     2021: 36,
     2020: 35,
     2019: 32,
-    2018: 25
+    2018: 25,
   },
   participants: {
     2025: 1284,
@@ -49,7 +47,7 @@ export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
     2021: 1257,
     2020: 1213,
     2019: 1104,
-    2018: 1082
+    2018: 1082,
   },
   carSetups: {
     2025: 1133,
@@ -59,7 +57,7 @@ export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
     2021: 1102,
     2020: 1102,
     2019: 843,
-    2018: 841
+    2018: 841,
   },
   carTelemetry: {
     2025: 1352,
@@ -69,7 +67,7 @@ export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
     2021: 1347,
     2020: 1307,
     2019: 1347,
-    2018: 1085
+    2018: 1085,
   },
   carStatus: {
     2025: 1239,
@@ -79,7 +77,7 @@ export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
     2021: 1058,
     2020: 1344,
     2019: 1143,
-    2018: 1061
+    2018: 1061,
   },
   finalClassification: {
     2025: 1042, // new unknown field, uint8?
@@ -89,7 +87,7 @@ export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
     2021: 839,
     2020: 839,
     2019: 0,
-    2018: 0
+    2018: 0,
   },
   lobbyInfo: {
     2025: 954, // done, name shortened to 32
@@ -99,7 +97,7 @@ export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
     2021: 1191,
     2020: 1169,
     2019: 0,
-    2018: 0
+    2018: 0,
   },
   carDamage: {
     2025: 1041,
@@ -109,7 +107,7 @@ export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
     2021: 882,
     2020: 0,
     2019: 0,
-    2018: 0
+    2018: 0,
   },
   sessionHistory: {
     2025: 1460,
@@ -119,7 +117,7 @@ export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
     2021: 1155,
     2020: 0,
     2019: 0,
-    2018: 0
+    2018: 0,
   },
   tyreSets: {
     2025: 231,
@@ -129,7 +127,7 @@ export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
     2021: 0,
     2020: 0,
     2019: 0,
-    2018: 0
+    2018: 0,
   },
   motionEx: {
     2025: 273,
@@ -139,7 +137,7 @@ export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
     2021: 0,
     2020: 0,
     2019: 0,
-    2018: 0
+    2018: 0,
   },
   TimeTrial: {
     2025: 101,
@@ -149,7 +147,7 @@ export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
     2021: 0,
     2020: 0,
     2019: 0,
-    2018: 0
+    2018: 0,
   },
   unknown: {
     2025: 1131,
@@ -159,6 +157,6 @@ export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
     2021: 0,
     2020: 0,
     2019: 0,
-    2018: 0
-  }
+    2018: 0,
+  },
 }

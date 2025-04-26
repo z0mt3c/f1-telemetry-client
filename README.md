@@ -11,7 +11,6 @@ This is a TypeScript UDP client and telemetry parser for EA - Codemaster's F1 24
 
 This project has originally been developed by and was forked from [@racehub-io](https://github.com/racehub-io). The original source is located at [@racehub-io/f1-telemetry-client](https://github.com/racehub-io/f1-telemetry-client).
 
-
 ## Installing
 
 ```
@@ -39,9 +38,10 @@ $ yarn start
 ## Usage
 
 ```
-import { F1TelemetryClient, constants } from "f1-telemetry-client";
+import { F1TelemetryClient } from "f1-telemetry-client";
+import { PACKETS } from "f1-telemetry-client/constants";
+import { ... } from "f1-telemetry-client/types";
 // or: const { F1TelemetryClient, constants } = require('f1-telemetry-client');
-const { PACKETS } = constants;
 
 /*
 *   'port' is optional, defaults to 20777
@@ -89,9 +89,9 @@ The following links contain information that summarises the UDP data structures 
 - F1 2024 UDP Spec (WIP)
 - [F1 2023 UDP Spec](https://answers.ea.com/t5/General-Discussion/F1-23-UDP-Specification/td-p/12632888)
 - [F1 2022 UDP Spec](https://answers.ea.com/t5/General-Discussion/F1-22-UDP-Specification/td-p/11551274)
-- [F1 2020 UDP Spec](https://forums.codemasters.com/topic/50942-f1-2020-udp-specification/)  
-- [F1 2021 UDP Spec](https://forums.codemasters.com/topic/80231-f1-2021-udp-specification/)  
-- [F1 2019 UDP Spec](https://forums.codemasters.com/topic/44592-f1-2019-udp-specification/)  
+- [F1 2020 UDP Spec](https://forums.codemasters.com/topic/50942-f1-2020-udp-specification/)
+- [F1 2021 UDP Spec](https://forums.codemasters.com/topic/80231-f1-2021-udp-specification/)
+- [F1 2019 UDP Spec](https://forums.codemasters.com/topic/44592-f1-2019-udp-specification/)
 - [F1 2018 UDP Spec](https://forums.codemasters.com/discussion/136948/f1-2018-udp-specification)
 
 ## License

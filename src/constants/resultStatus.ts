@@ -6,5 +6,5 @@ export const RESULT_STATUS: Record<number, string> = {
   4: 'DNF',
   5: 'DSQ',
   6: 'NC',
-  7: 'Retired'
+  7: 'Retired',
 }

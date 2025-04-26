@@ -1,8 +1,8 @@
 import { F1Parser } from '../F1Parser'
-import type { CarSetupData } from './types'
+import type { CarSetupData } from '../../types'
 
 export class CarSetupDataParser extends F1Parser<CarSetupData> {
-  constructor (packetFormat: number) {
+  constructor(packetFormat: number) {
     super()
     this.uint8('m_frontWing')
       .uint8('m_rearWing')
@@ -26,10 +26,7 @@ export class CarSetupDataParser extends F1Parser<CarSetupData> {
     }
 
     if (packetFormat >= 2020) {
-      this.floatle('m_rearLeftTyrePressure')
-        .floatle('m_rearRightTyrePressure')
-        .floatle('m_frontLeftTyrePressure')
-        .floatle('m_frontRightTyrePressure')
+      this.floatle('m_rearLeftTyrePressure').floatle('m_rearRightTyrePressure').floatle('m_frontLeftTyrePressure').floatle('m_frontRightTyrePressure')
     } else {
       this.floatle('m_frontTyrePressure').floatle('m_rearTyrePressure')
     }

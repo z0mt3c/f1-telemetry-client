@@ -2,17 +2,17 @@ import { F1Parser } from '../F1Parser'
 import { LapHistoryDataParser } from './LapHistoryDataParser'
 import { TyreStintsHistoryDataParser } from './TyreStintsHistoryDataParser'
 import { PacketHeaderParser } from './PacketHeaderParser'
-import type { PacketSessionHistoryData } from './types'
+import type { PacketSessionHistoryData } from '../../types'
 
 export class PacketSessionHistoryDataParser extends F1Parser<PacketSessionHistoryData> {
   data: PacketSessionHistoryData
 
-  constructor (buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
+  constructor(buffer: Buffer, packetFormat: number, bigintEnabled: boolean) {
     super()
 
     this.endianess('little')
       .nest('m_header', {
-        type: new PacketHeaderParser(packetFormat, bigintEnabled)
+        type: new PacketHeaderParser(packetFormat, bigintEnabled),
       })
       .uint8('m_carIdx')
       .uint8('m_numLaps')
@@ -23,18 +23,18 @@ export class PacketSessionHistoryDataParser extends F1Parser<PacketSessionHistor
       .uint8('m_bestSector3LapNum')
       .array('m_lapHistoryData', {
         length: 100,
-        type: new LapHistoryDataParser(packetFormat)
+        type: new LapHistoryDataParser(packetFormat),
       })
       .array('m_tyreStintsHistoryData', {
         length: 8,
-        type: new TyreStintsHistoryDataParser()
+        type: new TyreStintsHistoryDataParser(),
       })
 
     this.data = this.postProcess(this.fromBuffer(buffer))
   }
 
-  private postProcess (packetSessionHistoryData: PacketSessionHistoryData): PacketSessionHistoryData {
-    packetSessionHistoryData.m_lapHistoryData.forEach(lap => {
+  private postProcess(packetSessionHistoryData: PacketSessionHistoryData): PacketSessionHistoryData {
+    packetSessionHistoryData.m_lapHistoryData.forEach((lap) => {
       if (lap.m_sector1TimeMinutes != null && lap.m_sector1TimeInMS != null && lap.m_sector1TimeMinutes > 0) {
         lap.m_sector1TimeInMS += lap.m_sector1TimeMinutes * 60 * 1000
         lap.m_sector1TimeMinutes = undefined
