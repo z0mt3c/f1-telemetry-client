@@ -1,4 +1,6 @@
-import type { Track } from '../types'
+export interface Track {
+  name: string
+}
 
 export const TRACKS: Record<number, Track> = {
   0: { name: 'Melbourne' },

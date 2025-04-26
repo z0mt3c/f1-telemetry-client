@@ -1,5 +1,3 @@
-import type { Team } from '../types'
-
 const MERCEDES_COLOR = '#00D2BE'
 const FERRARI_COLOR = '#DC0000'
 const RED_BULL_COLOR = '#0c1744'
@@ -44,6 +42,11 @@ const BWT_ARDEN_COLOR_19 = '#FAA0BE'
 
 const RACING_POINT_COLOR_2020 = '#FAA0BE'
 const RENAULT_COLOR_2020 = '#FFF500'
+
+export interface Team {
+  name: string
+  color: string
+}
 
 export const TEAMS: Record<number, Team> = {
   0: { name: 'Mercedes', color: MERCEDES_COLOR },

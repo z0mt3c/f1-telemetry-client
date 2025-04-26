@@ -1,4 +1,8 @@
-import type { Driver } from '../types'
+export interface Driver {
+  firstName: string
+  lastName: string
+  abbreviation: string
+}
 
 export const DRIVERS: Record<number, Driver> = {
   0: { abbreviation: 'SAI', firstName: 'Carlos', lastName: 'Sainz' },

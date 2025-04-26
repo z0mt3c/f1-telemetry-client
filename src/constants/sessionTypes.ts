@@ -1,4 +1,8 @@
-import type { SessionTypes } from '../types'
+export interface SessionTypes {
+  short: string
+  long: string
+  type?: 'Q' | 'R' | 'FP' | 'TT'
+}
 
 export const SESSION_TYPES: Record<number, SessionTypes> = {
   0: { short: 'UNK', long: 'Unknown', type: undefined },

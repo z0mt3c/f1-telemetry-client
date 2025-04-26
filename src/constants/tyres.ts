@@ -1,4 +1,12 @@
-import type { Position, Tyre } from '../types'
+export interface Tyre {
+  color: string
+  name: string
+}
+
+export interface Position {
+  short: 'RL' | 'RR' | 'FL' | 'FR'
+  long: string
+}
 
 export const TYRES: Record<number, Tyre> = {
   0: { color: '#ffb3c3', name: 'Hyper Soft' },
