@@ -3,6 +3,11 @@
   "version": "2.0.0-beta.27",
   "main": "./build/cjs/index.js",
   "types": "./build/cjs/index.d.ts",
+  "exports": {
+    ".": "./build/cjs/index.js",
+    "./types": "./build/cjs/types.js",
+    "./constants": "./build/cjs/constants/index.js"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -45,7 +50,7 @@
     "build:link": "npm run build && npm link",
     "type-check:watch": "npm run type-check -- --watch",
     "type-check": "tsc --noEmit",
-    "clean": "rimraf ./dist && rimraf ./src/samples",
+    "clean": "rimraf ./build && rimraf ./src/samples",
     "lint": "eslint ./src --ext .ts",
     "fix": "eslint ./src --ext .ts --fix",
     "test": "jest",
