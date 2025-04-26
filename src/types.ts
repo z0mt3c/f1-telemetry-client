@@ -1,3 +1,37 @@
+export interface Options {
+  port?: number
+  forwardAddresses?: Address[] | undefined
+  bigintEnabled?: boolean
+  skipParsing?: boolean
+}
+
+export interface Address {
+  port: number
+  ip?: string
+}
+
+export interface ParsedMessage<T> {
+  id: number
+  format: number
+  year: number | undefined
+  name: string
+  data: T | undefined
+  remoteInfo?: unknown
+  message?: Buffer
+}
+
+export class ParserError<T> extends Error {
+  cause: unknown
+  context: Partial<ParsedMessage<T>>
+
+  constructor(message: string, cause: unknown, context: Partial<ParsedMessage<T>>) {
+    super(message)
+    this.name = 'ParserError'
+    this.cause = cause
+    this.context = context
+  }
+}
+
 export interface PacketHeaderBase {
   m_packetFormat: number
 }
@@ -906,3 +940,36 @@ export type Packet =
   | PacketTyreSetsData
   | PacketMotionExData
   | PacketTimeTrialData
+
+
+export interface Team {
+  name: string
+  color: string
+}
+
+export interface Driver {
+  firstName: string
+  lastName: string
+  abbreviation: string
+}
+
+export interface Track {
+  name: string
+}
+
+export interface Tyre {
+  color: string
+  name: string
+}
+
+export interface Position {
+  short: 'RL' | 'RR' | 'FL' | 'FR'
+  long: string
+}
+
+export interface SessionTypes {
+  short: string
+  long: string
+  type?: 'Q' | 'R' | 'FP' | 'TT'
+}
+

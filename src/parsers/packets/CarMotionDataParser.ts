@@ -1,5 +1,5 @@
 import { F1Parser } from '../F1Parser'
-import type { MotionData } from '../../types/parserTypes'
+import type { MotionData } from '../../types'
 
 export class CarMotionDataParser extends F1Parser<MotionData> {
   constructor() {

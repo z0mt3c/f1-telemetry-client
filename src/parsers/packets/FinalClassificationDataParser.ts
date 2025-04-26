@@ -1,5 +1,5 @@
 import { F1Parser } from '../F1Parser'
-import type { FinalClassificationData } from '../../types/parserTypes'
+import type { FinalClassificationData } from '../../types'
 
 export class FinalClassificationDataParser extends F1Parser<FinalClassificationData> {
   constructor(packetFormat: number) {

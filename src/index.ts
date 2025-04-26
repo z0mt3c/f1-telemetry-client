@@ -17,15 +17,17 @@ import {
   PacketSessionDataParser,
   PacketSessionHistoryDataParser,
 } from './parsers/packets'
-import { type Address, type Options, type PacketData, type ParsedMessage, ParserError } from './types'
+
+import { type Address, type Options, type Packet, type ParsedMessage, ParserError } from './types'
 import { PacketTyreSetsDataParser } from './parsers/packets/PacketTyreSetsDataParser'
 import { PacketMotionExDataParser } from './parsers/packets/PacketMotionExDataParser'
 import type { PacketHeader } from './types'
 import type { RemoteInfo } from 'node:dgram'
 import { PacketTimeTrialDataParser } from './parsers/packets/PacketTimeTrialDataParser'
 import { PacketLapPositionsDataParser } from './parsers/packets/PacketLapPositionsDataParser'
-import { PACKET_SIZES, PACKET_ID_TO_PACKET, PACKETS } from './constants'
+import * as constants from './constants'
 
+const { PACKET_SIZES, PACKET_ID_TO_PACKET, PACKETS } = constants
 export const DEFAULT_PORT = 20777
 export const FORWARD_ADDRESSES = undefined
 export const BIGINT_ENABLED = true
@@ -56,7 +58,7 @@ export class F1TelemetryClient extends EventEmitter {
    * @param bigintEnabled
    * @param remoteInfo
    */
-  static parseBufferMessage(message: Buffer, bigintEnabled = false, remoteInfo?: RemoteInfo): ParsedMessage<PacketData> | undefined {
+  static parseBufferMessage(message: Buffer, bigintEnabled = false, remoteInfo?: RemoteInfo): ParsedMessage<Packet> | undefined {
     const packetHeader = F1TelemetryClient.parsePacketHeader(message, bigintEnabled)
     const { m_packetFormat: format, m_packetId: id, m_gameYear: year } = packetHeader
     const context = { id, year, format, message, remoteInfo, name: 'unknown', data: packetHeader }
@@ -176,7 +178,7 @@ export class F1TelemetryClient extends EventEmitter {
     }
   }
 
-  private emitPackage(parsedMessage?: ParsedMessage<PacketData>): void {
+  private emitPackage(parsedMessage?: ParsedMessage<Packet>): void {
     if (parsedMessage?.data == null) return
     this.emit(parsedMessage.name + ':raw', parsedMessage)
     this.emit(parsedMessage.name, parsedMessage.data)
@@ -241,7 +243,5 @@ export class F1TelemetryClient extends EventEmitter {
   }
 }
 
-export * from './types'
-export * from './constants'
-
 export default F1TelemetryClient
+export { constants }

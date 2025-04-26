@@ -13,9 +13,9 @@
       "types": "./dist/esm/constants/index.d.ts"
     },
     "./types": {
-      "import": "./dist/esm/types/index.js",
-      "require": "./dist/cjs/types/index.js",
-      "types": "./dist/esm/types/index.d.ts"
+      "import": "./dist/esm/types.js",
+      "require": "./dist/cjs/types.js",
+      "types": "./dist/esm/types.d.ts"
     }
   },
   "type": "module",

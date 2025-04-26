@@ -1,6 +1,6 @@
 import { F1TelemetryClient } from '..'
 import * as fs from 'fs'
-import { type PacketData, type ParsedMessage, type ParserError } from '../types'
+import { type Packet, type ParsedMessage, type ParserError } from '../types'
 
 const client = new F1TelemetryClient({
   port: 30500,
@@ -9,7 +9,7 @@ const client = new F1TelemetryClient({
 
 fs.mkdir('./recordings', () => {})
 
-client.on('*', ({ data, id, format, message }: ParsedMessage<PacketData>) => {
+client.on('*', ({ data, id, format, message }: ParsedMessage<Packet>) => {
   const mHeader = data?.m_header
   const filename = ['data', mHeader?.m_gameYear ?? 'unknown', format, mHeader?.m_sessionUID ?? 'no-session'].filter((n) => n !== null).join('-')
 
@@ -30,7 +30,7 @@ client.on('*', ({ data, id, format, message }: ParsedMessage<PacketData>) => {
   fs.appendFileSync(`./recordings/${filename}-all.txt`, serializable)
 })
 
-client.on('error', ({ cause, context }: ParserError<PacketData>) => {
+client.on('error', ({ cause, context }: ParserError<Packet>) => {
   try {
     const { format, id, year, message, name } = context
     const causeMessage = cause instanceof Error ? cause.message : undefined

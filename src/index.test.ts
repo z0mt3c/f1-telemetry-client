@@ -1,7 +1,7 @@
 import { BIGINT_ENABLED, DEFAULT_PORT, F1TelemetryClient, FORWARD_ADDRESSES } from './index'
 import LineByLine from 'n-readlines'
 import * as fs from 'fs'
-import type { PacketBase } from './types/parserTypes'
+import type { PacketBase } from './types'
 
 const normalize = (v: unknown): unknown => JSON.parse(JSON.stringify(v, (key, value) => (typeof value === 'bigint' ? value.toString() : value)))
 

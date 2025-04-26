@@ -1,4 +1,5 @@
-import { F1TelemetryClient, PACKETS } from '..'
+import { F1TelemetryClient } from '..'
+import { PACKETS } from '../constants'
 
 const client = new F1TelemetryClient({
   port: 30500,

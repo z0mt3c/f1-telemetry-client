@@ -1,4 +1,4 @@
-import type { Track } from '../types/constantTypes'
+import type { Track } from '../types'
 
 export const TRACKS: Record<number, Track> = {
   0: { name: 'Melbourne' },

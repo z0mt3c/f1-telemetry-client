@@ -1,4 +1,4 @@
-import type { SessionTypes } from '../types/constantTypes'
+import type { SessionTypes } from '../types'
 
 export const SESSION_TYPES: Record<number, SessionTypes> = {
   0: { short: 'UNK', long: 'Unknown', type: undefined },

@@ -2,7 +2,7 @@ import { F1Parser } from '../F1Parser'
 
 import { MarshalZoneParser } from './MarshalZoneParser'
 import { PacketHeaderParser } from './PacketHeaderParser'
-import type { PacketSessionData } from '../../types/parserTypes'
+import type { PacketSessionData } from '../../types'
 import { WeatherForecastSampleParser } from './WeatherForecastSampleParser'
 import { Parser } from 'binary-parser'
 

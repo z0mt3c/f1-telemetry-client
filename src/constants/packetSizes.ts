@@ -1,6 +1,4 @@
-import type { PacketSize } from '../types/constantTypes'
-
-export const PACKET_SIZES: Record<string, Record<number, PacketSize>> = {
+export const PACKET_SIZES: Record<string, Record<number, number>> = {
   motion: {
     2025: 1349,
     2024: 1349,

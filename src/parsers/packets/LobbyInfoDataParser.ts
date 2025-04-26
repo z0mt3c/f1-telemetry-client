@@ -1,5 +1,5 @@
 import { F1Parser } from '../F1Parser'
-import type { LobbyInfoData } from '../../types/parserTypes'
+import type { LobbyInfoData } from '../../types'
 
 export class LobbyInfoDataParser extends F1Parser<LobbyInfoData> {
   constructor(packetFormat: number) {

@@ -1,4 +1,4 @@
-import type { Team } from '../types/constantTypes'
+import type { Team } from '../types'
 
 const MERCEDES_COLOR = '#00D2BE'
 const FERRARI_COLOR = '#DC0000'

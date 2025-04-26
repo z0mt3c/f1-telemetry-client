@@ -1,5 +1,5 @@
 import { F1Parser } from '../F1Parser'
-import type { TyreStintsHistoryData } from '../../types/parserTypes'
+import type { TyreStintsHistoryData } from '../../types'
 
 export class TyreStintsHistoryDataParser extends F1Parser<TyreStintsHistoryData> {
   constructor() {

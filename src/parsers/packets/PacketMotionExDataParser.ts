@@ -3,7 +3,7 @@ import { Parser } from 'binary-parser'
 import { F1Parser } from '../F1Parser'
 
 import { PacketHeaderParser } from './PacketHeaderParser'
-import type { PacketMotionExData } from '../../types/parserTypes'
+import type { PacketMotionExData } from '../../types'
 
 export class PacketMotionExDataParser extends F1Parser<PacketMotionExData> {
   data: PacketMotionExData

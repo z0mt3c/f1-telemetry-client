@@ -1,7 +1,7 @@
 import { F1Parser } from '../F1Parser'
 
 import { PacketHeaderParser } from './PacketHeaderParser'
-import type { PacketTimeTrialData, TimeTrialDataSet } from '../../types/parserTypes'
+import type { PacketTimeTrialData, TimeTrialDataSet } from '../../types'
 
 class TimeTrialDataSetParser extends F1Parser<TimeTrialDataSet> {
   constructor() {

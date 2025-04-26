@@ -1,7 +1,7 @@
 import { Parser } from 'binary-parser'
 
 import { F1Parser } from '../F1Parser'
-import type { CarTelemetryData } from '../../types/parserTypes'
+import type { CarTelemetryData } from '../../types'
 
 export class CarTelemetryDataParser extends F1Parser<CarTelemetryData> {
   constructor(packetFormat: number) {
