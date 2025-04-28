@@ -17,6 +17,11 @@ export enum PACKETS {
   lapPositions = 'lapPositions',
 }
 
+// Example order of packets in the telemetry stream:
+// - 1, 5, 10, 12, 2, 0, 13, 6, 7
+// - 10, 12, 2, 0, 13, 6, 7
+// - 12, 2, 0, 13, 6, 7
+
 export const PACKET_ID_TO_PACKET: Record<number, PACKETS> = {
   0: PACKETS.motion,
   1: PACKETS.session,
