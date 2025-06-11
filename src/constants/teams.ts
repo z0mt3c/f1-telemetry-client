@@ -48,6 +48,7 @@ export interface Team {
   color: string
 }
 
+const APXGP_COLOR = '#D3AF37'
 export const TEAMS: Record<number, Team> = {
   0: { name: 'Mercedes', color: MERCEDES_COLOR },
   1: { name: 'Ferrari', color: FERRARI_COLOR },
@@ -174,6 +175,7 @@ export const TEAMS: Record<number, Team> = {
   138: { name: 'Trident 22', color: TRIDENT_COLOR },
   139: { name: 'Hitech 22', color: HITECH_COLOR },
   140: { name: 'Art GP 22', color: ART_GRAND_PRIX_COLOR },
+  142: { name: 'APXGP 24', color: APXGP_COLOR },
   143: { name: 'Art GP 23', color: ART_GRAND_PRIX_COLOR },
   144: { name: 'Campos 23', color: CAMPOS_VEXATEC_COLOR },
   145: { name: 'Carlin 23', color: CARLIN_COLOR },
@@ -185,5 +187,28 @@ export const TEAMS: Record<number, Team> = {
   151: { name: 'Trident 23', color: TRIDENT_COLOR },
   152: { name: 'Van Amersfoort Racing 23', color: '#f55702' },
   153: { name: 'Virtuosi 23', color: UNI_VIRTUOSI_COLOR },
-  255: { name: 'Not found', color: '#FFFFFF' },
+  154: { name: 'APXGP 25', color: APXGP_COLOR },
+  155: { name: 'Konnersport 24', color: KONNORSPORT_COLOR },
+  158: { name: 'Art GP 24', color: ART_GRAND_PRIX_COLOR },
+  159: { name: 'Campos 24', color: CAMPOS_VEXATEC_COLOR },
+  160: { name: 'Rodin Motorsport 24', color: '#FFFFFF' },
+  161: { name: 'AIX Racing 24', color: '#FFFFFF' },
+  162: { name: 'DAMS 24', color: DAMS_COLOR },
+  163: { name: 'Hitech 24', color: HITECH_COLOR },
+  164: { name: 'MP Motorsport 24', color: MP_MOTORSPORT_COLOR },
+  165: { name: 'Prema 24', color: PREMA_COLOR },
+  166: { name: 'Trident 24', color: TRIDENT_COLOR },
+  167: { name: 'Van Amersfoort Racing 24', color: '#f55702' },
+  168: { name: 'Invicta 24', color: '#FFFFFF' },
+  185: { name: 'Mercedes 24', color: MERCEDES_COLOR },
+  186: { name: 'Ferrari 24', color: FERRARI_COLOR },
+  187: { name: 'Red Bull Racing 24', color: RED_BULL_COLOR },
+  188: { name: 'Williams 24', color: WILLIAMS_COLOR },
+  189: { name: 'Aston Martin 24', color: ASTON_MARTIN_COLOR },
+  190: { name: 'Alpine 24', color: ALPINE_COLOR },
+  191: { name: 'RB 24', color: RB_COLOR },
+  192: { name: 'Haas 24', color: HAAS_COLOR },
+  193: { name: 'McLaren 24', color: MCLAREN_COLOR },
+  194: { name: 'Sauber 24', color: SAUBER_COLOR },
+  255: { name: 'Not found', color: '#FFFFFF' }
 }
