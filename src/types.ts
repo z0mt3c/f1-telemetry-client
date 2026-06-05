@@ -131,6 +131,16 @@ export interface PacketLapData extends PacketBase {
   m_timeTrialRivalCarIdx?: number
 }
 
+export interface ActiveAeroZone {
+  m_zoneStart: number
+  m_zoneEnd: number
+}
+
+export interface DRSZone {
+  m_zoneStart: number
+  m_zoneEnd: number
+}
+
 export interface PacketSessionData extends PacketBase {
   m_weather: number
   m_trackTemperature: number
@@ -210,6 +220,19 @@ export interface PacketSessionData extends PacketBase {
   m_weekendStructure?: number[]
   m_sector2LapDistanceStart?: number
   m_sector3LapDistanceStart?: number
+  m_activeAeroTrackStatus?: number
+  m_numActiveAeroZonesFull?: number
+  m_activeAeroZonesFull?: ActiveAeroZone[]
+  m_numActiveAeroZonesPartial?: number
+  m_activeAeroZonesPartial?: ActiveAeroZone[]
+  m_numDRSZones?: number
+  m_drsZones?: DRSZone[]
+  m_startReactionTime?: number
+  m_antiLockBrakesAssist?: number
+  m_tractionControlAssist?: number
+  m_dynamicRacingLineHiVis?: number
+  m_dynamicRacingLineColourBlind?: number
+  m_recurringRewindPrompt?: number
 }
 
 export interface MarshalZone {
