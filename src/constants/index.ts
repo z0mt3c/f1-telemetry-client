@@ -1,5 +1,6 @@
 export * from './assists'
 export * from './buttonFlags'
+export * from './cars'
 export * from './drivers'
 export * from './eras'
 export * from './ersDeployMode'
