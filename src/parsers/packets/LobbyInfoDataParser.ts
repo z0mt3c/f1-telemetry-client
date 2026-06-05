@@ -4,7 +4,15 @@ import type { LobbyInfoData } from '../../types'
 export class LobbyInfoDataParser extends F1Parser<LobbyInfoData> {
   constructor(packetFormat: number) {
     super()
-    this.uint8('m_aiControlled').uint8('m_teamId').uint8('m_nationality')
+    this.uint8('m_aiControlled')
+
+    if (packetFormat >= 2026) {
+      this.uint16le('m_teamId')
+    } else {
+      this.uint8('m_teamId')
+    }
+
+    this.uint8('m_nationality')
 
     if (packetFormat >= 2023) {
       this.uint8('m_platform')
