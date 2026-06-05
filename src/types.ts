@@ -599,6 +599,7 @@ export interface SafetyCarEventDetails {
 export interface CollisionEventDetails {
   vehicle1Idx: number
   vehicle2Idx: number
+  severity?: number
 }
 
 export interface FlashbackEventDetails {
