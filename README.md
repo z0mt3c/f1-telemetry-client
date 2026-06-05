@@ -7,7 +7,7 @@
 
 The F1 series of games support the outputting of key game data via a UDP data stream. This data can be interpreted by external apps or connected peripherals for a range of different uses, including providing additional telemetry information, customised HUD displays, motion platform hardware support or providing force feedback data for custom steering wheels.
 
-This is a TypeScript UDP client and telemetry parser for EA - Codemaster's F1 24, F1 23, F1 22, F1 2021, F1 2020, F1 2019 and F1 2018, that enables the consumption of such information.
+This is a TypeScript UDP client and telemetry parser for EA - Codemaster's F1 26, F1 25, F1 24, F1 23, F1 22, F1 2021, F1 2020, F1 2019 and F1 2018, that enables the consumption of such information.
 
 This project has originally been developed by and was forked from [@racehub-io](https://github.com/racehub-io). The original source is located at [@racehub-io/f1-telemetry-client](https://github.com/racehub-io/f1-telemetry-client).
 
@@ -68,6 +68,7 @@ client.on(PACKETS.sessionHistory, console.log);
 client.on(PACKETS.tyreSets, console.log);
 client.on(PACKETS.motionEx, console.log);
 client.on(PACKETS.timeTrial, console.log);
+client.on(PACKETS.carTelemetry2, console.log);
 
 // to get further communication details like remoteInfo
 client.on(PACKETS.timeTrial + ':raw', console.log);
