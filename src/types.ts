@@ -423,6 +423,7 @@ export interface CarStatusData {
   m_ersDeployMode: ERSDeployMode | number // due to f1 2019
   m_ersHarvestedThisLapMGUK: number
   m_ersHarvestedThisLapMGUH: number
+  m_ersHarvestLimitPerLap?: number
   m_ersDeployedThisLap: number
   m_fuelRemainingLaps?: number
   m_networkPaused?: NetworkPaused
