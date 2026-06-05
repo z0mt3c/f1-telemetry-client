@@ -19,7 +19,7 @@ export class PacketMotionDataParser extends F1Parser<PacketMotionData> {
       })
       .array('m_carMotionData', {
         length: carCount(packetFormat),
-        type: new CarMotionDataParser(),
+        type: new CarMotionDataParser(packetFormat),
       })
 
     if (packetFormat <= 2022) {
