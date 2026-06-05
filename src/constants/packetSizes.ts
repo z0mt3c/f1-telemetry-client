@@ -1,5 +1,6 @@
 export const PACKET_SIZES: Record<string, Record<number, number>> = {
   motion: {
+    2026: 1325,
     2025: 1349,
     2024: 1349,
     2023: 1349,
@@ -10,6 +11,7 @@ export const PACKET_SIZES: Record<string, Record<number, number>> = {
     2018: 1341,
   },
   session: {
+    2026: 926,
     2025: 753,
     2024: 753,
     2023: 644,
@@ -20,6 +22,7 @@ export const PACKET_SIZES: Record<string, Record<number, number>> = {
     2018: 147,
   },
   lapData: {
+    2026: 1399,
     2025: 1285,
     2024: 1285,
     2023: 1131,
@@ -30,6 +33,7 @@ export const PACKET_SIZES: Record<string, Record<number, number>> = {
     2018: 841,
   },
   event: {
+    2026: 45,
     2025: 45,
     2024: 45,
     2023: 45,
@@ -40,6 +44,7 @@ export const PACKET_SIZES: Record<string, Record<number, number>> = {
     2018: 25,
   },
   participants: {
+    2026: 1470,
     2025: 1284,
     2024: 1350,
     2023: 1306,
@@ -50,6 +55,7 @@ export const PACKET_SIZES: Record<string, Record<number, number>> = {
     2018: 1082,
   },
   carSetups: {
+    2026: 1233,
     2025: 1133,
     2024: 1133,
     2023: 1107,
@@ -60,6 +66,7 @@ export const PACKET_SIZES: Record<string, Record<number, number>> = {
     2018: 841,
   },
   carTelemetry: {
+    2026: 1448,
     2025: 1352,
     2024: 1352,
     2023: 1352,
@@ -70,6 +77,7 @@ export const PACKET_SIZES: Record<string, Record<number, number>> = {
     2018: 1085,
   },
   carStatus: {
+    2026: 1445,
     2025: 1239,
     2024: 1239,
     2023: 1239,
@@ -80,6 +88,7 @@ export const PACKET_SIZES: Record<string, Record<number, number>> = {
     2018: 1061,
   },
   finalClassification: {
+    2026: 1134,
     2025: 1042, // new unknown field, uint8?
     2024: 1020,
     2023: 1020,
@@ -90,6 +99,7 @@ export const PACKET_SIZES: Record<string, Record<number, number>> = {
     2018: 0,
   },
   lobbyInfo: {
+    2026: 1062,
     2025: 954, // done, name shortened to 32
     2024: 1306,
     2023: 1218,
@@ -100,6 +110,7 @@ export const PACKET_SIZES: Record<string, Record<number, number>> = {
     2018: 0,
   },
   carDamage: {
+    2026: 1133,
     2025: 1041,
     2024: 953,
     2023: 953,
@@ -110,6 +121,7 @@ export const PACKET_SIZES: Record<string, Record<number, number>> = {
     2018: 0,
   },
   sessionHistory: {
+    2026: 1460,
     2025: 1460,
     2024: 1460,
     2023: 1460,
@@ -120,6 +132,7 @@ export const PACKET_SIZES: Record<string, Record<number, number>> = {
     2018: 0,
   },
   tyreSets: {
+    2026: 231,
     2025: 231,
     2024: 231,
     2023: 231,
@@ -130,6 +143,7 @@ export const PACKET_SIZES: Record<string, Record<number, number>> = {
     2018: 0,
   },
   motionEx: {
+    2026: 273,
     2025: 273,
     2024: 237,
     2023: 217,
@@ -140,6 +154,7 @@ export const PACKET_SIZES: Record<string, Record<number, number>> = {
     2018: 0,
   },
   TimeTrial: {
+    2026: 104,
     2025: 101,
     2024: 101,
     2023: 0,
@@ -150,6 +165,7 @@ export const PACKET_SIZES: Record<string, Record<number, number>> = {
     2018: 0,
   },
   unknown: {
+    2026: 1231,
     2025: 1131,
     2024: 0,
     2023: 0,
