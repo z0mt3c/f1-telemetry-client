@@ -2,6 +2,7 @@ import { F1Parser } from '../F1Parser'
 import { FinalClassificationDataParser } from './FinalClassificationDataParser'
 import { PacketHeaderParser } from './PacketHeaderParser'
 import type { PacketFinalClassificationData } from '../../types'
+import { carCount } from '../../constants/cars'
 
 export class PacketFinalClassificationDataParser extends F1Parser<PacketFinalClassificationData> {
   data: PacketFinalClassificationData
@@ -15,7 +16,7 @@ export class PacketFinalClassificationDataParser extends F1Parser<PacketFinalCla
       })
       .uint8('m_numCars')
       .array('m_classificationData', {
-        length: 22,
+        length: carCount(packetFormat),
         type: new FinalClassificationDataParser(packetFormat),
       })
 

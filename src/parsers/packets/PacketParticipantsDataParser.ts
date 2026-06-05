@@ -3,6 +3,7 @@ import { F1Parser } from '../F1Parser'
 import { PacketHeaderParser } from './PacketHeaderParser'
 import { ParticipantDataParser } from './ParticipantDataParser'
 import type { PacketParticipantsData } from '../../types'
+import { carCount } from '../../constants/cars'
 
 export class PacketParticipantsDataParser extends F1Parser<PacketParticipantsData> {
   data: PacketParticipantsData
@@ -22,7 +23,7 @@ export class PacketParticipantsDataParser extends F1Parser<PacketParticipantsDat
       this.uint8('m_numActiveCars')
     }
 
-    const length = packetFormat >= 2020 ? 22 : 20
+    const length = carCount(packetFormat)
     this.array('m_participants', {
       length,
       type: new ParticipantDataParser(packetFormat),

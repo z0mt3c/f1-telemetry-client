@@ -2,6 +2,7 @@ import { F1Parser } from '../F1Parser'
 import { LapDataParser } from './LapDataParser'
 import { PacketHeaderParser } from './PacketHeaderParser'
 import type { PacketLapData } from '../../types'
+import { carCount } from '../../constants/cars'
 
 export class PacketLapDataParser extends F1Parser<PacketLapData> {
   data: PacketLapData
@@ -14,7 +15,7 @@ export class PacketLapDataParser extends F1Parser<PacketLapData> {
         type: new PacketHeaderParser(packetFormat, bigintEnabled),
       })
       .array('m_lapData', {
-        length: packetFormat >= 2020 ? 22 : 20,
+        length: carCount(packetFormat),
         type: new LapDataParser(packetFormat),
       })
     if (packetFormat >= 2022) {

@@ -5,6 +5,7 @@ import { F1Parser } from '../F1Parser'
 import { CarMotionDataParser } from './CarMotionDataParser'
 import { PacketHeaderParser } from './PacketHeaderParser'
 import type { PacketMotionData } from '../../types'
+import { carCount } from '../../constants/cars'
 
 export class PacketMotionDataParser extends F1Parser<PacketMotionData> {
   data: PacketMotionData
@@ -17,7 +18,7 @@ export class PacketMotionDataParser extends F1Parser<PacketMotionData> {
         type: new PacketHeaderParser(packetFormat, bigintEnabled),
       })
       .array('m_carMotionData', {
-        length: packetFormat >= 2020 ? 22 : 20,
+        length: carCount(packetFormat),
         type: new CarMotionDataParser(),
       })
 

@@ -1,6 +1,7 @@
 import { F1Parser } from '../F1Parser'
 import { PacketHeaderParser } from './PacketHeaderParser'
 import type { PacketLapPositionsData } from '../../types'
+import { carCount } from '../../constants/cars'
 import { Parser } from 'binary-parser'
 
 export class PacketLapPositionsDataParser extends F1Parser<PacketLapPositionsData> {
@@ -17,7 +18,7 @@ export class PacketLapPositionsDataParser extends F1Parser<PacketLapPositionsDat
       .uint8('m_lapStart')
       .array('m_positionForVehicleIdx', {
         length: 50,
-        type: new Parser().array('cars', { length: 22, type: 'uint8' }),
+        type: new Parser().array('cars', { length: carCount(packetFormat), type: 'uint8' }),
       })
 
     this.data = this.fromBuffer(buffer)
