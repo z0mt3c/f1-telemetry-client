@@ -58,7 +58,7 @@ export class PacketSessionDataParser extends F1Parser<PacketSessionData> {
     if (packetFormat >= 2021) {
       this.array('m_weatherForecastSamples', {
         type: new WeatherForecastSampleParser(packetFormat),
-        length: 56,
+        length: packetFormat >= 2024 ? 64 : 56,
       })
         .uint8('m_forecastAccuracy')
         .uint8('m_aiDifficulty')
