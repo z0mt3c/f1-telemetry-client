@@ -965,3 +965,18 @@ export type Packet =
   | PacketTyreSetsData
   | PacketMotionExData
   | PacketTimeTrialData
+
+export interface CarTelemetry2Data {
+  m_activeAeroMode: number
+  m_activeAeroAvailable: number
+  m_activeAeroActivationDistance: number
+  m_overtakeAvailable: number
+  m_overtakeActive: number
+  m_overtakeActivationDistance: number
+  m_2026Regulations: number
+  m_drivingWrongWay: number
+}
+
+export interface PacketCarTelemetry2Data extends PacketBase {
+  m_carTelemetry2Data: CarTelemetry2Data[]
+}

@@ -159,4 +159,7 @@ export const PACKET_SIZES: Record<string, Record<number, number>> = {
     2019: 0,
     2018: 0,
   },
+  carTelemetry2: {
+    2026: 269,
+  },
 }

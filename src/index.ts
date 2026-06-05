@@ -5,6 +5,7 @@ import {
   PacketCarDamageDataParser,
   PacketCarSetupDataParser,
   PacketCarStatusDataParser,
+  PacketCarTelemetry2DataParser,
   PacketCarTelemetryDataParser,
   PacketEventDataParser,
   PacketFinalClassificationDataParser,
@@ -151,6 +152,9 @@ export class F1TelemetryClient extends EventEmitter {
 
       case PACKETS.lapPositions:
         return PacketLapPositionsDataParser
+
+      case PACKETS.carTelemetry2:
+        return PacketCarTelemetry2DataParser
 
       default:
         return null
