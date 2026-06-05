@@ -9,7 +9,7 @@ class TimeTrialDataSetParser extends F1Parser<TimeTrialDataSet> {
     this.uint8('m_carIdx')
 
     if (packetFormat >= 2026) {
-      this.uint16('m_teamId')
+      this.uint16le('m_teamId')
     } else {
       this.uint8('m_teamId')
     }
