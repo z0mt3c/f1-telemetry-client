@@ -131,6 +131,16 @@ export interface PacketLapData extends PacketBase {
   m_timeTrialRivalCarIdx?: number
 }
 
+export interface ActiveAeroZone {
+  m_zoneStart: number
+  m_zoneEnd: number
+}
+
+export interface DRSZone {
+  m_zoneStart: number
+  m_zoneEnd: number
+}
+
 export interface PacketSessionData extends PacketBase {
   m_weather: number
   m_trackTemperature: number
@@ -210,6 +220,19 @@ export interface PacketSessionData extends PacketBase {
   m_weekendStructure?: number[]
   m_sector2LapDistanceStart?: number
   m_sector3LapDistanceStart?: number
+  m_activeAeroTrackStatus?: number
+  m_numActiveAeroZonesFull?: number
+  m_activeAeroZonesFull?: ActiveAeroZone[]
+  m_numActiveAeroZonesPartial?: number
+  m_activeAeroZonesPartial?: ActiveAeroZone[]
+  m_numDRSZones?: number
+  m_drsZones?: DRSZone[]
+  m_startReactionTime?: number
+  m_antiLockBrakesAssist?: number
+  m_tractionControlAssist?: number
+  m_dynamicRacingLineHiVis?: number
+  m_dynamicRacingLineColourBlind?: number
+  m_recurringRewindPrompt?: number
 }
 
 export interface MarshalZone {
@@ -423,6 +446,7 @@ export interface CarStatusData {
   m_ersDeployMode: ERSDeployMode | number // due to f1 2019
   m_ersHarvestedThisLapMGUK: number
   m_ersHarvestedThisLapMGUH: number
+  m_ersHarvestLimitPerLap?: number
   m_ersDeployedThisLap: number
   m_fuelRemainingLaps?: number
   m_networkPaused?: NetworkPaused
@@ -598,6 +622,7 @@ export interface SafetyCarEventDetails {
 export interface CollisionEventDetails {
   vehicle1Idx: number
   vehicle2Idx: number
+  severity?: number
 }
 
 export interface FlashbackEventDetails {
@@ -940,3 +965,18 @@ export type Packet =
   | PacketTyreSetsData
   | PacketMotionExData
   | PacketTimeTrialData
+
+export interface CarTelemetry2Data {
+  m_activeAeroMode: number
+  m_activeAeroAvailable: number
+  m_activeAeroActivationDistance: number
+  m_overtakeAvailable: number
+  m_overtakeActive: number
+  m_overtakeActivationDistance: number
+  m_2026Regulations: number
+  m_drivingWrongWay: number
+}
+
+export interface PacketCarTelemetry2Data extends PacketBase {
+  m_carTelemetry2Data: CarTelemetry2Data[]
+}

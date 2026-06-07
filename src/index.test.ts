@@ -112,7 +112,7 @@ describe('F1TelemetryClient', () => {
     })
   })
 
-  for (let year = 2018; year <= 2025; year++) {
+  for (let year = 2018; year <= 2026; year++) {
     const file = `src/mocks/${year}.json`
     const liner = fs.existsSync(file) ? new LineByLine(file) : null
     let line = null

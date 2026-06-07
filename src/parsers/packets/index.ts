@@ -1,6 +1,7 @@
 import { PacketCarDamageDataParser } from './PacketCarDamageDataParser'
 import { PacketCarSetupDataParser } from './PacketCarSetupDataParser'
 import { PacketCarStatusDataParser } from './PacketCarStatusDataParser'
+import { PacketCarTelemetry2DataParser } from './PacketCarTelemetry2DataParser'
 import { PacketCarTelemetryDataParser } from './PacketCarTelemetryDataParser'
 import { PacketEventDataParser } from './PacketEventDataParser'
 import { PacketFinalClassificationDataParser } from './PacketFinalClassificationDataParser'
@@ -16,6 +17,7 @@ import { PacketSessionHistoryDataParser } from './PacketSessionHistoryDataParser
 export {
   PacketCarSetupDataParser,
   PacketCarStatusDataParser,
+  PacketCarTelemetry2DataParser,
   PacketCarTelemetryDataParser,
   PacketEventDataParser,
   PacketFinalClassificationDataParser,

@@ -2,6 +2,7 @@ import { F1Parser } from '../F1Parser'
 import { LobbyInfoDataParser } from './LobbyInfoDataParser'
 import { PacketHeaderParser } from './PacketHeaderParser'
 import type { PacketLobbyInfoData } from '../../types'
+import { carCount } from '../../constants/cars'
 
 export class PacketLobbyInfoDataParser extends F1Parser<PacketLobbyInfoData> {
   data: PacketLobbyInfoData
@@ -15,7 +16,7 @@ export class PacketLobbyInfoDataParser extends F1Parser<PacketLobbyInfoData> {
       })
       .uint8('m_numPlayers')
       .array('m_lobbyPlayers', {
-        length: 22,
+        length: carCount(packetFormat),
         type: new LobbyInfoDataParser(packetFormat),
       })
 

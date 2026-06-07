@@ -12,13 +12,27 @@ export class ParticipantDataParser extends F1Parser<ParticipantData> {
   constructor(packetFormat: number) {
     super()
 
-    this.uint8('m_aiControlled').uint8('m_driverId')
+    this.uint8('m_aiControlled')
 
-    if (packetFormat >= 2021) {
-      this.uint8('m_networkId')
+    if (packetFormat >= 2026) {
+      this.uint16le('m_driverId')
+    } else {
+      this.uint8('m_driverId')
     }
 
-    this.uint8('m_teamId')
+    if (packetFormat >= 2021) {
+      if (packetFormat >= 2026) {
+        this.uint16le('m_networkId')
+      } else {
+        this.uint8('m_networkId')
+      }
+    }
+
+    if (packetFormat >= 2026) {
+      this.uint16le('m_teamId')
+    } else {
+      this.uint8('m_teamId')
+    }
 
     if (packetFormat >= 2021) {
       this.uint8('m_myTeam')

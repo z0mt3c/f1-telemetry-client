@@ -15,6 +15,7 @@ export enum PACKETS {
   motionEx = 'motionEx',
   timeTrial = 'timeTrial',
   lapPositions = 'lapPositions',
+  carTelemetry2 = 'carTelemetry2',
 }
 
 // Example order of packets in the telemetry stream:
@@ -39,4 +40,5 @@ export const PACKET_ID_TO_PACKET: Record<number, PACKETS> = {
   13: PACKETS.motionEx,
   14: PACKETS.timeTrial,
   15: PACKETS.lapPositions,
+  16: PACKETS.carTelemetry2,
 }

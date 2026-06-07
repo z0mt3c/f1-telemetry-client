@@ -53,9 +53,13 @@ export class SafetyCarParser extends F1Parser<SafetyCarEventDetails> {
 }
 
 export class CollisionParser extends F1Parser<CollisionEventDetails> {
-  constructor() {
+  constructor(packetFormat: number) {
     super()
     this.endianess('little').uint8('vehicle1Idx').uint8('vehicle2Idx')
+
+    if (packetFormat >= 2026) {
+      this.uint8('severity')
+    }
   }
 }
 
@@ -168,7 +172,7 @@ export class PacketEventDataParser extends F1Parser<PacketEvent> {
     } else if (eventStringCode === EventCode.SafetyCar) {
       this.nest('m_eventDetails', { type: new SafetyCarParser() })
     } else if (eventStringCode === EventCode.Collision) {
-      this.nest('m_eventDetails', { type: new CollisionParser() })
+      this.nest('m_eventDetails', { type: new CollisionParser(packetFormat) })
     } else if (VehicleEventParser.VEHICLE_EVENT_CODES.includes(eventStringCode)) {
       this.nest('m_eventDetails', { type: new VehicleEventParser() })
     }

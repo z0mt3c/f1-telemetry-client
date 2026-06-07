@@ -63,7 +63,13 @@ export class CarStatusDataParser extends F1Parser<CarStatusData> {
       this.floatle('m_enginePowerICE').floatle('m_enginePowerMGUK')
     }
 
-    this.floatle('m_ersStoreEnergy').uint8('m_ersDeployMode').floatle('m_ersHarvestedThisLapMGUK').floatle('m_ersHarvestedThisLapMGUH').floatle('m_ersDeployedThisLap')
+    this.floatle('m_ersStoreEnergy').uint8('m_ersDeployMode').floatle('m_ersHarvestedThisLapMGUK').floatle('m_ersHarvestedThisLapMGUH')
+
+    if (packetFormat >= 2026) {
+      this.floatle('m_ersHarvestLimitPerLap')
+    }
+
+    this.floatle('m_ersDeployedThisLap')
 
     if (packetFormat >= 2021) {
       this.int8('m_networkPaused')

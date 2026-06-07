@@ -4,11 +4,17 @@ import { PacketHeaderParser } from './PacketHeaderParser'
 import type { PacketTimeTrialData, TimeTrialDataSet } from '../../types'
 
 class TimeTrialDataSetParser extends F1Parser<TimeTrialDataSet> {
-  constructor() {
+  constructor(packetFormat: number) {
     super()
     this.uint8('m_carIdx')
-      .uint8('m_teamId')
-      .uint32('m_lapTimeInMS')
+
+    if (packetFormat >= 2026) {
+      this.uint16le('m_teamId')
+    } else {
+      this.uint8('m_teamId')
+    }
+
+    this.uint32('m_lapTimeInMS')
       .uint32('m_sector1TimeInMS')
       .uint32('m_sector2TimeInMS')
       .uint32('m_sector3TimeInMS')
@@ -28,9 +34,9 @@ export class PacketTimeTrialDataParser extends F1Parser<PacketTimeTrialData> {
     super()
     this.endianess('little')
       .nest('m_header', { type: new PacketHeaderParser(packetFormat, bigintEnabled) })
-      .nest('m_playerSessionBestDataSet', { type: new TimeTrialDataSetParser() })
-      .nest('m_personalBestDataSet', { type: new TimeTrialDataSetParser() })
-      .nest('m_rivalDataSet', { type: new TimeTrialDataSetParser() })
+      .nest('m_playerSessionBestDataSet', { type: new TimeTrialDataSetParser(packetFormat) })
+      .nest('m_personalBestDataSet', { type: new TimeTrialDataSetParser(packetFormat) })
+      .nest('m_rivalDataSet', { type: new TimeTrialDataSetParser(packetFormat) })
 
     this.data = this.fromBuffer(buffer)
   }
