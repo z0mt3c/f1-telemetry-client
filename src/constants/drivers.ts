@@ -185,4 +185,6 @@ export const DRIVERS: { [index: number]: Driver } = {
   196: { abbreviation: 'MEG', firstName: 'Sami', lastName: 'Meguetounif' },
   197: { abbreviation: 'BEN', firstName: 'John', lastName: 'Bennett' },
   255: { abbreviation: 'DRV', firstName: 'Network', lastName: 'Human' },
+  // F1 26 widened m_driverId to uint16, sentinel moved from 255
+  65535: { abbreviation: 'DRV', firstName: 'Network', lastName: 'Human' },
 }

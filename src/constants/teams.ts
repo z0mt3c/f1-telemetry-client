@@ -232,5 +232,7 @@ export const TEAMS: Record<number, Team> = {
   484: { name: 'McLaren 26', color: '#ff8000' },
   485: { name: 'Audi 26', color: '#ff2d00' },
   486: { name: 'Cadillac 26', color: '#aaaaad' },
-  255: { name: 'Not found', color: '#FFFFFF' }
+  255: { name: 'Not found', color: '#FFFFFF' },
+  // F1 26 widened m_teamId to uint16, sentinel moved from 255
+  65535: { name: 'Not found', color: '#FFFFFF' },
 }

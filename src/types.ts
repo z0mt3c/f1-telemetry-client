@@ -934,20 +934,7 @@ export interface PacketTimeTrialData extends PacketBase {
 }
 
 export type PacketEvent =
-  | GenericEvent
-  | LightEvent
-  | ButtonEvent
-  | VehicleEvent
-  | DRSDisabledEvent
-  | StopAndGoEvent
-  | RetirementEvent
-  | OvertakeEvent
-  | PenaltyEvent
-  | FlashbackEvent
-  | FastestLapEvent
-  | SpeedTrapEvent
-  | SafetyCarEvent
-  | CollisionEvent
+  GenericEvent | LightEvent | ButtonEvent | VehicleEvent | DRSDisabledEvent | StopAndGoEvent | RetirementEvent | OvertakeEvent | PenaltyEvent | FlashbackEvent | FastestLapEvent | SpeedTrapEvent | SafetyCarEvent | CollisionEvent
 
 export type Packet =
   | PacketSessionHistoryData
@@ -965,6 +952,8 @@ export type Packet =
   | PacketTyreSetsData
   | PacketMotionExData
   | PacketTimeTrialData
+  | PacketLapPositionsData
+  | PacketCarTelemetry2Data
 
 export interface CarTelemetry2Data {
   m_activeAeroMode: number
