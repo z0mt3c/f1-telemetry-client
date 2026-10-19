@@ -6,7 +6,7 @@ import type { PacketTimeTrialData, TimeTrialDataSet } from '../../types'
 class TimeTrialDataSetParser extends F1Parser<TimeTrialDataSet> {
   constructor(packetFormat: number) {
     super()
-    this.uint8('m_carIdx')
+    this.endianess('little').uint8('m_carIdx')
 
     if (packetFormat >= 2026) {
       this.uint16le('m_teamId')

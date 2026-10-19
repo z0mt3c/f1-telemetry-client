@@ -19,6 +19,7 @@ import {
   type StopGoPenaltyServedEventDetails,
   type DRSDisabledEventDetails,
   type RetirementEventDetails,
+  type PartialModeEnabledEventDetails,
   EventCode,
 } from '../../types'
 
@@ -60,6 +61,13 @@ export class CollisionParser extends F1Parser<CollisionEventDetails> {
     if (packetFormat >= 2026) {
       this.uint8('severity')
     }
+  }
+}
+
+export class PartialModeEnabledParser extends F1Parser<PartialModeEnabledEventDetails> {
+  constructor() {
+    super()
+    this.endianess('little').uint8('reason')
   }
 }
 
@@ -173,6 +181,8 @@ export class PacketEventDataParser extends F1Parser<PacketEvent> {
       this.nest('m_eventDetails', { type: new SafetyCarParser() })
     } else if (eventStringCode === EventCode.Collision) {
       this.nest('m_eventDetails', { type: new CollisionParser(packetFormat) })
+    } else if (eventStringCode === EventCode.PartialModeEnabled) {
+      this.nest('m_eventDetails', { type: new PartialModeEnabledParser() })
     } else if (VehicleEventParser.VEHICLE_EVENT_CODES.includes(eventStringCode)) {
       this.nest('m_eventDetails', { type: new VehicleEventParser() })
     }

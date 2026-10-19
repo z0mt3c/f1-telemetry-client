@@ -19,7 +19,7 @@ export const SESSION_TYPES: Record<number, SessionTypes> = {
   11: { short: 'S2', long: 'Sprint Shootout 2', type: 'R' },
   12: { short: 'S3', long: 'Sprint Shootout 3', type: 'R' },
   13: { short: 'ShortSQ', long: 'Short Sprint Shootout', type: 'Q' },
-  14: { short: 'OneShotSQ', long: 'Short Sprint Shootout', type: 'Q' },
+  14: { short: 'OneShotSQ', long: 'One-Shot Sprint Shootout', type: 'Q' },
   15: { short: 'R', long: 'Race', type: 'R' },
   16: { short: 'R2', long: 'Race 2', type: 'R' },
   17: { short: 'R3', long: 'Race 3', type: 'R' },

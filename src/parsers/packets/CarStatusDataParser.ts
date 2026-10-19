@@ -54,7 +54,7 @@ export class CarStatusDataParser extends F1Parser<CarStatusData> {
     }
 
     if (packetFormat >= 2019) {
-      this.uint8('m_vehicleFiaFlags')
+      this.int8('m_vehicleFiaFlags')
     } else {
       this.uint8('m_exhaustDamage').int8('m_vehicleFiaFlags')
     }
@@ -66,13 +66,13 @@ export class CarStatusDataParser extends F1Parser<CarStatusData> {
     this.floatle('m_ersStoreEnergy').uint8('m_ersDeployMode').floatle('m_ersHarvestedThisLapMGUK').floatle('m_ersHarvestedThisLapMGUH')
 
     if (packetFormat >= 2026) {
-      this.floatle('m_ersHarvestLimitPerLap')
+      this.floatle('m_ersHarvestedLimitPerLap')
     }
 
     this.floatle('m_ersDeployedThisLap')
 
     if (packetFormat >= 2021) {
-      this.int8('m_networkPaused')
+      this.uint8('m_networkPaused')
     }
   }
 }

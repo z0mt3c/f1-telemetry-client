@@ -446,7 +446,7 @@ export interface CarStatusData {
   m_ersDeployMode: ERSDeployMode | number // due to f1 2019
   m_ersHarvestedThisLapMGUK: number
   m_ersHarvestedThisLapMGUH: number
-  m_ersHarvestLimitPerLap?: number
+  m_ersHarvestedLimitPerLap?: number
   m_ersDeployedThisLap: number
   m_fuelRemainingLaps?: number
   m_networkPaused?: NetworkPaused
@@ -507,10 +507,15 @@ export enum EventCode {
   Overtake = 'OVTK',
   SafetyCar = 'SCAR',
   Collision = 'COLL',
+  PartialModeEnabled = 'PMEN',
+  PartialModeDisabled = 'PMDI',
+  OvertakeEnabled = 'OVEN',
+  OvertakeDisabled = 'OVDI',
 }
 
 export interface GenericEvent extends PacketBase {
-  m_eventStringCode: EventCode.SessionStarted | EventCode.LightsOut | EventCode.RedFlag | EventCode.SessionEnded | EventCode.DRSEnabled | EventCode.ChequeredFlag
+  m_eventStringCode:
+    EventCode.SessionStarted | EventCode.LightsOut | EventCode.RedFlag | EventCode.SessionEnded | EventCode.DRSEnabled | EventCode.ChequeredFlag | EventCode.PartialModeDisabled | EventCode.OvertakeEnabled | EventCode.OvertakeDisabled
 }
 
 export interface VehicleEvent extends PacketBase {
@@ -536,6 +541,11 @@ export interface SafetyCarEvent extends PacketBase {
 export interface CollisionEvent extends PacketBase {
   m_eventStringCode: EventCode.Collision
   m_eventDetails: CollisionEventDetails
+}
+
+export interface PartialModeEnabledEvent extends PacketBase {
+  m_eventStringCode: EventCode.PartialModeEnabled
+  m_eventDetails: PartialModeEnabledEventDetails
 }
 
 export interface FlashbackEvent extends PacketBase {
@@ -623,6 +633,16 @@ export interface CollisionEventDetails {
   vehicle1Idx: number
   vehicle2Idx: number
   severity?: number
+}
+
+export enum PartialModeEnabledReason {
+  WetTrack = 0,
+  SafetyCarDeployed = 1,
+  RedFlag = 2,
+}
+
+export interface PartialModeEnabledEventDetails {
+  reason: PartialModeEnabledReason
 }
 
 export interface FlashbackEventDetails {
@@ -934,7 +954,21 @@ export interface PacketTimeTrialData extends PacketBase {
 }
 
 export type PacketEvent =
-  GenericEvent | LightEvent | ButtonEvent | VehicleEvent | DRSDisabledEvent | StopAndGoEvent | RetirementEvent | OvertakeEvent | PenaltyEvent | FlashbackEvent | FastestLapEvent | SpeedTrapEvent | SafetyCarEvent | CollisionEvent
+  | GenericEvent
+  | LightEvent
+  | ButtonEvent
+  | VehicleEvent
+  | DRSDisabledEvent
+  | StopAndGoEvent
+  | RetirementEvent
+  | OvertakeEvent
+  | PenaltyEvent
+  | FlashbackEvent
+  | FastestLapEvent
+  | SpeedTrapEvent
+  | SafetyCarEvent
+  | CollisionEvent
+  | PartialModeEnabledEvent
 
 export type Packet =
   | PacketSessionHistoryData

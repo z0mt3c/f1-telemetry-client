@@ -23,6 +23,7 @@ const typeMapping: Record<string, string[]> = {
     'CollisionEvent',
     'DRSDisabledEvent',
     'RetirementEvent',
+    'PartialModeEnabledEvent',
     'EventCode',
   ],
   participants: ['PacketParticipantsData'],
