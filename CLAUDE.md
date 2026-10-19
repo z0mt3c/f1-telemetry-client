@@ -4,20 +4,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-TypeScript UDP client + binary telemetry parser for EA/Codemasters F1 games **2018–2025**. Published as `@z0mt3c/f1-telemetry-client` (CJS, built to `build/cjs`). Runtime deps are only `binary-parser` + `struct`.
+TypeScript UDP client + binary telemetry parser for EA/Codemasters F1 games **2018–2026**. Published as `@z0mt3c/f1-telemetry-client` (CJS, built to `build/cjs`). Runtime deps are only `binary-parser` + `struct`.
 
-Use **npm** (repo has `package-lock.json`, no pnpm lockfile).
+Use **pnpm** (`packageManager` pinned in `package.json`; `pnpm-workspace.yaml` sets `supportedArchitectures` so the lockfile covers darwin/linux/win32 × x64/arm64). TypeScript stays on 6.x: ts-jest and typescript-eslint need the TS JS API, which TS 7 dropped.
 
 ## Commands
 
-- `npm run build` — clean + `tsc` to `build/cjs` (declarations included).
-- `npm run type-check` / `... :watch` — `tsc --noEmit`.
-- `npm run lint` / `npm run fix` — eslint (`eslint-config-love`) over `src`, `--fix` variant.
-- `npm run format` / `npm run check` — prettier write / verify.
-- `npm test` — jest. **`pretest` rebuilds and `posttest` lints automatically.** To run tests without the rebuild/lint cycle use `npx jest`.
-- Single test: `npx jest -t "F1 2024"` (year suite) or `npx jest -t "L12"` (mock line). Each mock line becomes its own `it`.
-- `npm run test:schema` — full round-trip: regenerate `src/samples/*.ts` from mocks, fix, test, clean. Run after touching parsers or types to confirm sample emission still compiles.
-- Playground (tsx, no build): `npm start` (listen on UDP 30500), `npm run record` (capture live UDP → `./recordings/*.txt`), `npm run replay` (replay a recording to a UDP target).
+- `pnpm run build` — clean + `tsc` to `build/cjs` (declarations included).
+- `pnpm run type-check` / `... :watch` — `tsc --noEmit`.
+- `pnpm run lint` / `pnpm run fix` — eslint (`eslint-config-love`) over `src`, `--fix` variant.
+- `pnpm run format` / `pnpm run check` — prettier write / verify.
+- `pnpm test` — jest. **`pretest` rebuilds and `posttest` lints automatically.** To run tests without the rebuild/lint cycle use `pnpm exec jest`.
+- Single test: `pnpm exec jest -t "F1 2024"` (year suite) or `pnpm exec jest -t "L12"` (mock line). Each mock line becomes its own `it`.
+- `pnpm run test:schema` — full round-trip: regenerate `src/samples/*.ts` from mocks, fix, test, clean. Run after touching parsers or types to confirm sample emission still compiles.
+- Playground (tsx, no build): `pnpm start` (listen on UDP 30500), `pnpm run record` (capture live UDP → `./recordings/*.txt`), `pnpm run replay` (replay a recording to a UDP target).
 
 `replay.ts` reads env vars: `REPLAY_FILE` (required), `REPLAY_IP`, `REPLAY_PORT` (default 20999), `REPLAY_SPEED`, `REPLAY_START_LINE`.
 
@@ -49,9 +49,9 @@ Use **npm** (repo has `package-lock.json`, no pnpm lockfile).
 
 ## Tests
 
-`src/index.test.ts` is data-driven: for each year 2018–2025 it streams `src/mocks/<year>.json` line by line, asserts buffer length equals `getPacketSize(...)`, parses, and deep-equals against the recorded `parsed` value (with bigints normalized to strings). The mocks are the source of truth — a parser change that alters output will fail these unless mocks are regenerated.
+`src/index.test.ts` is data-driven: for each year 2018–2026 it streams `src/mocks/<year>.json` line by line, asserts buffer length equals `getPacketSize(...)`, parses, and deep-equals against the recorded `parsed` value (with bigints normalized to strings). The mocks are the source of truth — a parser change that alters output will fail these unless mocks are regenerated.
 
 ## Conventions
 
 - Binary field names keep the game's `m_camelCase` / `m_snake` naming; eslint `naming-convention` is configured to allow `m_*` and numeric property keys, so don't rename them to satisfy lint.
-- Don't hand-edit lockfiles; manage deps via `npm`.
+- Don't hand-edit lockfiles; manage deps via `pnpm`.

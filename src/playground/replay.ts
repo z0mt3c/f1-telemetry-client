@@ -31,7 +31,7 @@ let no: number = 0
 const start = async (): Promise<void> => {
   let lastEventAt: number | null = null
   let line = null
-  while ((line = liner?.next()) !== false && line != null) {
+  while ((line = liner?.next()) != null) {
     read += line.length
     if (no++ >= startLine) {
       const data = JSON.parse(line.toString()) as { time: string; message: any }

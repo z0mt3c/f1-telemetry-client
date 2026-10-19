@@ -14,25 +14,19 @@ This project has originally been developed by and was forked from [@racehub-io](
 ## Installing
 
 ```
-$ npm install @z0mt3c/f1-telemetry-client
+$ pnpm add @z0mt3c/f1-telemetry-client
 ```
 
 or
 
 ```
-$ yarn add @z0mt3c/f1-telemetry-client
+$ npm install @z0mt3c/f1-telemetry-client
 ```
 
 ## Running the playground
 
 ```
-$ npm run start
-```
-
-or
-
-```
-$ yarn start
+$ pnpm start
 ```
 
 ## Usage
@@ -83,11 +77,17 @@ client.start();
 client.stop();
 ```
 
+### F1 26 notes
+
+- `m_gForceLateral`, `m_gForceLongitudinal` and `m_gForceVertical` in `motion` are raw quantised `int16` values from F1 26 on. Divide by `1000` to get G (earlier games send floats in G).
+- `m_driverId`, `m_networkId` and `m_teamId` are `uint16`. The "network human" / "no team" sentinel is `65535` instead of `255`.
+
 ## Documentation
 
 The following links contain information that summarises the UDP data structures so that developers of supporting hardware or software are able to configure these to work correctly with the F1 game.
 
-- F1 2025 UDP Spec (WIP)
+- F1 26 UDP Spec
+- F1 2025 UDP Spec
 - F1 2024 UDP Spec
 - [F1 2023 UDP Spec](https://answers.ea.com/t5/General-Discussion/F1-23-UDP-Specification/td-p/12632888)
 - [F1 2022 UDP Spec](https://answers.ea.com/t5/General-Discussion/F1-22-UDP-Specification/td-p/11551274)

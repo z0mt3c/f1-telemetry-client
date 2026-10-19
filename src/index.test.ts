@@ -118,7 +118,7 @@ describe('F1TelemetryClient', () => {
     let line = null
     let lineNumber = 1
     describe(`F1 ${year}`, () => {
-      while ((line = liner?.next()) !== false && line != null) {
+      while ((line = liner?.next()) != null) {
         if (line.length === 0) continue
         const data = JSON.parse(line.toString()) as { packetID: number | string; message: any; parsed: PacketBase; format?: number }
         it(`L${lineNumber++}: ${data.packetID}`, () => {
