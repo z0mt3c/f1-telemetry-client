@@ -1,6 +1,6 @@
 {
   "name": "@z0mt3c/f1-telemetry-client",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "main": "./build/cjs/index.js",
   "types": "./build/cjs/index.d.ts",
   "exports": {
